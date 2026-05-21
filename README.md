@@ -121,9 +121,20 @@ efline/
 
 | テンプレート | ファイル | 推奨スラッグ | 連携する ACF |
 | --- | --- | --- | --- |
-| こどものはならび | `template-kodomono-hanarabi.php` | `kodomono-hanarabi` | `flow_steps` リピーター |
+| こどものはならび | `template-kodomono-hanarabi.php` | `child` | `flow_steps` リピーター |
 | Q&A | `template-qa.php` | `qa` | `qa_items` リピーター |
-| EFの使い方 | `template-ef-tsukaikata.php` | `ef-tsukaikata` | （Figma 確定後追加） |
+| EFの使い方 | `template-ef-tsukaikata.php` | `ef` | （Figma 確定後追加） |
+
+※ ページスラッグは既存サイト (kodomo-kyousei.com) の URL 構造に合わせています。
+ヘッダーナビは現在地が `/child/`, `/ef/`, `/qa/`, `/clinic/` のいずれかのとき
+該当アイコンがアクティブ表示になります。
+
+### グローバルナビ
+
+ヘッダーのグローバルナビは `[custom_menu]` ショートコードでも出力可能です。
+Elementor や WPCode 等から任意の場所に挿入できます。
+ナビ項目の URL・画像・ラベルは `inc/template-helpers.php` の
+`efline_default_primary_nav()` で集中管理しています。
 
 ### 固定ページの作成手順
 

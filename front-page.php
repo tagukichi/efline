@@ -21,13 +21,19 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 <section class="p-hero" aria-labelledby="hero-title">
 	<div class="p-hero__inner">
 		<div class="p-hero__media">
-			<?php if ( file_exists( EFLINE_THEME_DIR . '/assets/images/hero.jpg' ) ) : ?>
-				<img src="<?php echo esc_url( EFLINE_THEME_URI . '/assets/images/hero.jpg' ); ?>" alt="" class="p-hero__image" loading="eager" fetchpriority="high">
-			<?php else : ?>
-				<div class="p-hero__image p-hero__image--placeholder" aria-hidden="true"></div>
-			<?php endif; ?>
+			<?php
+			// FV メイン画像（女の子）。ローカル assets/images/hero.jpg があれば優先。
+			$hero_image = file_exists( EFLINE_THEME_DIR . '/assets/images/hero.jpg' )
+				? EFLINE_THEME_URI . '/assets/images/hero.jpg'
+				: 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/image-14.png';
+			?>
+			<img src="<?php echo esc_url( $hero_image ); ?>" alt="" class="p-hero__image" loading="eager" fetchpriority="high">
 		</div>
 		<div class="p-hero__content">
+			<img src="<?php echo esc_url( efline_logo_url() ); ?>"
+			     alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+			     class="p-hero__logo"
+			     width="320" height="80">
 			<p class="p-hero__catch"><?php esc_html_e( 'キャッチコピーを入れることも可能です', 'efline' ); ?></p>
 			<h1 id="hero-title" class="p-hero__title">
 				<?php esc_html_e( 'タイトルをいれたり', 'efline' ); ?><br>
@@ -147,7 +153,7 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 				<?php esc_html_e( '本格矯正治療前に', 'efline' ); ?><br>
 				<?php esc_html_e( '口腔環境を整える機能訓練装置', 'efline' ); ?>
 			</p>
-			<a class="c-button c-button--outline" href="<?php echo esc_url( home_url( '/ef-tsukaikata/' ) ); ?>">
+			<a class="c-button c-button--outline" href="<?php echo esc_url( home_url( '/ef/' ) ); ?>">
 				<?php esc_html_e( 'くわしく見る', 'efline' ); ?>
 				<span aria-hidden="true">&nbsp;＞</span>
 			</a>

@@ -13,33 +13,48 @@ if ( ! defined( 'ABSPATH' ) ) {
  * 主要ナビ項目のフォールバック定義。
  * WP 管理画面で「グローバルナビ」メニューが未設定のとき、ここの配列を出力する。
  *
- * @return array<int,array{label:string,url:string,icon:string,key:string}>
+ * 既存サイト（kodomo-kyousei.com）の構成に合わせ、ページスラッグは
+ * child / ef / qa / clinic を採用する。
+ *
+ * @return array<int,array{key:string,label:string,sub_label:string,url:string,normal:string,active:string}>
  */
 function efline_default_primary_nav() {
 	return array(
 		array(
-			'key'   => 'orthodontics',
-			'label' => __( 'こどものはならび', 'efline' ),
-			'url'   => home_url( '/kodomono-hanarabi/' ),
-			'icon'  => 'tooth',
+			'key'       => 'child',
+			'label'     => __( 'こどもの', 'efline' ),
+			'sub_label' => __( 'はならび', 'efline' ),
+			'url'       => home_url( '/child/' ),
+			'normal'    => 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/Frame-4.png',
+			'active'    => 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/Group-3.png',
+			'alt'       => __( 'こどものはならび', 'efline' ),
 		),
 		array(
-			'key'   => 'usage',
-			'label' => __( 'EFの使い方', 'efline' ),
-			'url'   => home_url( '/ef-tsukaikata/' ),
-			'icon'  => 'info',
+			'key'       => 'ef',
+			'label'     => __( 'EFの', 'efline' ),
+			'sub_label' => __( '使い方', 'efline' ),
+			'url'       => home_url( '/ef/' ),
+			'normal'    => 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/Frame-5.png',
+			'active'    => 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/Group-4.png',
+			'alt'       => __( 'EFの使い方', 'efline' ),
 		),
 		array(
-			'key'   => 'qa',
-			'label' => __( 'Q&A', 'efline' ),
-			'url'   => home_url( '/qa/' ),
-			'icon'  => 'question',
+			'key'       => 'qa',
+			'label'     => __( 'Q&A', 'efline' ),
+			'sub_label' => '',
+			'url'       => home_url( '/qa/' ),
+			'normal'    => 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/Frame-6.png',
+			'active'    => 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/Group-5.png',
+			'alt'       => __( 'Q&A', 'efline' ),
 		),
 		array(
-			'key'   => 'clinics',
-			'label' => __( '取扱いクリニック', 'efline' ),
-			'url'   => get_post_type_archive_link( 'clinic' ) ?: home_url( '/clinics/' ),
-			'icon'  => 'clinic',
+			'key'       => 'clinic',
+			'label'     => __( '取扱い', 'efline' ),
+			'sub_label' => __( 'クリニック', 'efline' ),
+			'url'       => home_url( '/clinic/' ),
+			'normal'    => 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/Group-1-4.png',
+			'active'    => 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/Group-6.png',
+			'alt'       => __( '取扱いクリニック', 'efline' ),
 		),
 	);
 }
@@ -81,19 +96,95 @@ function efline_icon( $name, $attrs = array() ) {
 /**
  * 主要ページの URL/タイトルから「現在のページがそれか」判定するヘルパー。
  * ヘッダーナビのアクティブ状態に利用。
+ *
+ * 既存スニペット (is_active_page) のロジックを取り込み、
+ * ページスラッグ一致 + CPT アーカイブ + テンプレート一致のいずれかで真とする。
+ */
+function efline_is_active_page( $slug ) {
+	global $post;
+
+	// クリニック CPT アーカイブ / 個別 / タクソノミー
+	if ( 'clinic' === $slug ) {
+		if ( is_post_type_archive( 'clinic' ) || is_singular( 'clinic' ) || is_tax( array( 'clinic_area', 'clinic_service' ) ) ) {
+			return true;
+		}
+	}
+
+	// 固定ページのスラッグ一致
+	if ( is_page() && isset( $post->post_name ) && $post->post_name === $slug ) {
+		return true;
+	}
+
+	// テンプレートファイル一致（スラッグが推奨値と異なる場合の保険）
+	if ( is_page() ) {
+		$template_map = array(
+			'child' => 'template-kodomono-hanarabi.php',
+			'ef'    => 'template-ef-tsukaikata.php',
+			'qa'    => 'template-qa.php',
+		);
+		if ( isset( $template_map[ $slug ] ) && is_page_template( $template_map[ $slug ] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * 後方互換: efline_is_current_nav() を efline_is_active_page() に委譲。
  */
 function efline_is_current_nav( $key ) {
-	switch ( $key ) {
-		case 'clinics':
-			return is_post_type_archive( 'clinic' ) || is_singular( 'clinic' ) || is_tax( array( 'clinic_area', 'clinic_service' ) );
-		case 'qa':
-			return is_page_template( 'template-qa.php' ) || is_page( 'qa' );
-		case 'usage':
-			return is_page_template( 'template-ef-tsukaikata.php' ) || is_page( 'ef-tsukaikata' );
-		case 'orthodontics':
-			return is_page_template( 'template-kodomono-hanarabi.php' ) || is_page( 'kodomono-hanarabi' );
+	return efline_is_active_page( $key );
+}
+
+/**
+ * グローバルナビ（カスタムメニュー）の HTML を返す。
+ * ショートコード [custom_menu] と header.php の両方から利用する。
+ */
+function efline_render_main_nav() {
+	$items = efline_default_primary_nav();
+	ob_start();
+	?>
+	<ul class="custom-menu">
+		<?php foreach ( $items as $item ) :
+			$is_active = efline_is_active_page( $item['key'] );
+		?>
+			<li class="menu-item <?php echo $is_active ? 'active' : ''; ?>">
+				<a href="<?php echo esc_url( $item['url'] ); ?>">
+					<img src="<?php echo esc_url( $item['normal'] ); ?>"
+					     alt="<?php echo esc_attr( $item['alt'] ); ?>"
+					     class="icon normal-icon"
+					     loading="lazy"
+					     decoding="async">
+					<img src="<?php echo esc_url( $item['active'] ); ?>"
+					     alt="<?php echo esc_attr( $item['alt'] ); ?>(<?php esc_attr_e( 'アクティブ', 'efline' ); ?>)"
+					     class="icon active-icon"
+					     loading="lazy"
+					     decoding="async">
+					<span>
+						<?php echo esc_html( $item['label'] ); ?>
+						<?php if ( $item['sub_label'] !== '' ) : ?>
+							<br><?php echo esc_html( $item['sub_label'] ); ?>
+						<?php endif; ?>
+					</span>
+				</a>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'custom_menu', 'efline_render_main_nav' );
+
+/**
+ * ロゴ画像 URL。ヘッダー / FV / フッターから参照する。
+ * ローカル assets/images/logo.svg があれば優先、なければ既存サイトの SVG を使用。
+ */
+function efline_logo_url() {
+	if ( file_exists( EFLINE_THEME_DIR . '/assets/images/logo.svg' ) ) {
+		return EFLINE_THEME_URI . '/assets/images/logo.svg';
 	}
-	return false;
+	return 'http://kodomo-kyousei.com/wp-content/uploads/2026/05/image-13.svg';
 }
 
 /**
