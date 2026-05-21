@@ -37,22 +37,6 @@
 	padding: var(--space-6) var(--space-4) var(--space-8);
 }
 
-.p-hero__logo {
-	display: block;
-	width: auto;
-	height: 56px;
-	max-width: 260px;
-	margin: 0 0 var(--space-4);
-}
-
-@media (min-width: 1024px) {
-	.p-hero__logo {
-		height: 80px;
-		max-width: 320px;
-		margin-bottom: var(--space-5);
-	}
-}
-
 .p-hero__catch {
 	margin: 0 0 var(--space-3);
 	color: var(--color-text);
