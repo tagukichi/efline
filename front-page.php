@@ -21,11 +21,7 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 <section class="p-hero" aria-labelledby="hero-title">
 	<div class="p-hero__inner">
 		<div class="p-hero__media">
-			<?php if ( file_exists( EFLINE_THEME_DIR . '/assets/images/hero.jpg' ) ) : ?>
-				<img src="<?php echo esc_url( EFLINE_THEME_URI . '/assets/images/hero.jpg' ); ?>" alt="" class="p-hero__image" loading="eager" fetchpriority="high">
-			<?php else : ?>
-				<div class="p-hero__image p-hero__image--placeholder" aria-hidden="true"></div>
-			<?php endif; ?>
+			<img src="<?php echo esc_url( efline_hero_image_url() ); ?>" alt="" class="p-hero__image" loading="eager" fetchpriority="high">
 		</div>
 		<div class="p-hero__content">
 			<?php echo efline_render_logo( array( 'context' => 'hero' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

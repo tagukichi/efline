@@ -32,114 +32,50 @@
 	}
 }
 
-/* ---------- Site logo (mascot + text) ---------- */
+/* ---------- Site logo ---------- */
 .site-logo {
 	display: inline-flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
 	align-items: center;
-	gap: var(--space-2);
 	color: var(--color-heading);
 	text-decoration: none;
 	flex: 0 0 auto;
 	min-width: 0;
-}
-
-.site-logo__mark {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	flex: 0 0 auto;
-	width: 44px;
-	height: 52px;
-}
-
-@media (min-width: 1024px) {
-	.site-logo__mark {
-		width: 80px;
-		height: 96px;
-	}
-}
-
-.site-logo__mark-svg {
-	width: 100%;
-	height: 100%;
-	display: block;
-}
-
-.site-logo__text {
-	display: flex;
-	flex-direction: column;
-	line-height: 1.15;
-	min-width: 0;
-}
-
-.site-logo__sub {
-	color: var(--color-primary);
-	font-size: 9px;
-	letter-spacing: 0.06em;
-	font-weight: var(--fw-medium);
-}
-
-@media (min-width: 1024px) {
-	.site-logo__sub {
-		font-size: 14px;
-	}
-}
-
-.site-logo__name {
-	font-family: var(--font-logo);
-	font-size: 18px;
-	font-weight: var(--fw-bold);
-	color: var(--color-heading);
-	letter-spacing: 0.02em;
-}
-
-@media (min-width: 1024px) {
-	.site-logo__name {
-		font-size: 34px;
-	}
+	line-height: 0;
 }
 
 .site-logo__image {
 	display: block;
 	width: auto;
-	height: 44px;
-	max-width: 220px;
+	height: 48px;
+	max-width: 260px;
 	object-fit: contain;
 }
 
 @media (min-width: 1024px) {
 	.site-logo__image {
 		height: 80px;
-		max-width: 320px;
+		max-width: 360px;
 	}
 }
 
-/* hero context: stand-alone (linkなし)、サイズ少し大きめ */
+/* hero context: stand-alone (リンクなし)、サイズ拡張 */
 .site-logo--hero {
+	display: inline-block;
 	margin-bottom: var(--space-4);
 }
 
-.site-logo--hero .site-logo__mark {
-	width: 64px;
-	height: 76px;
+.site-logo--hero .site-logo__image {
+	height: 64px;
+	max-width: 300px;
 }
 
 @media (min-width: 1024px) {
-	.site-logo--hero .site-logo__mark {
-		width: 96px;
-		height: 116px;
+	.site-logo--hero {
+		margin-bottom: var(--space-5);
 	}
-}
-
-.site-logo--hero .site-logo__name {
-	font-size: 22px;
-}
-
-@media (min-width: 1024px) {
-	.site-logo--hero .site-logo__name {
-		font-size: 38px;
+	.site-logo--hero .site-logo__image {
+		height: 96px;
+		max-width: 380px;
 	}
 }
 

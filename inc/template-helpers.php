@@ -177,95 +177,61 @@ function efline_render_main_nav() {
 add_shortcode( 'custom_menu', 'efline_render_main_nav' );
 
 /**
- * ロゴ画像 URL。ローカルにロゴファイルがあれば返す（なければ空文字）。
- * 優先順位: assets/images/logo.svg > assets/images/logo.png
+ * ロゴ画像 URL。ローカルアップロードがあればそれを優先、なければ既存サイトの SVG。
+ *
+ * NOTE: ユーザー指定により下記 URL を使用。
+ * 既存 WP 環境 (kodomo-kyousei.com) と同一ドメインで動作させる前提のため
+ * クロスドメインホットリンクの考慮は不要。
  */
-function efline_logo_image_url() {
+function efline_logo_url() {
 	if ( file_exists( EFLINE_THEME_DIR . '/assets/images/logo.svg' ) ) {
 		return EFLINE_THEME_URI . '/assets/images/logo.svg';
 	}
 	if ( file_exists( EFLINE_THEME_DIR . '/assets/images/logo.png' ) ) {
 		return EFLINE_THEME_URI . '/assets/images/logo.png';
 	}
-	return '';
+	return 'http://kodomo-kyousei.com/wp-content/uploads/2026/05/image-13.svg';
 }
 
 /**
- * ロゴ（マスコット）のインライン SVG マークアップ。
- * 外部 SVG が読めない場合のフォールバックであり、デフォルトはこれを表示する。
+ * FV の女の子画像 URL。ローカル assets/images/hero.png|jpg があれば優先。
  */
-function efline_logo_mascot_svg() {
-	return '<svg class="site-logo__mark-svg" viewBox="0 0 110 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
-		. '<g fill="#49bce3">'
-		. '<path d="M55 0 L57.5 6 L64 8 L57.5 10 L55 16 L52.5 10 L46 8 L52.5 6 Z"/>' // 頭頂のキラリ
-		. '</g>'
-		. '<path d="M55 16 L55 28" stroke="#49bce3" stroke-width="2.5" stroke-linecap="round"/>' // アンテナ
-		. '<path d="M55 28 C 35 28, 22 42, 22 62 C 22 80, 28 100, 38 102 L 72 102 C 82 100, 88 80, 88 62 C 88 42, 75 28, 55 28 Z" fill="#49bce3"/>' // 本体
-		. '<ellipse cx="44" cy="56" rx="3" ry="4" fill="#1e3a4a"/>' // 左目
-		. '<ellipse cx="66" cy="56" rx="3" ry="4" fill="#1e3a4a"/>' // 右目
-		. '<circle cx="45" cy="54" r="1" fill="#ffffff"/>'
-		. '<circle cx="67" cy="54" r="1" fill="#ffffff"/>'
-		. '<path d="M48 70 Q55 76 62 70" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none"/>' // 笑顔
-		. '<path d="M22 64 L14 70" stroke="#49bce3" stroke-width="4" stroke-linecap="round"/>' // 左腕
-		. '<path d="M88 64 L96 70" stroke="#49bce3" stroke-width="4" stroke-linecap="round"/>' // 右腕
-		. '<circle cx="13" cy="71" r="4" fill="#49bce3"/>' // 左手
-		. '<circle cx="97" cy="71" r="4" fill="#49bce3"/>' // 右手
-		. '<ellipse cx="42" cy="118" rx="10" ry="7" fill="#49bce3"/>' // 左足
-		. '<ellipse cx="68" cy="118" rx="10" ry="7" fill="#49bce3"/>' // 右足
-		. '<g fill="#49bce3" opacity="0.85">'
-		. '<path d="M6 56 L7.5 60 L11.5 61 L7.5 62 L6 66 L4.5 62 L0.5 61 L4.5 60 Z"/>' // 左の星
-		. '<path d="M103 92 L104.5 96 L108.5 97 L104.5 98 L103 102 L101.5 98 L97.5 97 L101.5 96 Z"/>' // 右下の星
-		. '</g>'
-		. '</svg>';
+function efline_hero_image_url() {
+	foreach ( array( 'hero.png', 'hero.jpg' ) as $name ) {
+		if ( file_exists( EFLINE_THEME_DIR . '/assets/images/' . $name ) ) {
+			return EFLINE_THEME_URI . '/assets/images/' . $name;
+		}
+	}
+	return 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/image-14.png';
 }
 
 /**
- * 完全なロゴ（マスコット + テキスト）を出力。ヘッダー / FV / フッターで共用。
+ * 完全なロゴ画像を出力。ヘッダー / FV で共用。
  *
  * @param array $args { 'context' => 'header' | 'hero' | 'footer' }
  */
 function efline_render_logo( $args = array() ) {
 	$context  = $args['context'] ?? 'header';
-	$image    = efline_logo_image_url();
+	$image    = efline_logo_url();
 	$home_url = home_url( '/' );
 	$site     = get_bloginfo( 'name' );
+	$class    = 'site-logo site-logo--' . $context;
 
-	$class = 'site-logo site-logo--' . $context;
 	ob_start();
-
 	if ( 'hero' === $context ) {
-		// FV 内ではリンクなしのスタンドアロン表示。
+		// FV 内はリンクなし。
 		?>
 		<div class="<?php echo esc_attr( $class ); ?>" aria-label="<?php echo esc_attr( $site ); ?>">
+			<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $site ); ?>" class="site-logo__image">
+		</div>
 		<?php
 	} else {
 		?>
 		<a href="<?php echo esc_url( $home_url ); ?>" class="<?php echo esc_attr( $class ); ?>" aria-label="<?php echo esc_attr( $site ); ?>">
+			<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $site ); ?>" class="site-logo__image" fetchpriority="high">
+		</a>
 		<?php
 	}
-
-	if ( $image !== '' ) {
-		// ローカルにアップロードされた SVG/PNG があればそれを使用。
-		?>
-		<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $site ); ?>" class="site-logo__image" width="320" height="80">
-		<?php
-	} else {
-		// フォールバック: インライン SVG マスコット + テキストロゴ。
-		?>
-		<span class="site-logo__mark" aria-hidden="true"><?php echo efline_logo_mascot_svg(); // phpcs:ignore ?></span>
-		<span class="site-logo__text">
-			<small class="site-logo__sub"><?php esc_html_e( '口腔機能訓練装置', 'efline' ); ?></small>
-			<span class="site-logo__name"><?php esc_html_e( 'こどもの矯正', 'efline' ); ?></span>
-		</span>
-		<?php
-	}
-
-	if ( 'hero' === $context ) {
-		?></div><?php
-	} else {
-		?></a><?php
-	}
-
 	return ob_get_clean();
 }
 
