@@ -255,21 +255,22 @@
 	.p-clinics__nav--next { right: -20px; }
 }
 
-/* Clinic mini card (inside carousel) — Figma 0:47 (278x387 rounded 10) */
+/* Clinic mini card (inside carousel) — 添付デザイン準拠 */
 .p-clinic-card-mini {
 	display: block;
 	color: var(--color-text);
 	background-color: var(--color-bg);
-	border: 1px solid #ddd;
+	border: 1px solid #e0e0e0;
 	border-radius: 10px;
 	text-decoration: none;
 	overflow: hidden;
 	height: 100%;
 }
 
+/* 画像 + area pill オーバーレイ */
 .p-clinic-card-mini__media {
 	position: relative;
-	aspect-ratio: 249 / 180;
+	aspect-ratio: 16 / 11;
 	overflow: hidden;
 	background-color: var(--color-bg-alt);
 }
@@ -278,64 +279,96 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	display: block;
 }
 
 .p-clinic-card-mini__image--placeholder {
 	background: linear-gradient(135deg, #e3f4fb, #b5e3f1);
 }
 
-.p-clinic-card-mini__inner {
-	padding: var(--space-3) var(--space-3) var(--space-4);
-}
-
 .p-clinic-card-mini__area {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
 	display: inline-block;
-	padding: 2px 12px;
-	margin-bottom: var(--space-2);
-	font-size: 14px;
+	padding: 3px 14px;
+	font-size: 12px;
 	font-weight: var(--fw-medium);
 	color: var(--color-text-inverse);
 	background-color: var(--color-primary);
 	border-radius: var(--radius-pill);
 	line-height: 1.4;
+	z-index: 2;
+}
+
+.p-clinic-card-mini__inner {
+	padding: 14px 14px 16px;
 }
 
 .p-clinic-card-mini__title {
-	margin: 0 0 var(--space-2);
-	color: var(--color-text);
+	margin: 0 0 8px;
+	color: #222;
 	font-size: 16px;
-	font-weight: var(--fw-medium);
+	font-weight: var(--fw-bold);
 	line-height: 1.4;
 }
 
 .p-clinic-card-mini__pr {
-	margin: 0 0 var(--space-3);
+	margin: 0 0 12px;
 	color: var(--color-primary);
-	font-size: 13px;
+	font-size: 12px;
 	font-weight: var(--fw-bold);
-	line-height: 1.5;
+	line-height: 1.55;
 	display: -webkit-box;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
 
-.p-clinic-card-mini__sep {
-	border: 0;
-	border-top: 1px dashed #ddd;
-	margin: 0 0 var(--space-3);
-}
-
-.p-clinic-card-mini__body {
+/* 対応内容 / 診療時間 / 住所 のメタ情報 */
+.p-clinic-card-mini__meta {
 	margin: 0;
-	color: var(--color-text);
-	font-size: 13px;
+	padding: 0;
+	border-top: 1px solid #eee;
+}
+
+.p-clinic-card-mini__row {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 8px 0;
+	border-bottom: 1px solid #eee;
+	margin: 0;
+}
+
+.p-clinic-card-mini__row:last-child {
+	border-bottom: 0;
+}
+
+.p-clinic-card-mini__label {
+	margin: 0;
+	font-size: 11px;
+	font-weight: var(--fw-medium);
+	color: #888;
+	letter-spacing: 0.04em;
+}
+
+.p-clinic-card-mini__value {
+	margin: 0;
+	font-size: 12px;
 	font-weight: var(--fw-regular);
-	line-height: 1.6;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
+	color: #333;
+	line-height: 1.5;
+	word-break: break-all;
+}
+
+.p-clinic-card-mini__row--services .p-clinic-card-mini__value {
+	display: block;
+}
+
+.p-clinic-card-mini__row--services .p-clinic-tags {
+	margin: 0;
+	gap: 6px;
 }
 
 .p-clinics__empty {

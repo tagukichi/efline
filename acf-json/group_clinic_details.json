@@ -3,6 +3,16 @@
     "title": "クリニック詳細",
     "fields": [
         {
+            "key": "field_clinic_card_pr",
+            "label": "カード用PR文",
+            "name": "card_pr",
+            "type": "textarea",
+            "instructions": "TOPページのカルーセルとアーカイブ一覧で表示する短いPR文（2行程度）。空欄の場合は本文の抜粋を使用します。",
+            "rows": 2,
+            "maxlength": 100,
+            "new_lines": ""
+        },
+        {
             "key": "field_clinic_basic",
             "label": "基本情報",
             "name": "basic_info",

@@ -36,6 +36,45 @@ function efline_get_clinic_basic_info( $post_id = null ) {
 }
 
 /**
+ * カード用 PR 文を返す。ACF card_pr が空なら post excerpt にフォールバック。
+ *
+ * @param int|null $post_id
+ * @return string
+ */
+function efline_get_clinic_card_pr( $post_id = null ) {
+	$pr = efline_get_field( 'card_pr', $post_id );
+	if ( is_string( $pr ) && trim( $pr ) !== '' ) {
+		return $pr;
+	}
+	$excerpt = get_the_excerpt( $post_id );
+	return wp_strip_all_tags( $excerpt );
+}
+
+/**
+ * 診療時間を「平日 9:00〜18:30  土曜 9:00〜17:00」のような1行表示用に整形。
+ *
+ * @param int|null $post_id
+ * @param int      $limit   最大表示行数。
+ * @return string
+ */
+function efline_get_clinic_hours_summary( $post_id = null, $limit = 3 ) {
+	$basic = efline_get_clinic_basic_info( $post_id );
+	if ( empty( $basic['hours'] ) || ! is_array( $basic['hours'] ) ) {
+		return '';
+	}
+	$parts = array();
+	foreach ( array_slice( $basic['hours'], 0, $limit ) as $row ) {
+		$label = isset( $row['label'] ) ? trim( (string) $row['label'] ) : '';
+		$time  = isset( $row['time'] ) ? trim( (string) $row['time'] ) : '';
+		if ( $label === '' && $time === '' ) {
+			continue;
+		}
+		$parts[] = trim( $label . ' ' . $time );
+	}
+	return implode( '  ', $parts );
+}
+
+/**
  * クリニックの予約情報を取得。url が空なら CTA は表示しない判断に使う。
  *
  * @param int|null $post_id

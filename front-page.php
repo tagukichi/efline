@@ -66,7 +66,10 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 						setup_postdata( $clinic );
 						$areas    = efline_get_clinic_areas( $clinic->ID );
 						$services = efline_get_clinic_services( $clinic->ID );
-						$excerpt  = get_the_excerpt( $clinic );
+						$basic    = efline_get_clinic_basic_info( $clinic->ID );
+						$pr       = efline_get_clinic_card_pr( $clinic->ID );
+						$hours    = efline_get_clinic_hours_summary( $clinic->ID, 3 );
+						$address  = isset( $basic['address'] ) ? (string) $basic['address'] : '';
 					?>
 						<li class="p-clinics__item">
 							<a class="p-clinic-card-mini" href="<?php echo esc_url( get_permalink( $clinic ) ); ?>">
@@ -76,21 +79,46 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 									} else { ?>
 										<div class="p-clinic-card-mini__image p-clinic-card-mini__image--placeholder" aria-hidden="true"></div>
 									<?php } ?>
-								</div>
-								<div class="p-clinic-card-mini__inner">
 									<?php if ( ! empty( $areas ) ) : ?>
 										<span class="p-clinic-card-mini__area"><?php echo esc_html( $areas[0]->name ); ?></span>
 									<?php endif; ?>
+								</div>
+
+								<div class="p-clinic-card-mini__inner">
 									<h3 class="p-clinic-card-mini__title"><?php echo esc_html( get_the_title( $clinic ) ); ?></h3>
-									<?php if ( $excerpt !== '' ) : ?>
-										<p class="p-clinic-card-mini__pr"><?php echo esc_html( wp_trim_words( $excerpt, 30, '…' ) ); ?></p>
+
+									<?php if ( $pr !== '' ) : ?>
+										<p class="p-clinic-card-mini__pr"><?php echo esc_html( wp_trim_words( $pr, 28, '…' ) ); ?></p>
 									<?php endif; ?>
-									<hr class="p-clinic-card-mini__sep">
-									<?php if ( ! empty( $services ) ) :
-										$service_names = array_map( static function ( $term ) { return $term->name; }, array_slice( $services, 0, 4 ) );
-									?>
-										<p class="p-clinic-card-mini__body"><?php echo esc_html( implode( ' / ', $service_names ) ); ?></p>
-									<?php endif; ?>
+
+									<dl class="p-clinic-card-mini__meta">
+										<?php if ( ! empty( $services ) ) : ?>
+											<div class="p-clinic-card-mini__row p-clinic-card-mini__row--services">
+												<dt class="p-clinic-card-mini__label"><?php esc_html_e( '対応内容', 'efline' ); ?></dt>
+												<dd class="p-clinic-card-mini__value">
+													<ul class="p-clinic-tags">
+														<?php foreach ( array_slice( $services, 0, 3 ) as $term ) : ?>
+															<li class="p-clinic-tags__item"><?php echo esc_html( $term->name ); ?></li>
+														<?php endforeach; ?>
+													</ul>
+												</dd>
+											</div>
+										<?php endif; ?>
+
+										<?php if ( $hours !== '' ) : ?>
+											<div class="p-clinic-card-mini__row">
+												<dt class="p-clinic-card-mini__label"><?php esc_html_e( '診療時間', 'efline' ); ?></dt>
+												<dd class="p-clinic-card-mini__value"><?php echo esc_html( $hours ); ?></dd>
+											</div>
+										<?php endif; ?>
+
+										<?php if ( $address !== '' ) : ?>
+											<div class="p-clinic-card-mini__row">
+												<dt class="p-clinic-card-mini__label"><?php esc_html_e( '住所', 'efline' ); ?></dt>
+												<dd class="p-clinic-card-mini__value"><?php echo esc_html( $address ); ?></dd>
+											</div>
+										<?php endif; ?>
+									</dl>
 								</div>
 							</a>
 						</li>
