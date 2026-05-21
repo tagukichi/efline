@@ -46,8 +46,13 @@ function efline_get_clinic_card_pr( $post_id = null ) {
 	if ( is_string( $pr ) && trim( $pr ) !== '' ) {
 		return $pr;
 	}
-	$excerpt = get_the_excerpt( $post_id );
-	return wp_strip_all_tags( $excerpt );
+	// $post_id が null だと global $post を参照、ID/WP_Post の場合はそれを参照。
+	$post = $post_id ? get_post( $post_id ) : null;
+	if ( $post_id !== null && ! $post instanceof WP_Post ) {
+		return '';
+	}
+	$excerpt = $post ? get_the_excerpt( $post ) : get_the_excerpt();
+	return is_string( $excerpt ) ? wp_strip_all_tags( $excerpt ) : '';
 }
 
 /**
