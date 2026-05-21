@@ -163,66 +163,26 @@ get_header(); ?>
 			</section>
 		<?php endif; ?>
 
-		<!-- ===== 診療時間 + アクセス ===== -->
-		<?php $has_hours = ! empty( $basic['hours'] ); $has_access = $access['map_query'] !== '' || $access['directions'] !== ''; ?>
-		<?php if ( $has_hours || $has_access ) : ?>
-			<section class="p-clinic-single__bottom">
-				<?php if ( $has_hours ) : ?>
-					<div class="p-clinic-single__hours">
-						<h2 class="p-clinic-single__section-title">
-							<span aria-hidden="true"><?php echo efline_icon( 'clock', array( 'width' => 22, 'height' => 22 ) ); ?></span>
-							<?php esc_html_e( '診療時間', 'efline' ); ?>
-						</h2>
-						<table class="p-clinic-hours-table">
-							<thead>
-								<tr>
-									<th></th>
-									<th><?php esc_html_e( '備考', 'efline' ); ?></th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach ( $basic['hours'] as $row ) :
-									$label = isset( $row['label'] ) ? (string) $row['label'] : '';
-									$time  = isset( $row['time'] ) ? (string) $row['time'] : '';
-									$note  = isset( $row['note'] ) ? (string) $row['note'] : '';
-									if ( $label === '' && $time === '' ) { continue; }
-								?>
-									<tr>
-										<th scope="row">
-											<span class="p-clinic-hours-table__label"><?php echo esc_html( $label ); ?></span>
-											<span class="p-clinic-hours-table__time"><?php echo esc_html( $time ); ?></span>
-										</th>
-										<td><?php echo esc_html( $note ); ?></td>
-									</tr>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
-						<?php if ( ! empty( $basic['closed_days'] ) ) : ?>
-							<p class="p-clinic-single__closed-note">
-								<?php esc_html_e( '休診日:', 'efline' ); ?>
-								<?php echo esc_html( $basic['closed_days'] ); ?>
-							</p>
-						<?php endif; ?>
-					</div>
-				<?php endif; ?>
-
-				<?php if ( $has_access ) : ?>
-					<div class="p-clinic-single__access">
-						<h2 class="p-clinic-single__section-title">
-							<span aria-hidden="true"><?php echo efline_icon( 'pin', array( 'width' => 22, 'height' => 22 ) ); ?></span>
-							<?php esc_html_e( 'アクセス', 'efline' ); ?>
-						</h2>
-						<?php if ( $access['map_query'] !== '' ) : ?>
-							<div class="p-clinic-single__map">
-								<iframe
-									src="https://www.google.com/maps?q=<?php echo rawurlencode( $access['map_query'] ); ?>&output=embed"
-									width="100%"
-									height="240"
-									loading="lazy"
-									referrerpolicy="no-referrer-when-downgrade"
-									title="<?php echo esc_attr( get_the_title() ); ?>のアクセスマップ"></iframe>
-							</div>
-						<?php endif; ?>
+		<!-- ===== アクセス ===== -->
+		<?php if ( $access['map_query'] !== '' || $access['directions'] !== '' || ! empty( $basic['address'] ) ) : ?>
+			<section class="p-clinic-single__access-section">
+				<h2 class="p-clinic-single__section-title">
+					<span aria-hidden="true"><?php echo efline_icon( 'pin', array( 'width' => 22, 'height' => 22 ) ); ?></span>
+					<?php esc_html_e( 'アクセス', 'efline' ); ?>
+				</h2>
+				<div class="p-clinic-single__access-inner">
+					<?php if ( $access['map_query'] !== '' ) : ?>
+						<div class="p-clinic-single__map">
+							<iframe
+								src="https://www.google.com/maps?q=<?php echo rawurlencode( $access['map_query'] ); ?>&output=embed"
+								width="100%"
+								height="280"
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+								title="<?php echo esc_attr( get_the_title() ); ?>のアクセスマップ"></iframe>
+						</div>
+					<?php endif; ?>
+					<div class="p-clinic-single__access-text">
 						<?php if ( ! empty( $basic['address'] ) ) : ?>
 							<p class="p-clinic-single__access-address">
 								<?php if ( ! empty( $basic['postal_code'] ) ) : ?>
@@ -237,7 +197,7 @@ get_header(); ?>
 							</div>
 						<?php endif; ?>
 					</div>
-				<?php endif; ?>
+				</div>
 			</section>
 		<?php endif; ?>
 

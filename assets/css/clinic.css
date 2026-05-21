@@ -528,12 +528,16 @@
 	color: var(--color-primary);
 }
 
+/* ---------- セクション間の共通余白 ---------- */
+.p-clinic-single__article > * + * {
+	margin-top: clamp(48px, 6vw, 88px);
+}
+
 /* ---------- Hero: gallery + info ---------- */
 .p-clinic-single__hero {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: var(--space-6);
-	margin-bottom: var(--space-10);
 }
 
 @media (min-width: 1024px) {
@@ -688,7 +692,6 @@ a.p-clinic-single__contact-value:hover {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: var(--space-5);
-	margin-bottom: var(--space-8);
 }
 
 @media (min-width: 1024px) {
@@ -741,10 +744,15 @@ a.p-clinic-single__contact-value:hover {
 /* ---------- Services (対応内容) ---------- */
 .p-clinic-single__services {
 	padding: var(--space-5) var(--space-5) var(--space-6);
-	margin-bottom: var(--space-8);
 	background-color: #f5fbfd;
 	border: 1px solid #d6efff;
 	border-radius: 14px;
+}
+
+@media (min-width: 1024px) {
+	.p-clinic-single__services {
+		padding: var(--space-6) var(--space-7) var(--space-7);
+	}
 }
 
 .p-clinic-single__services-title {
@@ -804,102 +812,72 @@ a.p-clinic-single__contact-value:hover {
 	line-height: 1.7;
 }
 
-/* ---------- Bottom grid: hours + access ---------- */
-.p-clinic-single__bottom {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: var(--space-5);
-	margin-bottom: var(--space-8);
-}
-
-@media (min-width: 1024px) {
-	.p-clinic-single__bottom {
-		grid-template-columns: 1fr 1fr;
-		gap: var(--space-6);
-	}
-}
-
-.p-clinic-single__hours,
-.p-clinic-single__access {
+/* ---------- アクセス (フル幅) ---------- */
+.p-clinic-single__access-section {
 	padding: var(--space-5);
 	background-color: var(--color-bg);
 	border: 1px solid #e5e7eb;
 	border-radius: 14px;
 }
 
+@media (min-width: 1024px) {
+	.p-clinic-single__access-section {
+		padding: var(--space-6) var(--space-7);
+	}
+}
+
 .p-clinic-single__section-title {
-	margin: 0 0 var(--space-3);
+	margin: 0 0 var(--space-4);
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 10px;
 	color: var(--color-primary);
-	font-size: var(--fs-md);
+	font-size: var(--fs-lg);
 	font-weight: var(--fw-bold);
 }
 
-.p-clinic-hours-table {
-	width: 100%;
-	border-collapse: collapse;
-	font-size: var(--fs-sm);
+.p-clinic-single__access-inner {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-4);
 }
 
-.p-clinic-hours-table thead {
-	display: none;
-}
-
-.p-clinic-hours-table tr {
-	border-bottom: 1px solid #f1f5f9;
-}
-
-.p-clinic-hours-table tr:last-child {
-	border-bottom: 0;
-}
-
-.p-clinic-hours-table th,
-.p-clinic-hours-table td {
-	padding: 10px 8px;
-	text-align: left;
-	color: #374151;
-	font-weight: var(--fw-regular);
-}
-
-.p-clinic-hours-table__label {
-	display: inline-block;
-	min-width: 70px;
-	color: #6b7280;
-	font-size: 12px;
-}
-
-.p-clinic-hours-table__time {
-	font-weight: var(--fw-medium);
-	color: #1f2937;
-}
-
-.p-clinic-single__closed-note {
-	margin: var(--space-3) 0 0;
-	color: #6b7280;
-	font-size: var(--fs-sm);
+@media (min-width: 1024px) {
+	.p-clinic-single__access-inner {
+		grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+		gap: var(--space-6);
+		align-items: start;
+	}
 }
 
 .p-clinic-single__map {
-	margin-bottom: var(--space-3);
 	border-radius: 10px;
 	overflow: hidden;
+	background-color: var(--color-bg-alt);
 }
 
 .p-clinic-single__map iframe {
 	display: block;
 	border: 0;
+	width: 100%;
+}
+
+.p-clinic-single__access-text {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
 }
 
 .p-clinic-single__access-address {
-	margin: 0 0 var(--space-2);
-	font-size: var(--fs-sm);
+	margin: 0;
+	font-size: var(--fs-md);
 	color: #374151;
-	line-height: 1.6;
+	line-height: 1.7;
+	font-weight: var(--fw-medium);
 }
 
 .p-clinic-single__access-directions {
+	margin: 0;
 	font-size: var(--fs-sm);
 	color: #6b7280;
 	line-height: 1.7;
@@ -915,6 +893,12 @@ a.p-clinic-single__contact-value:hover {
 	background-color: #f5fbfd;
 	border: 1px solid #d6efff;
 	border-radius: 14px;
+}
+
+@media (min-width: 1024px) {
+	.p-clinic-single__bottom-cta {
+		padding: var(--space-6) var(--space-7);
+	}
 }
 
 @media (min-width: 768px) {
