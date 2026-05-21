@@ -18,3 +18,4 @@ require_once EFLINE_THEME_DIR . '/inc/enqueue.php';
 require_once EFLINE_THEME_DIR . '/inc/cpt-clinic.php';
 require_once EFLINE_THEME_DIR . '/inc/acf.php';
 require_once EFLINE_THEME_DIR . '/inc/clinic-helpers.php';
+require_once EFLINE_THEME_DIR . '/inc/clinic-archive.php';

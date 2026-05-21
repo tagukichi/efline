@@ -81,10 +81,10 @@ get_header(); ?>
 
 			<?php if ( ! empty( $services ) ) : ?>
 				<section class="clinic-detail__services">
-					<h2><?php esc_html_e( '診療内容', 'efline' ); ?></h2>
+					<h2><?php esc_html_e( '対応内容', 'efline' ); ?></h2>
 					<ul class="clinic-services">
-						<?php foreach ( $services as $name ) : ?>
-							<li><?php echo esc_html( $name ); ?></li>
+						<?php foreach ( $services as $term ) : ?>
+							<li><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo esc_html( $term->name ); ?></a></li>
 						<?php endforeach; ?>
 					</ul>
 				</section>

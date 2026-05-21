@@ -39,6 +39,15 @@ function efline_enqueue_assets() {
 		EFLINE_THEME_VERSION
 	);
 
+	if ( is_post_type_archive( 'clinic' ) || is_singular( 'clinic' ) || is_tax( array( 'clinic_area', 'clinic_service' ) ) ) {
+		wp_enqueue_style(
+			'efline-clinic',
+			EFLINE_THEME_URI . '/assets/css/clinic.css',
+			array( 'efline-main' ),
+			EFLINE_THEME_VERSION
+		);
+	}
+
 	wp_enqueue_script(
 		'efline-main',
 		EFLINE_THEME_URI . '/assets/js/main.js',

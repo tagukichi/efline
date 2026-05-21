@@ -50,23 +50,27 @@ function efline_get_clinic_reservation( $post_id = null ) {
 }
 
 /**
- * 診療内容（リピーター）を文字列配列で返す。
+ * 対応内容タクソノミー (clinic_service) のタームを返す。
  *
  * @param int|null $post_id
- * @return string[]
+ * @return WP_Term[]
  */
 function efline_get_clinic_services( $post_id = null ) {
-	$rows = efline_get_field( 'services', $post_id );
-	if ( ! is_array( $rows ) ) {
-		return array();
-	}
-	$names = array();
-	foreach ( $rows as $row ) {
-		if ( ! empty( $row['name'] ) ) {
-			$names[] = (string) $row['name'];
-		}
-	}
-	return $names;
+	$post_id = $post_id ?: get_the_ID();
+	$terms   = get_the_terms( $post_id, 'clinic_service' );
+	return ( is_array( $terms ) ) ? $terms : array();
+}
+
+/**
+ * エリアタクソノミー (clinic_area) のタームを返す。先頭の1件のみ表示用途。
+ *
+ * @param int|null $post_id
+ * @return WP_Term[]
+ */
+function efline_get_clinic_areas( $post_id = null ) {
+	$post_id = $post_id ?: get_the_ID();
+	$terms   = get_the_terms( $post_id, 'clinic_area' );
+	return ( is_array( $terms ) ) ? $terms : array();
 }
 
 /**

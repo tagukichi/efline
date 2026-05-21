@@ -111,25 +111,6 @@
             ]
         },
         {
-            "key": "field_clinic_services",
-            "label": "診療内容",
-            "name": "services",
-            "type": "repeater",
-            "instructions": "提供している診療メニューを1行ずつ追加。",
-            "min": 0,
-            "layout": "table",
-            "button_label": "診療内容を追加",
-            "sub_fields": [
-                {
-                    "key": "field_clinic_service_name",
-                    "label": "名称",
-                    "name": "name",
-                    "type": "text",
-                    "placeholder": "小児矯正"
-                }
-            ]
-        },
-        {
             "key": "field_clinic_descriptions",
             "label": "説明文",
             "name": "descriptions",

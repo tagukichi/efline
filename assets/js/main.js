@@ -1,5 +1,13 @@
 /* efline theme main JS */
 (function () {
 	'use strict';
-	// 後続フェーズで使用: ヘッダーのモバイルトグル、カルーセル等。
+
+	// クリニックアーカイブのソートセレクト: change で対応する URL に遷移。
+	document.querySelectorAll('[data-efline-sort]').forEach(function (select) {
+		select.addEventListener('change', function () {
+			if (select.value) {
+				window.location.href = select.value;
+			}
+		});
+	});
 })();
