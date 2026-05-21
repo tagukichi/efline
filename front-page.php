@@ -146,8 +146,7 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 	<div class="p-feature__inner">
 		<div class="p-feature__head">
 			<div class="p-feature__icon" aria-hidden="true">
-				<?php echo efline_icon( 'tooth', array( 'width' => 110, 'height' => 110 ) ); ?>
-				<?php echo efline_icon( 'sparkle', array( 'width' => 40, 'height' => 40, 'class' => 'p-feature__sparkle' ) ); ?>
+				<img src="<?php echo esc_url( efline_orthodontics_icon_url() ); ?>" alt="" class="p-feature__icon-image" loading="lazy">
 			</div>
 			<h2 id="orthodontics-title" class="p-feature__heading">
 				<?php esc_html_e( 'こどものはならび', 'efline' ); ?>
@@ -167,11 +166,7 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 <section class="p-feature p-feature--trainer" id="trainer" aria-labelledby="trainer-title">
 	<div class="p-feature__inner p-feature__inner--split">
 		<div class="p-feature__visual">
-			<?php if ( file_exists( EFLINE_THEME_DIR . '/assets/images/product-trainer.png' ) ) : ?>
-				<img src="<?php echo esc_url( EFLINE_THEME_URI . '/assets/images/product-trainer.png' ); ?>" alt="<?php esc_attr_e( 'EF Line トレーナー本体', 'efline' ); ?>" class="p-feature__image">
-			<?php else : ?>
-				<div class="p-feature__image p-feature__image--placeholder" aria-hidden="true"></div>
-			<?php endif; ?>
+			<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="<?php esc_attr_e( 'EF Line トレーナー本体', 'efline' ); ?>" class="p-feature__image" loading="lazy">
 		</div>
 		<div class="p-feature__content">
 			<h2 id="trainer-title" class="p-feature__display-heading"><?php esc_html_e( 'トレーナー', 'efline' ); ?></h2>

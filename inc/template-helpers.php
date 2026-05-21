@@ -209,6 +209,28 @@ function efline_hero_image_url() {
 }
 
 /**
+ * 「こどもの歯並び」セクション用のアイコン画像 URL。
+ * ローカル assets/images/orthodontics-icon.png があれば優先。
+ */
+function efline_orthodontics_icon_url() {
+	if ( file_exists( EFLINE_THEME_DIR . '/assets/images/orthodontics-icon.png' ) ) {
+		return EFLINE_THEME_URI . '/assets/images/orthodontics-icon.png';
+	}
+	return 'https://kodomo-kyousei.com/wp-content/uploads/2025/02/Group-1-4.png';
+}
+
+/**
+ * 「トレーナー」セクション用の製品画像 URL。
+ * ローカル assets/images/product-trainer.png があれば優先。
+ */
+function efline_trainer_image_url() {
+	if ( file_exists( EFLINE_THEME_DIR . '/assets/images/product-trainer.png' ) ) {
+		return EFLINE_THEME_URI . '/assets/images/product-trainer.png';
+	}
+	return 'https://kodomo-kyousei.com/wp-content/uploads/2025/02/product_efline_img-full-1.png';
+}
+
+/**
  * 完全なロゴ（マスコット画像 + テキストロックアップ）を出力。
  * ヘッダー・フッターから利用する。FV のマスコットは別途 front-page.php で
  * 直接 <img class="p-hero__mascot"> を配置すること。
