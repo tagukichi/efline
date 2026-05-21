@@ -12,7 +12,7 @@ Figma デザイン（[Z9Dx4Z90GlLVmxMnh1WBr2](https://www.figma.com/design/Z9Dx4
 | 3 | TOP ページ実装 | ✅ 完了（画像差し替え待ち） |
 | 4 | クリニック紹介 一覧（archive） | ✅ 完了 |
 | 4b | クリニック紹介 詳細（single） | 🚧 ACF出力まで完了。デザイン微調整は次フェーズ |
-| 5 | こどもの歯並び / EF の使い方 / Q&A | 未着手 |
+| 5 | こどもの歯並び / EF の使い方 / Q&A | ✅ 完了（EFの使い方はFigma待ちでスタブ） |
 | 6 | お問い合わせ（Contact Form 7） | 未着手 |
 | 7 | SP 調整 + ブラウザ確認 | 未着手 |
 
@@ -116,3 +116,22 @@ efline/
 
 `assets/images/` 配下の README に Figma ノード ID 付きで必要画像が一覧化されています。
 ファイル不在時はテンプレートが CSS グラデや SVG アイコンで自動代替するため、表示は崩れません。
+
+## 固定ページテンプレート
+
+| テンプレート | ファイル | 推奨スラッグ | 連携する ACF |
+| --- | --- | --- | --- |
+| こどものはならび | `template-kodomono-hanarabi.php` | `kodomono-hanarabi` | `flow_steps` リピーター |
+| Q&A | `template-qa.php` | `qa` | `qa_items` リピーター |
+| EFの使い方 | `template-ef-tsukaikata.php` | `ef-tsukaikata` | （Figma 確定後追加） |
+
+### 固定ページの作成手順
+
+1. WP 管理画面 → 固定ページ → 新規追加でページを作成
+2. **ページ属性** パネルで上表のテンプレートを選択
+3. スラッグを上表の推奨値に設定（ヘッダーナビとリンクが連動）
+4. テンプレートに応じて Gutenberg 本文を編集 / ACF フィールドに入力
+5. 公開
+
+- Q&A は `<details>/<summary>` の標準アコーディオン（JS 不要、キーボード操作可）。先頭の項目はデフォルトで開いた状態。
+- 「こどものはならび」のページ本文は Gutenberg で自由に編集可能。末尾に出る「治療の流れ」ステップは ACF リピーター `flow_steps` に登録。

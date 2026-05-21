@@ -1,0 +1,61 @@
+{
+    "key": "group_qa_items",
+    "title": "Q&A 項目",
+    "fields": [
+        {
+            "key": "field_qa_items",
+            "label": "Q&A リスト",
+            "name": "qa_items",
+            "type": "repeater",
+            "instructions": "上から順に表示されます。先頭の項目はデフォルトで開いた状態で表示されます。",
+            "min": 0,
+            "layout": "row",
+            "button_label": "Q&A を追加",
+            "sub_fields": [
+                {
+                    "key": "field_qa_category",
+                    "label": "カテゴリ（任意）",
+                    "name": "category",
+                    "type": "text",
+                    "placeholder": "装置について",
+                    "wrapper": { "width": "30" }
+                },
+                {
+                    "key": "field_qa_question",
+                    "label": "質問",
+                    "name": "question",
+                    "type": "text",
+                    "required": 1,
+                    "wrapper": { "width": "70" }
+                },
+                {
+                    "key": "field_qa_answer",
+                    "label": "回答",
+                    "name": "answer",
+                    "type": "textarea",
+                    "rows": 5,
+                    "new_lines": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-qa.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Q&A ページの質問・回答リスト",
+    "show_in_rest": 1,
+    "modified": 1747800100
+}

@@ -1,0 +1,63 @@
+{
+    "key": "group_flow_steps",
+    "title": "治療の流れ",
+    "fields": [
+        {
+            "key": "field_flow_steps",
+            "label": "ステップ",
+            "name": "flow_steps",
+            "type": "repeater",
+            "instructions": "「こどもの歯ならび治療の流れ」セクションを構成するステップ。上から順に番号が振られます。",
+            "min": 0,
+            "layout": "block",
+            "button_label": "ステップを追加",
+            "sub_fields": [
+                {
+                    "key": "field_flow_step_title",
+                    "label": "タイトル",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "初診・相談",
+                    "required": 1,
+                    "wrapper": { "width": "60" }
+                },
+                {
+                    "key": "field_flow_step_image",
+                    "label": "画像（任意）",
+                    "name": "image",
+                    "type": "image",
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "wrapper": { "width": "40" }
+                },
+                {
+                    "key": "field_flow_step_body",
+                    "label": "本文",
+                    "name": "body",
+                    "type": "textarea",
+                    "rows": 4,
+                    "new_lines": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-kodomono-hanarabi.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "「こどものはならび」ページ末尾の治療の流れセクション",
+    "show_in_rest": 1,
+    "modified": 1747800200
+}

@@ -87,11 +87,47 @@ function efline_is_current_nav( $key ) {
 		case 'clinics':
 			return is_post_type_archive( 'clinic' ) || is_singular( 'clinic' ) || is_tax( array( 'clinic_area', 'clinic_service' ) );
 		case 'qa':
-			return is_page( 'qa' );
+			return is_page_template( 'template-qa.php' ) || is_page( 'qa' );
 		case 'usage':
-			return is_page( 'ef-tsukaikata' );
+			return is_page_template( 'template-ef-tsukaikata.php' ) || is_page( 'ef-tsukaikata' );
 		case 'orthodontics':
-			return is_page( 'kodomono-hanarabi' );
+			return is_page_template( 'template-kodomono-hanarabi.php' ) || is_page( 'kodomono-hanarabi' );
 	}
 	return false;
+}
+
+/**
+ * ページヘッダー（ヒーロー）を出力。
+ *
+ * @param array{icon:string,title:string,subtitle?:string,breadcrumb?:string} $args
+ */
+function efline_page_hero( $args ) {
+	$icon      = $args['icon'] ?? 'tooth';
+	$title     = $args['title'] ?? '';
+	$subtitle  = $args['subtitle'] ?? '';
+	$breadcrumb = $args['breadcrumb'] ?? '';
+	?>
+	<header class="p-page-hero">
+		<div class="l-container">
+			<?php if ( $breadcrumb !== '' ) : ?>
+				<nav class="p-breadcrumb" aria-label="<?php esc_attr_e( 'パンくず', 'efline' ); ?>">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">TOP</a>
+					<span aria-hidden="true">&gt;</span>
+					<span><?php echo esc_html( $breadcrumb ); ?></span>
+				</nav>
+			<?php endif; ?>
+
+			<div class="p-page-hero__title-row">
+				<span class="p-page-hero__icon" aria-hidden="true">
+					<?php echo efline_icon( $icon, array( 'width' => 48, 'height' => 48 ) ); ?>
+				</span>
+				<h1 class="p-page-hero__title"><?php echo esc_html( $title ); ?></h1>
+			</div>
+
+			<?php if ( $subtitle !== '' ) : ?>
+				<p class="p-page-hero__lead"><?php echo esc_html( $subtitle ); ?></p>
+			<?php endif; ?>
+		</div>
+	</header>
+	<?php
 }
