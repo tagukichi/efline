@@ -101,8 +101,8 @@ function efline_register_clinic_cpt() {
 		array(
 			'labels'        => $labels,
 			'public'        => true,
-			'has_archive'   => 'clinics',
-			'rewrite'       => array( 'slug' => 'clinics', 'with_front' => false ),
+			'has_archive'   => 'clinic',
+			'rewrite'       => array( 'slug' => 'clinic', 'with_front' => false ),
 			'menu_icon'     => 'dashicons-location-alt',
 			'menu_position' => 5,
 			'supports'      => array( 'title', 'thumbnail', 'revisions', 'page-attributes' ),
