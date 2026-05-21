@@ -1,0 +1,17 @@
+/*
+Theme Name: efline - こどもの矯正
+Theme URI: https://kodomo-kyousei.com/
+Author: efline
+Description: 口腔機能訓練装置「efline トレーナー」と取扱いクリニックを紹介するクラシックテーマ。Figma デザインを基にゼロから構築。
+Version: 0.1.0
+Requires at least: 6.4
+Tested up to: 6.6
+Requires PHP: 8.0
+License: Proprietary
+Text Domain: efline
+*/
+
+/*
+ * このファイルはテーマ識別のためのヘッダです。実際のスタイルは
+ * assets/css/ 以下に分割しており、functions.php からエンキューしています。
+ */

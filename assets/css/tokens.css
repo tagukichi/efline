@@ -1,0 +1,92 @@
+/*
+ * デザイントークン
+ * Figma TOP (PC) ノードから抽出。値の変更はここに集約する。
+ */
+
+:root {
+	/* ---------- Colors ---------- */
+	--color-primary: #49bce3;
+	--color-primary-hover: #34a8d0;
+	--color-primary-dark: #2a8fb8;
+	--color-heading: #395562;
+	--color-text: #333333;
+	--color-text-muted: #666666;
+	--color-text-inverse: #ffffff;
+	--color-border: #dddddd;
+	--color-bg: #ffffff;
+	--color-bg-alt: #f7fbfd;
+	--color-bg-primary: var(--color-primary);
+
+	/* ---------- Typography ---------- */
+	/* M PLUS 1: 本文・ナビ全般 (Google Fonts) */
+	--font-sans: "M PLUS 1", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+	/* 製品名・強調見出し: Figma では A-OTF UD Shin Go Pro。商用フォントのため Web 配信時は M PLUS 1 にフォールバック。 */
+	--font-display: "A-OTF UD Shin Go Pro", "M PLUS 1", "Noto Sans JP", sans-serif;
+	/* ロゴ「こどもの矯正」: Keifont。Web 配信できないため、ロゴは画像書き出しで対応する想定。 */
+	--font-logo: "Keifont", "M PLUS 1", "Noto Sans JP", sans-serif;
+
+	--fw-regular: 400;
+	--fw-medium: 500;
+	--fw-semibold: 600;
+	--fw-bold: 700;
+
+	--lh-tight: 1.2;
+	--lh-base: 1.6;
+	--lh-loose: 1.75;
+
+	/* Font sizes — clamp で PC↔SP を補間 */
+	--fs-xs: 0.75rem;     /* 12px */
+	--fs-sm: 0.8125rem;   /* 13px */
+	--fs-base: 0.875rem;  /* 14px */
+	--fs-md: 1rem;        /* 16px */
+	--fs-lg: 1.125rem;    /* 18px */
+	--fs-xl: 1.25rem;     /* 20px */
+	--fs-2xl: 1.5rem;     /* 24px */
+	--fs-3xl: 2rem;       /* 32px */
+	--fs-display-1: clamp(2rem, 4vw + 1rem, 3.8125rem); /* ~61px @ PC */
+	--fs-display-2: clamp(1.75rem, 3vw + 0.5rem, 2.6875rem); /* ~43px @ PC */
+
+	/* ---------- Spacing ---------- */
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-5: 1.5rem;
+	--space-6: 2rem;
+	--space-8: 3rem;
+	--space-10: 4rem;
+	--space-12: 5rem;
+	--space-16: 7rem;
+
+	/* ---------- Layout ---------- */
+	--container-max: 1160px;
+	--content-max: 1365px;
+	--header-height: 130px;
+	--header-height-sp: 60px;
+
+	/* ---------- Borders ---------- */
+	--radius-sm: 5px;
+	--radius-md: 10px;
+	--radius-lg: 16px;
+	--radius-pill: 9999px;
+	--border-default: 1px solid var(--color-border);
+
+	/* ---------- Shadows ---------- */
+	--shadow-card: 0 2px 8px rgba(57, 85, 98, 0.08);
+	--shadow-card-hover: 0 4px 16px rgba(57, 85, 98, 0.15);
+
+	/* ---------- Transitions ---------- */
+	--transition-base: 0.2s ease;
+	--transition-slow: 0.4s ease;
+
+	/* ---------- Z-index ---------- */
+	--z-header: 100;
+	--z-overlay: 200;
+	--z-modal: 300;
+}
+
+/* ---------- Breakpoints (参考定数。CSSではメディアクエリで直接記述) ----------
+ * SP:    ~ 767px
+ * Tablet: 768px ~ 1023px
+ * PC:    1024px ~
+ */
