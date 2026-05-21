@@ -122,6 +122,39 @@ function efline_get_clinic_services( $post_id = null ) {
 }
 
 /**
+ * カード表示用の対応内容を返す（文字列配列）。
+ * ACF card_services (チェックボックス) が設定されていればそれを優先、
+ * 空ならタクソノミー clinic_service の名前を返す。
+ *
+ * @param int|null $post_id
+ * @param int      $limit
+ * @return string[]
+ */
+function efline_get_clinic_card_services( $post_id = null, $limit = 3 ) {
+	$post_id = $post_id ? (int) $post_id : (int) get_the_ID();
+	if ( $post_id <= 0 ) {
+		return array();
+	}
+
+	// 1) ACF card_services があればそれを使用
+	if ( function_exists( 'get_field' ) ) {
+		$acf = get_field( 'card_services', $post_id );
+		if ( is_array( $acf ) && ! empty( $acf ) ) {
+			return array_slice( array_values( array_filter( array_map( 'strval', $acf ) ) ), 0, $limit );
+		}
+	}
+
+	// 2) タクソノミーへフォールバック
+	$terms = efline_get_clinic_services( $post_id );
+	if ( ! empty( $terms ) ) {
+		$names = array_map( static function ( $term ) { return $term->name; }, $terms );
+		return array_slice( $names, 0, $limit );
+	}
+
+	return array();
+}
+
+/**
  * エリアタクソノミー (clinic_area) のタームを返す。先頭の1件のみ表示用途。
  *
  * @param int|null $post_id

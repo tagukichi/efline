@@ -64,12 +64,12 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 				<ul class="p-clinics__list" data-efline-carousel-track>
 					<?php foreach ( $clinics as $clinic ) :
 						setup_postdata( $clinic );
-						$areas    = efline_get_clinic_areas( $clinic->ID );
-						$services = efline_get_clinic_services( $clinic->ID );
-						$basic    = efline_get_clinic_basic_info( $clinic->ID );
-						$pr       = efline_get_clinic_card_pr( $clinic->ID );
-						$hours    = efline_get_clinic_hours_summary( $clinic->ID, 3 );
-						$address  = isset( $basic['address'] ) ? (string) $basic['address'] : '';
+						$areas         = efline_get_clinic_areas( $clinic->ID );
+						$card_services = efline_get_clinic_card_services( $clinic->ID, 3 );
+						$basic         = efline_get_clinic_basic_info( $clinic->ID );
+						$pr            = efline_get_clinic_card_pr( $clinic->ID );
+						$hours         = efline_get_clinic_hours_summary( $clinic->ID, 3 );
+						$address       = isset( $basic['address'] ) ? (string) $basic['address'] : '';
 					?>
 						<li class="p-clinics__item">
 							<a class="p-clinic-card-mini" href="<?php echo esc_url( get_permalink( $clinic ) ); ?>">
@@ -96,12 +96,12 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 										<p class="p-clinic-card-mini__body"><?php echo esc_html( wp_trim_words( $pr, 32, '…' ) ); ?></p>
 									<?php endif; ?>
 
-									<?php if ( ! empty( $services ) ) : ?>
+									<?php if ( ! empty( $card_services ) ) : ?>
 										<div class="p-clinic-card-mini__group p-clinic-card-mini__group--services">
 											<span class="p-clinic-card-mini__label"><?php esc_html_e( '対応内容', 'efline' ); ?></span>
 											<ul class="p-clinic-card-mini__tags">
-												<?php foreach ( array_slice( $services, 0, 3 ) as $term ) : ?>
-													<li class="p-clinic-card-mini__tag"><?php echo esc_html( $term->name ); ?></li>
+												<?php foreach ( $card_services as $service_name ) : ?>
+													<li class="p-clinic-card-mini__tag"><?php echo esc_html( $service_name ); ?></li>
 												<?php endforeach; ?>
 											</ul>
 										</div>

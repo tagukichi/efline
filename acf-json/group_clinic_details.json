@@ -3,6 +3,31 @@
     "title": "クリニック詳細",
     "fields": [
         {
+            "key": "field_clinic_card_services",
+            "label": "対応内容（カード表示）",
+            "name": "card_services",
+            "type": "checkbox",
+            "instructions": "TOPページのカルーセルカードに色付きタグで表示する対応内容。空欄の場合は「対応内容」タクソノミーで設定したタームを使用します。リストに無い項目は「他を追加」から自由に追加できます。",
+            "required": 0,
+            "choices": {
+                "EFLine相談": "EFLine相談",
+                "小児矯正": "小児矯正",
+                "予防歯科": "予防歯科",
+                "一般歯科": "一般歯科",
+                "矯正歯科": "矯正歯科",
+                "審美歯科": "審美歯科",
+                "ホワイトニング": "ホワイトニング",
+                "小児歯科": "小児歯科",
+                "口腔機能訓練": "口腔機能訓練"
+            },
+            "default_value": [],
+            "allow_custom": 1,
+            "save_custom": 1,
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value"
+        },
+        {
             "key": "field_clinic_basic",
             "label": "基本情報",
             "name": "basic_info",
@@ -182,5 +207,5 @@
     "active": true,
     "description": "クリニック紹介の構造化フィールド。efline テーマと連動。",
     "show_in_rest": 1,
-    "modified": 1779348000
+    "modified": 1779350000
 }
