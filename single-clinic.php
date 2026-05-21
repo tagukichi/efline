@@ -108,23 +108,15 @@ get_header(); ?>
 				</section>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $access['map'] ) || $access['directions'] !== '' ) : ?>
+			<?php if ( $access['map_query'] !== '' || $access['directions'] !== '' ) : ?>
 				<section class="clinic-detail__access">
 					<h2><?php esc_html_e( 'アクセス', 'efline' ); ?></h2>
 
-					<?php if ( ! empty( $access['map']['address'] ) ) : ?>
-						<p class="clinic-access__address"><?php echo esc_html( $access['map']['address'] ); ?></p>
-					<?php endif; ?>
-
-					<?php if ( ! empty( $access['map']['lat'] ) && ! empty( $access['map']['lng'] ) ) : ?>
-						<?php
-						$query = isset( $access['map']['address'] ) && $access['map']['address'] !== ''
-							? $access['map']['address']
-							: $access['map']['lat'] . ',' . $access['map']['lng'];
-						?>
+					<?php if ( $access['map_query'] !== '' ) : ?>
+						<p class="clinic-access__address"><?php echo esc_html( $access['map_query'] ); ?></p>
 						<div class="clinic-access__map">
 							<iframe
-								src="https://www.google.com/maps?q=<?php echo rawurlencode( $query ); ?>&output=embed"
+								src="https://www.google.com/maps?q=<?php echo rawurlencode( $access['map_query'] ); ?>&output=embed"
 								width="100%"
 								height="400"
 								loading="lazy"

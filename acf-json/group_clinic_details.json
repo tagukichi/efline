@@ -116,7 +116,7 @@
             "name": "descriptions",
             "type": "repeater",
             "instructions": "見出し + 本文のセットを複数登録できます。",
-            "min": 0,
+            "min": 1,
             "layout": "row",
             "button_label": "説明文を追加",
             "sub_fields": [
@@ -145,15 +145,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_clinic_map",
-                    "label": "Google Map",
-                    "name": "map",
-                    "type": "google_map",
-                    "instructions": "ACF 設定で Google Maps API キーが必要です。地図中央のピンで位置を指定。",
-                    "center_lat": "35.6595",
-                    "center_lng": "139.7004",
-                    "zoom": 15,
-                    "height": 400
+                    "key": "field_clinic_map_query",
+                    "label": "地図用検索ワード",
+                    "name": "map_query",
+                    "type": "text",
+                    "instructions": "Google マップに渡す検索ワード。空欄なら「基本情報 > 住所」を使用します。例: 東京都渋谷区道玄坂1-2-3 / クリニック名",
+                    "placeholder": ""
                 },
                 {
                     "key": "field_clinic_directions",
@@ -185,5 +182,5 @@
     "active": true,
     "description": "クリニック紹介の構造化フィールド。efline テーマと連動。",
     "show_in_rest": 1,
-    "modified": 1779346000
+    "modified": 1779348000
 }

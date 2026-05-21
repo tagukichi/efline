@@ -88,6 +88,9 @@ function efline_icon( $name, $attrs = array() ) {
 		'arrow-left' => '<svg' . $attr_str . ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',
 		'arrow-up' => '<svg' . $attr_str . ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>',
 		'sparkle' => '<svg' . $attr_str . ' viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.5 5L19 8.5 13.5 10 12 15l-1.5-5L5 8.5 10.5 7zM18 14l.8 2.7L21.5 17.5l-2.7.8L18 21l-.8-2.7-2.7-.8L17.2 16.7z"/></svg>',
+		'clock' => '<svg' . $attr_str . ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>',
+		'pin' => '<svg' . $attr_str . ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+		'chevron-right' => '<svg' . $attr_str . ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>',
 	);
 
 	return $icons[ $name ] ?? '';

@@ -155,15 +155,21 @@ function efline_get_clinic_descriptions( $post_id = null ) {
 }
 
 /**
- * アクセス情報（Google Map + 補足）を返す。
+ * アクセス情報を返す。Google Map は API キー不要のシンプル iframe 埋め込み用に
+ * 検索ワード（map_query もしくは基本情報の住所）を返す。
  *
  * @param int|null $post_id
- * @return array{map:array|null,directions:string}
+ * @return array{map_query:string,directions:string}
  */
 function efline_get_clinic_access( $post_id = null ) {
 	$access = efline_get_field( 'access', $post_id );
+	$query  = isset( $access['map_query'] ) ? trim( (string) $access['map_query'] ) : '';
+	if ( $query === '' ) {
+		$basic = efline_get_clinic_basic_info( $post_id );
+		$query = isset( $basic['address'] ) ? trim( (string) $basic['address'] ) : '';
+	}
 	return array(
-		'map'        => isset( $access['map'] ) && is_array( $access['map'] ) ? $access['map'] : null,
+		'map_query'  => $query,
 		'directions' => isset( $access['directions'] ) ? (string) $access['directions'] : '',
 	);
 }

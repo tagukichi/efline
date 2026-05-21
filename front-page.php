@@ -85,40 +85,47 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 								</div>
 
 								<div class="p-clinic-card-mini__inner">
-									<h3 class="p-clinic-card-mini__title"><?php echo esc_html( get_the_title( $clinic ) ); ?></h3>
+									<div class="p-clinic-card-mini__title-row">
+										<h3 class="p-clinic-card-mini__title"><?php echo esc_html( get_the_title( $clinic ) ); ?></h3>
+										<span class="p-clinic-card-mini__arrow" aria-hidden="true">
+											<?php echo efline_icon( 'chevron-right', array( 'width' => 16, 'height' => 16 ) ); ?>
+										</span>
+									</div>
 
 									<?php if ( $pr !== '' ) : ?>
-										<p class="p-clinic-card-mini__pr"><?php echo esc_html( wp_trim_words( $pr, 28, '…' ) ); ?></p>
+										<p class="p-clinic-card-mini__body"><?php echo esc_html( wp_trim_words( $pr, 32, '…' ) ); ?></p>
 									<?php endif; ?>
 
-									<dl class="p-clinic-card-mini__meta">
-										<?php if ( ! empty( $services ) ) : ?>
-											<div class="p-clinic-card-mini__row p-clinic-card-mini__row--services">
-												<dt class="p-clinic-card-mini__label"><?php esc_html_e( '対応内容', 'efline' ); ?></dt>
-												<dd class="p-clinic-card-mini__value">
-													<ul class="p-clinic-tags">
-														<?php foreach ( array_slice( $services, 0, 3 ) as $term ) : ?>
-															<li class="p-clinic-tags__item"><?php echo esc_html( $term->name ); ?></li>
-														<?php endforeach; ?>
-													</ul>
-												</dd>
-											</div>
-										<?php endif; ?>
+									<?php if ( ! empty( $services ) ) : ?>
+										<div class="p-clinic-card-mini__group p-clinic-card-mini__group--services">
+											<span class="p-clinic-card-mini__label"><?php esc_html_e( '対応内容', 'efline' ); ?></span>
+											<ul class="p-clinic-card-mini__tags">
+												<?php foreach ( array_slice( $services, 0, 3 ) as $term ) : ?>
+													<li class="p-clinic-card-mini__tag"><?php echo esc_html( $term->name ); ?></li>
+												<?php endforeach; ?>
+											</ul>
+										</div>
+									<?php endif; ?>
 
-										<?php if ( $hours !== '' ) : ?>
-											<div class="p-clinic-card-mini__row">
-												<dt class="p-clinic-card-mini__label"><?php esc_html_e( '診療時間', 'efline' ); ?></dt>
-												<dd class="p-clinic-card-mini__value"><?php echo esc_html( $hours ); ?></dd>
-											</div>
-										<?php endif; ?>
+									<?php if ( $hours !== '' ) : ?>
+										<div class="p-clinic-card-mini__group p-clinic-card-mini__group--info">
+											<span class="p-clinic-card-mini__icon" aria-hidden="true">
+												<?php echo efline_icon( 'clock', array( 'width' => 14, 'height' => 14 ) ); ?>
+											</span>
+											<span class="p-clinic-card-mini__label"><?php esc_html_e( '診療時間', 'efline' ); ?></span>
+											<span class="p-clinic-card-mini__value"><?php echo esc_html( $hours ); ?></span>
+										</div>
+									<?php endif; ?>
 
-										<?php if ( $address !== '' ) : ?>
-											<div class="p-clinic-card-mini__row">
-												<dt class="p-clinic-card-mini__label"><?php esc_html_e( '住所', 'efline' ); ?></dt>
-												<dd class="p-clinic-card-mini__value"><?php echo esc_html( $address ); ?></dd>
-											</div>
-										<?php endif; ?>
-									</dl>
+									<?php if ( $address !== '' ) : ?>
+										<div class="p-clinic-card-mini__group p-clinic-card-mini__group--info">
+											<span class="p-clinic-card-mini__icon" aria-hidden="true">
+												<?php echo efline_icon( 'pin', array( 'width' => 14, 'height' => 14 ) ); ?>
+											</span>
+											<span class="p-clinic-card-mini__label"><?php esc_html_e( '住所', 'efline' ); ?></span>
+											<span class="p-clinic-card-mini__value"><?php echo esc_html( $address ); ?></span>
+										</div>
+									<?php endif; ?>
 								</div>
 							</a>
 						</li>

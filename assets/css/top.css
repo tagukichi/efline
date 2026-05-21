@@ -255,16 +255,22 @@
 	.p-clinics__nav--next { right: -20px; }
 }
 
-/* Clinic mini card (inside carousel) — 添付デザイン準拠 */
+/* Clinic mini card — 添付デザイン準拠 */
 .p-clinic-card-mini {
 	display: block;
 	color: var(--color-text);
 	background-color: var(--color-bg);
 	border: 1px solid #e0e0e0;
-	border-radius: 10px;
+	border-radius: 14px;
 	text-decoration: none;
 	overflow: hidden;
 	height: 100%;
+	transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.p-clinic-card-mini:hover {
+	box-shadow: var(--shadow-card);
+	transform: translateY(-2px);
 }
 
 /* 画像 + area pill オーバーレイ */
@@ -288,87 +294,139 @@
 
 .p-clinic-card-mini__area {
 	position: absolute;
-	left: 10px;
-	bottom: 10px;
+	left: 14px;
+	bottom: 14px;
 	display: inline-block;
-	padding: 3px 14px;
-	font-size: 12px;
+	padding: 4px 16px;
+	font-size: 13px;
 	font-weight: var(--fw-medium);
 	color: var(--color-text-inverse);
 	background-color: var(--color-primary);
 	border-radius: var(--radius-pill);
 	line-height: 1.4;
 	z-index: 2;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .p-clinic-card-mini__inner {
-	padding: 14px 14px 16px;
+	padding: 18px 18px 20px;
+}
+
+/* タイトル + 矢印アイコン */
+.p-clinic-card-mini__title-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 10px;
 }
 
 .p-clinic-card-mini__title {
-	margin: 0 0 8px;
-	color: #222;
-	font-size: 16px;
+	margin: 0;
+	color: #1f2937;
+	font-size: 18px;
 	font-weight: var(--fw-bold);
-	line-height: 1.4;
+	line-height: 1.35;
+	flex: 1;
 }
 
-.p-clinic-card-mini__pr {
-	margin: 0 0 12px;
-	color: var(--color-primary);
-	font-size: 12px;
-	font-weight: var(--fw-bold);
-	line-height: 1.55;
+.p-clinic-card-mini__arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	width: 28px;
+	height: 28px;
+	color: var(--color-text-inverse);
+	background-color: var(--color-primary);
+	border-radius: var(--radius-pill);
+}
+
+.p-clinic-card-mini__body {
+	margin: 0 0 16px;
+	color: #4b5563;
+	font-size: 13px;
+	font-weight: var(--fw-regular);
+	line-height: 1.7;
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
 
-/* 対応内容 / 診療時間 / 住所 のメタ情報 */
-.p-clinic-card-mini__meta {
-	margin: 0;
-	padding: 0;
-	border-top: 1px solid #eee;
+/* グループブロック共通 */
+.p-clinic-card-mini__group {
+	margin-top: 10px;
+	font-size: 13px;
+	line-height: 1.55;
 }
 
-.p-clinic-card-mini__row {
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
-	padding: 8px 0;
-	border-bottom: 1px solid #eee;
-	margin: 0;
+.p-clinic-card-mini__group--services {
+	margin-bottom: 14px;
 }
 
-.p-clinic-card-mini__row:last-child {
-	border-bottom: 0;
+.p-clinic-card-mini__group--info {
+	display: grid;
+	grid-template-columns: 16px auto 1fr;
+	column-gap: 8px;
+	align-items: start;
+	margin-top: 8px;
+}
+
+.p-clinic-card-mini__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #9ca3af;
+	margin-top: 2px;
 }
 
 .p-clinic-card-mini__label {
-	margin: 0;
-	font-size: 11px;
+	display: inline-block;
+	color: var(--color-primary);
+	font-size: 12px;
 	font-weight: var(--fw-medium);
-	color: #888;
-	letter-spacing: 0.04em;
+	margin-right: 6px;
+}
+
+.p-clinic-card-mini__group--services .p-clinic-card-mini__label {
+	display: block;
+	margin-bottom: 6px;
 }
 
 .p-clinic-card-mini__value {
-	margin: 0;
-	font-size: 12px;
+	color: #374151;
+	font-size: 12.5px;
 	font-weight: var(--fw-regular);
-	color: #333;
-	line-height: 1.5;
-	word-break: break-all;
 }
 
-.p-clinic-card-mini__row--services .p-clinic-card-mini__value {
-	display: block;
-}
-
-.p-clinic-card-mini__row--services .p-clinic-tags {
-	margin: 0;
+/* タグ（白文字 + 鮮やか3色ローテーション） */
+.p-clinic-card-mini__tags {
+	display: flex;
+	flex-wrap: wrap;
 	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.p-clinic-card-mini__tag {
+	padding: 4px 12px;
+	font-size: 12px;
+	font-weight: var(--fw-medium);
+	color: #ffffff;
+	background-color: #49bce3;
+	border-radius: 6px;
+	white-space: nowrap;
+	line-height: 1.3;
+}
+
+.p-clinic-card-mini__tag:nth-child(3n+2) {
+	background-color: #6dc88a;
+}
+
+.p-clinic-card-mini__tag:nth-child(3n+3) {
+	background-color: #f5a55c;
 }
 
 .p-clinics__empty {
