@@ -24,7 +24,6 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 			<img src="<?php echo esc_url( efline_hero_image_url() ); ?>" alt="" class="p-hero__image" loading="eager" fetchpriority="high">
 		</div>
 		<div class="p-hero__content">
-			<?php echo efline_render_logo( array( 'context' => 'hero' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<p class="p-hero__catch"><?php esc_html_e( 'キャッチコピーを入れることも可能です', 'efline' ); ?></p>
 			<h1 id="hero-title" class="p-hero__title">
 				<?php esc_html_e( 'タイトルをいれたり', 'efline' ); ?><br>
@@ -35,6 +34,7 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 				<?php esc_html_e( 'ボタンを付けたりもできます', 'efline' ); ?>
 			</a>
 		</div>
+		<img src="<?php echo esc_url( efline_logo_url() ); ?>" alt="" class="p-hero__mascot" aria-hidden="true" loading="eager">
 	</div>
 </section>
 

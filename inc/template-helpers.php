@@ -206,32 +206,37 @@ function efline_hero_image_url() {
 }
 
 /**
- * 完全なロゴ画像を出力。ヘッダー / FV で共用。
+ * 完全なロゴ（マスコット画像 + テキストロックアップ）を出力。
+ * ヘッダー・フッターから利用する。FV のマスコットは別途 front-page.php で
+ * 直接 <img class="p-hero__mascot"> を配置すること。
  *
- * @param array $args { 'context' => 'header' | 'hero' | 'footer' }
+ * 構造:
+ *   <a class="site-logo site-logo--header">
+ *     <img class="site-logo__mark" src="image-13.svg">
+ *     <span class="site-logo__text">
+ *       <small class="site-logo__sub">口腔機能訓練装置</small>
+ *       <span class="site-logo__name">こどもの矯正</span>
+ *     </span>
+ *   </a>
+ *
+ * @param array $args { 'context' => 'header' | 'footer' }
  */
 function efline_render_logo( $args = array() ) {
 	$context  = $args['context'] ?? 'header';
-	$image    = efline_logo_url();
 	$home_url = home_url( '/' );
 	$site     = get_bloginfo( 'name' );
+	$image    = efline_logo_url();
 	$class    = 'site-logo site-logo--' . $context;
-
 	ob_start();
-	if ( 'hero' === $context ) {
-		// FV 内はリンクなし。
-		?>
-		<div class="<?php echo esc_attr( $class ); ?>" aria-label="<?php echo esc_attr( $site ); ?>">
-			<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $site ); ?>" class="site-logo__image">
-		</div>
-		<?php
-	} else {
-		?>
-		<a href="<?php echo esc_url( $home_url ); ?>" class="<?php echo esc_attr( $class ); ?>" aria-label="<?php echo esc_attr( $site ); ?>">
-			<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $site ); ?>" class="site-logo__image" fetchpriority="high">
-		</a>
-		<?php
-	}
+	?>
+	<a href="<?php echo esc_url( $home_url ); ?>" class="<?php echo esc_attr( $class ); ?>" aria-label="<?php echo esc_attr( $site ); ?>">
+		<img src="<?php echo esc_url( $image ); ?>" alt="" class="site-logo__mark" aria-hidden="true">
+		<span class="site-logo__text">
+			<small class="site-logo__sub"><?php esc_html_e( '口腔機能訓練装置', 'efline' ); ?></small>
+			<span class="site-logo__name"><?php esc_html_e( 'こどもの矯正', 'efline' ); ?></span>
+		</span>
+	</a>
+	<?php
 	return ob_get_clean();
 }
 

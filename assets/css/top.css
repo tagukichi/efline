@@ -6,6 +6,33 @@
 /* ============================================================
  * Hero
  * ============================================================ */
+/* マスコット（FV 右下に配置）— Figma 0:124 size 281x292, right=6% */
+.p-hero__mascot {
+	position: absolute;
+	right: 4%;
+	bottom: 4%;
+	width: 110px;
+	height: auto;
+	pointer-events: none;
+	z-index: 3;
+}
+
+@media (min-width: 768px) {
+	.p-hero__mascot {
+		width: 180px;
+		right: 5%;
+		bottom: 8%;
+	}
+}
+
+@media (min-width: 1024px) {
+	.p-hero__mascot {
+		width: 281px;
+		right: 5%;
+		bottom: 18%;
+	}
+}
+
 .p-hero {
 	background-color: var(--color-bg-alt);
 	overflow: hidden;
