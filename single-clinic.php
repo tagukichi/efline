@@ -117,8 +117,13 @@ get_header(); ?>
 		</header>
 
 		<!-- ===== クリニックについて ===== -->
-		<?php if ( $about['heading'] !== '' || $about['body'] !== '' || $about['image'] ) : ?>
-			<section class="p-clinic-single__about">
+		<?php if ( $about['heading'] !== '' || $about['body'] !== '' || $about['image'] ) :
+			$about_class = 'p-clinic-single__about';
+			if ( $about['image'] ) {
+				$about_class .= ' p-clinic-single__about--with-image';
+			}
+		?>
+			<section class="<?php echo esc_attr( $about_class ); ?>">
 				<div class="p-clinic-single__about-text">
 					<?php if ( $about['heading'] !== '' ) : ?>
 						<h2 class="p-clinic-single__about-heading">
