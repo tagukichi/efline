@@ -99,14 +99,81 @@ function efline_get_clinic_hours_summary( $post_id = null, $limit = 3 ) {
  * クリニックの予約情報を取得。url が空なら CTA は表示しない判断に使う。
  *
  * @param int|null $post_id
- * @return array{url:string,label:string}
+ * @return array{url:string,label:string,official_url:string}
  */
 function efline_get_clinic_reservation( $post_id = null ) {
 	$reservation = efline_get_field( 'reservation', $post_id );
 	return array(
-		'url'   => isset( $reservation['url'] ) ? (string) $reservation['url'] : '',
-		'label' => isset( $reservation['label'] ) && $reservation['label'] !== '' ? (string) $reservation['label'] : __( 'WEB予約はこちら', 'efline' ),
+		'url'          => isset( $reservation['url'] ) ? (string) $reservation['url'] : '',
+		'label'        => isset( $reservation['label'] ) && $reservation['label'] !== '' ? (string) $reservation['label'] : __( 'WEB予約はこちら', 'efline' ),
+		'official_url' => isset( $reservation['official_url'] ) ? (string) $reservation['official_url'] : '',
 	);
+}
+
+/**
+ * ギャラリー画像の配列を返す。
+ *
+ * @param int|null $post_id
+ * @return array<int,array{url:string,alt:string,sizes:array}>
+ */
+function efline_get_clinic_gallery( $post_id = null ) {
+	$gallery = efline_get_field( 'gallery', $post_id );
+	if ( ! is_array( $gallery ) ) {
+		return array();
+	}
+	$out = array();
+	foreach ( $gallery as $item ) {
+		if ( ! is_array( $item ) || empty( $item['url'] ) ) {
+			continue;
+		}
+		$out[] = array(
+			'url'   => (string) $item['url'],
+			'alt'   => isset( $item['alt'] ) ? (string) $item['alt'] : '',
+			'sizes' => isset( $item['sizes'] ) && is_array( $item['sizes'] ) ? $item['sizes'] : array(),
+		);
+	}
+	return $out;
+}
+
+/**
+ * クリニック「について」セクションの内容を返す。
+ *
+ * @param int|null $post_id
+ * @return array{heading:string,body:string,image:array|null}
+ */
+function efline_get_clinic_about( $post_id = null ) {
+	$about = efline_get_field( 'about', $post_id );
+	return array(
+		'heading' => isset( $about['heading'] ) ? (string) $about['heading'] : '',
+		'body'    => isset( $about['body'] ) ? (string) $about['body'] : '',
+		'image'   => isset( $about['image'] ) && is_array( $about['image'] ) ? $about['image'] : null,
+	);
+}
+
+/**
+ * 詳細ページ用の対応内容リスト（名称 + 説明のペア）を返す。
+ *
+ * @param int|null $post_id
+ * @return array<int,array{name:string,description:string}>
+ */
+function efline_get_clinic_service_items( $post_id = null ) {
+	$items = efline_get_field( 'service_items', $post_id );
+	if ( ! is_array( $items ) ) {
+		return array();
+	}
+	$out = array();
+	foreach ( $items as $item ) {
+		$name = isset( $item['name'] ) ? trim( (string) $item['name'] ) : '';
+		$desc = isset( $item['description'] ) ? (string) $item['description'] : '';
+		if ( $name === '' && $desc === '' ) {
+			continue;
+		}
+		$out[] = array(
+			'name'        => $name,
+			'description' => $desc,
+		);
+	}
+	return $out;
 }
 
 /**

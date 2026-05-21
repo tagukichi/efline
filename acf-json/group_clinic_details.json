@@ -112,14 +112,14 @@
         },
         {
             "key": "field_clinic_reservation",
-            "label": "WEB予約",
+            "label": "WEB予約 / 公式サイト",
             "name": "reservation",
             "type": "group",
             "layout": "block",
             "sub_fields": [
                 {
                     "key": "field_clinic_reservation_url",
-                    "label": "予約URL",
+                    "label": "WEB予約URL",
                     "name": "url",
                     "type": "url",
                     "instructions": "外部の予約システム等のURL。空欄ならボタンは表示しません。",
@@ -127,11 +127,97 @@
                 },
                 {
                     "key": "field_clinic_reservation_label",
-                    "label": "ボタンラベル",
+                    "label": "予約ボタンラベル",
                     "name": "label",
                     "type": "text",
                     "default_value": "WEB予約はこちら",
                     "wrapper": { "width": "30" }
+                },
+                {
+                    "key": "field_clinic_official_url",
+                    "label": "公式サイトURL",
+                    "name": "official_url",
+                    "type": "url",
+                    "instructions": "クリニック公式サイト。空欄なら「公式サイト」ボタンは表示しません。",
+                    "wrapper": { "width": "100" }
+                }
+            ]
+        },
+        {
+            "key": "field_clinic_gallery",
+            "label": "ギャラリー画像",
+            "name": "gallery",
+            "type": "gallery",
+            "instructions": "詳細ページ上部のメイン画像 + サムネイル群。1枚目がメイン表示、2枚目以降がサムネイル。",
+            "required": 0,
+            "min": 0,
+            "max": 8,
+            "insert": "append",
+            "library": "all",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_clinic_about",
+            "label": "クリニックについて",
+            "name": "about",
+            "type": "group",
+            "instructions": "詳細ページの「クリニックについて」セクション。",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_clinic_about_heading",
+                    "label": "見出し",
+                    "name": "heading",
+                    "type": "text",
+                    "placeholder": "お子さまの未来の笑顔のために、丁寧な診療を心がけています"
+                },
+                {
+                    "key": "field_clinic_about_body",
+                    "label": "本文",
+                    "name": "body",
+                    "type": "textarea",
+                    "rows": 6,
+                    "new_lines": "br"
+                },
+                {
+                    "key": "field_clinic_about_image",
+                    "label": "画像（任意）",
+                    "name": "image",
+                    "type": "image",
+                    "return_format": "array",
+                    "preview_size": "medium"
+                }
+            ]
+        },
+        {
+            "key": "field_clinic_service_items",
+            "label": "対応内容（詳細表示）",
+            "name": "service_items",
+            "type": "repeater",
+            "instructions": "詳細ページの「対応内容」セクションに表示。3項目程度を推奨。空欄なら表示されません。",
+            "required": 0,
+            "min": 0,
+            "max": 6,
+            "layout": "row",
+            "button_label": "対応内容を追加",
+            "sub_fields": [
+                {
+                    "key": "field_clinic_service_name",
+                    "label": "名称",
+                    "name": "name",
+                    "type": "text",
+                    "placeholder": "EFLine相談",
+                    "wrapper": { "width": "30" }
+                },
+                {
+                    "key": "field_clinic_service_description",
+                    "label": "説明",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "br",
+                    "wrapper": { "width": "70" }
                 }
             ]
         },
@@ -207,5 +293,5 @@
     "active": true,
     "description": "クリニック紹介の構造化フィールド。efline テーマと連動。",
     "show_in_rest": 1,
-    "modified": 1779350000
+    "modified": 1779360000
 }

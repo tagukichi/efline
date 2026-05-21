@@ -499,3 +499,476 @@
 	margin-block: var(--space-6);
 	text-align: center;
 }
+
+/* ============================================================
+ * Single clinic page (添付デザイン準拠)
+ * ============================================================ */
+.p-clinic-single {
+	padding-block: var(--space-5) var(--space-12);
+	max-width: 1180px;
+}
+
+.p-clinic-single__breadcrumb {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	align-items: center;
+	margin: 0 0 var(--space-5);
+	color: var(--color-text-muted);
+	font-size: var(--fs-sm);
+}
+
+.p-clinic-single__breadcrumb a {
+	color: var(--color-text-muted);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.p-clinic-single__breadcrumb a:hover {
+	color: var(--color-primary);
+}
+
+/* ---------- Hero: gallery + info ---------- */
+.p-clinic-single__hero {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-6);
+	margin-bottom: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+	.p-clinic-single__hero {
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+		gap: var(--space-7);
+	}
+}
+
+.p-clinic-gallery {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+}
+
+.p-clinic-gallery__main {
+	margin: 0;
+	aspect-ratio: 4 / 3;
+	border-radius: 12px;
+	overflow: hidden;
+	background-color: var(--color-bg-alt);
+}
+
+.p-clinic-gallery__main img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.p-clinic-gallery__main--placeholder {
+	background: linear-gradient(135deg, #e3f4fb, #b5e3f1);
+}
+
+.p-clinic-gallery__thumbs {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.p-clinic-gallery__thumbs li {
+	aspect-ratio: 4 / 3;
+	border-radius: 8px;
+	overflow: hidden;
+	cursor: pointer;
+	background-color: var(--color-bg-alt);
+}
+
+.p-clinic-gallery__thumbs img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* Info column */
+.p-clinic-single__info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+}
+
+.p-clinic-single__area {
+	display: inline-block;
+	width: max-content;
+	padding: 4px 16px;
+	font-size: 13px;
+	font-weight: var(--fw-medium);
+	color: var(--color-text-inverse);
+	background-color: var(--color-primary);
+	border-radius: var(--radius-pill);
+}
+
+.p-clinic-single__title {
+	margin: 0;
+	color: #1f2937;
+	font-size: clamp(1.5rem, 2.4vw + 0.6rem, 2.1rem);
+	font-weight: var(--fw-bold);
+	line-height: 1.3;
+}
+
+.p-clinic-single__lead {
+	margin: 0;
+	color: #4b5563;
+	font-size: var(--fs-md);
+	line-height: 1.7;
+}
+
+.p-clinic-single__contact {
+	margin-top: var(--space-3);
+	padding: var(--space-4) var(--space-5);
+	background-color: var(--color-bg);
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.p-clinic-single__contact-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: var(--fs-md);
+	color: #374151;
+}
+
+.p-clinic-single__contact-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-primary);
+	flex: 0 0 auto;
+}
+
+.p-clinic-single__contact-value {
+	font-weight: var(--fw-medium);
+}
+
+a.p-clinic-single__contact-value {
+	color: #374151;
+	text-decoration: none;
+}
+
+a.p-clinic-single__contact-value:hover {
+	color: var(--color-primary);
+}
+
+.p-clinic-single__ctas {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+	margin-top: var(--space-2);
+}
+
+.p-clinic-single__cta {
+	flex: 1 1 auto;
+	min-width: 0;
+	gap: 8px;
+}
+
+.p-clinic-single__cta-icon {
+	display: inline-flex;
+	align-items: center;
+}
+
+/* ---------- About ---------- */
+.p-clinic-single__about {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-5);
+	margin-bottom: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+	.p-clinic-single__about {
+		grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+		gap: var(--space-7);
+		align-items: start;
+	}
+}
+
+.p-clinic-single__about-heading {
+	margin: 0 0 var(--space-3);
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	color: var(--color-heading);
+	font-size: clamp(1.3rem, 2.2vw + 0.5rem, 1.75rem);
+	font-weight: var(--fw-bold);
+	line-height: 1.45;
+}
+
+.p-clinic-single__about-icon {
+	display: inline-flex;
+	flex: 0 0 auto;
+	color: var(--color-primary);
+	margin-top: 4px;
+}
+
+.p-clinic-single__about-body {
+	color: #4b5563;
+	font-size: var(--fs-md);
+	line-height: 1.8;
+}
+
+.p-clinic-single__about-body p { margin: 0 0 var(--space-3); }
+.p-clinic-single__about-body p:last-child { margin-bottom: 0; }
+
+.p-clinic-single__about-image {
+	margin: 0;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.p-clinic-single__about-image img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* ---------- Services (対応内容) ---------- */
+.p-clinic-single__services {
+	padding: var(--space-5) var(--space-5) var(--space-6);
+	margin-bottom: var(--space-8);
+	background-color: #f5fbfd;
+	border: 1px solid #d6efff;
+	border-radius: 14px;
+}
+
+.p-clinic-single__services-title {
+	margin: 0 0 var(--space-4);
+	color: var(--color-primary);
+	font-size: var(--fs-lg);
+	font-weight: var(--fw-bold);
+}
+
+.p-clinic-single__services-list {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-4);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 768px) {
+	.p-clinic-single__services-list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.p-clinic-single__service {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: var(--space-3);
+	background-color: var(--color-bg);
+	border-radius: 10px;
+}
+
+.p-clinic-single__service-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	color: var(--color-primary);
+}
+
+.p-clinic-single__service[data-color="1"] .p-clinic-single__service-icon { color: #6dc88a; }
+.p-clinic-single__service[data-color="2"] .p-clinic-single__service-icon { color: #f5a55c; }
+
+.p-clinic-single__service-name {
+	margin: 0;
+	color: #1f2937;
+	font-size: var(--fs-md);
+	font-weight: var(--fw-bold);
+}
+
+.p-clinic-single__service-desc {
+	margin: 0;
+	color: #4b5563;
+	font-size: var(--fs-sm);
+	line-height: 1.7;
+}
+
+/* ---------- Bottom grid: hours + access ---------- */
+.p-clinic-single__bottom {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-5);
+	margin-bottom: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+	.p-clinic-single__bottom {
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-6);
+	}
+}
+
+.p-clinic-single__hours,
+.p-clinic-single__access {
+	padding: var(--space-5);
+	background-color: var(--color-bg);
+	border: 1px solid #e5e7eb;
+	border-radius: 14px;
+}
+
+.p-clinic-single__section-title {
+	margin: 0 0 var(--space-3);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--color-primary);
+	font-size: var(--fs-md);
+	font-weight: var(--fw-bold);
+}
+
+.p-clinic-hours-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--fs-sm);
+}
+
+.p-clinic-hours-table thead {
+	display: none;
+}
+
+.p-clinic-hours-table tr {
+	border-bottom: 1px solid #f1f5f9;
+}
+
+.p-clinic-hours-table tr:last-child {
+	border-bottom: 0;
+}
+
+.p-clinic-hours-table th,
+.p-clinic-hours-table td {
+	padding: 10px 8px;
+	text-align: left;
+	color: #374151;
+	font-weight: var(--fw-regular);
+}
+
+.p-clinic-hours-table__label {
+	display: inline-block;
+	min-width: 70px;
+	color: #6b7280;
+	font-size: 12px;
+}
+
+.p-clinic-hours-table__time {
+	font-weight: var(--fw-medium);
+	color: #1f2937;
+}
+
+.p-clinic-single__closed-note {
+	margin: var(--space-3) 0 0;
+	color: #6b7280;
+	font-size: var(--fs-sm);
+}
+
+.p-clinic-single__map {
+	margin-bottom: var(--space-3);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.p-clinic-single__map iframe {
+	display: block;
+	border: 0;
+}
+
+.p-clinic-single__access-address {
+	margin: 0 0 var(--space-2);
+	font-size: var(--fs-sm);
+	color: #374151;
+	line-height: 1.6;
+}
+
+.p-clinic-single__access-directions {
+	font-size: var(--fs-sm);
+	color: #6b7280;
+	line-height: 1.7;
+}
+
+/* ---------- Bottom CTA ---------- */
+.p-clinic-single__bottom-cta {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: var(--space-4);
+	align-items: center;
+	padding: var(--space-5);
+	background-color: #f5fbfd;
+	border: 1px solid #d6efff;
+	border-radius: 14px;
+}
+
+@media (min-width: 768px) {
+	.p-clinic-single__bottom-cta {
+		grid-template-columns: 80px 1fr auto;
+		padding: var(--space-5) var(--space-6);
+	}
+}
+
+.p-clinic-single__bottom-cta-mascot {
+	width: 60px;
+	height: auto;
+	display: block;
+}
+
+@media (min-width: 768px) {
+	.p-clinic-single__bottom-cta-mascot {
+		width: 80px;
+	}
+}
+
+.p-clinic-single__bottom-cta-text {
+	grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+	.p-clinic-single__bottom-cta-text {
+		grid-column: auto;
+	}
+}
+
+.p-clinic-single__bottom-cta-heading {
+	margin: 0 0 4px;
+	font-size: var(--fs-md);
+	font-weight: var(--fw-bold);
+	color: #1f2937;
+}
+
+.p-clinic-single__bottom-cta-body {
+	margin: 0;
+	font-size: var(--fs-sm);
+	color: #4b5563;
+	line-height: 1.6;
+}
+
+.p-clinic-single__bottom-cta-button {
+	grid-column: 1 / -1;
+	justify-self: stretch;
+}
+
+@media (min-width: 768px) {
+	.p-clinic-single__bottom-cta-button {
+		grid-column: auto;
+		justify-self: end;
+		min-width: 200px;
+	}
+}
