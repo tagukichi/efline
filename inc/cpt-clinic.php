@@ -87,7 +87,7 @@ function efline_register_clinic_cpt() {
 			'rewrite'            => array( 'slug' => 'clinics', 'with_front' => false ),
 			'menu_icon'          => 'dashicons-location-alt',
 			'menu_position'      => 5,
-			'supports'           => array( 'title', 'thumbnail', 'excerpt', 'revisions', 'page-attributes' ),
+			'supports'           => array( 'title', 'thumbnail', 'revisions', 'page-attributes' ),
 			'show_in_rest'       => true,
 		)
 	);

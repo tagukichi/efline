@@ -36,23 +36,39 @@ function efline_get_clinic_basic_info( $post_id = null ) {
 }
 
 /**
- * カード用 PR 文を返す。ACF card_pr が空なら post excerpt にフォールバック。
+ * カード用 PR 文を返す。
+ * card_pr ACF カスタムフィールド（任意。フィールド名は固定）に値があればそれを、
+ * なければ post_excerpt を、それも空なら post_content の先頭文字を返す。
+ * ACF 未導入でも問題なく動作する。
  *
  * @param int|null $post_id
  * @return string
  */
 function efline_get_clinic_card_pr( $post_id = null ) {
-	$pr = efline_get_field( 'card_pr', $post_id );
-	if ( is_string( $pr ) && trim( $pr ) !== '' ) {
-		return $pr;
-	}
-	// $post_id が null だと global $post を参照、ID/WP_Post の場合はそれを参照。
-	$post = $post_id ? get_post( $post_id ) : null;
-	if ( $post_id !== null && ! $post instanceof WP_Post ) {
+	$post_id = $post_id ? (int) $post_id : (int) get_the_ID();
+	if ( $post_id <= 0 ) {
 		return '';
 	}
-	$excerpt = $post ? get_the_excerpt( $post ) : get_the_excerpt();
-	return is_string( $excerpt ) ? wp_strip_all_tags( $excerpt ) : '';
+
+	// ACF があれば card_pr を優先（フィールドグループに登録されていなければ空が返る）。
+	if ( function_exists( 'get_field' ) ) {
+		$pr = get_field( 'card_pr', $post_id );
+		if ( is_string( $pr ) && trim( $pr ) !== '' ) {
+			return $pr;
+		}
+	}
+
+	// post_excerpt に直接アクセス（CPT が excerpt サポートしていなくても DB 保存されていれば読める）。
+	$post = get_post( $post_id );
+	if ( $post instanceof WP_Post ) {
+		if ( $post->post_excerpt !== '' ) {
+			return wp_strip_all_tags( $post->post_excerpt );
+		}
+		if ( $post->post_content !== '' ) {
+			return wp_strip_all_tags( wp_trim_words( $post->post_content, 30, '…' ) );
+		}
+	}
+	return '';
 }
 
 /**

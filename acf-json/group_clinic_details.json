@@ -3,19 +3,6 @@
     "title": "クリニック詳細",
     "fields": [
         {
-            "key": "field_clinic_card_pr",
-            "label": "カード用PR文",
-            "name": "card_pr",
-            "type": "textarea",
-            "instructions": "TOPページのカルーセルとアーカイブ一覧で表示する短いPR文（2行程度）。空欄の場合は本文の抜粋を使用します。",
-            "required": 0,
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": 2,
-            "new_lines": ""
-        },
-        {
             "key": "field_clinic_basic",
             "label": "基本情報",
             "name": "basic_info",
@@ -198,5 +185,5 @@
     "active": true,
     "description": "クリニック紹介の構造化フィールド。efline テーマと連動。",
     "show_in_rest": 1,
-    "modified": 1779345036
+    "modified": 1779346000
 }
