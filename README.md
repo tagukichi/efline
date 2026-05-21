@@ -9,7 +9,7 @@ Figma デザイン（[Z9Dx4Z90GlLVmxMnh1WBr2](https://www.figma.com/design/Z9Dx4
 | --- | --- | --- |
 | 1 | テーマ骨格 + デザイントークン | ✅ 完了 |
 | 2 | ACF フィールド定義（clinic CPT） | ✅ 完了 |
-| 3 | TOP ページ実装 | 未着手 |
+| 3 | TOP ページ実装 | ✅ 完了（画像差し替え待ち） |
 | 4 | クリニック紹介 一覧（archive） | ✅ 完了 |
 | 4b | クリニック紹介 詳細（single） | 🚧 ACF出力まで完了。デザイン微調整は次フェーズ |
 | 5 | こどもの歯並び / EF の使い方 / Q&A | 未着手 |
@@ -109,3 +109,10 @@ efline/
 | --- | --- |
 | `primary` | グローバルナビ（こどものはならび / 装置の使い方 / Q&A / 取扱いクリニック） |
 | `footer` | フッターナビ |
+
+メニュー未登録時は `inc/template-helpers.php::efline_default_primary_nav()` のフォールバックが表示されます。
+
+## 画像アセット
+
+`assets/images/` 配下の README に Figma ノード ID 付きで必要画像が一覧化されています。
+ファイル不在時はテンプレートが CSS グラデや SVG アイコンで自動代替するため、表示は崩れません。

@@ -48,6 +48,15 @@ function efline_enqueue_assets() {
 		);
 	}
 
+	if ( is_front_page() ) {
+		wp_enqueue_style(
+			'efline-top',
+			EFLINE_THEME_URI . '/assets/css/top.css',
+			array( 'efline-main' ),
+			EFLINE_THEME_VERSION
+		);
+	}
+
 	wp_enqueue_script(
 		'efline-main',
 		EFLINE_THEME_URI . '/assets/js/main.js',

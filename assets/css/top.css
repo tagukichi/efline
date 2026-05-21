@@ -1,0 +1,429 @@
+/*
+ * フロントページ (TOP) のスタイル。Figma node 0:4 (PC) / 0:299 (SP) ベース。
+ * モバイルファースト構築、1024px で PC レイアウトへ切替。
+ */
+
+/* ============================================================
+ * Hero
+ * ============================================================ */
+.p-hero {
+	background-color: var(--color-bg-alt);
+	overflow: hidden;
+}
+
+.p-hero__inner {
+	position: relative;
+	max-width: var(--content-max);
+	margin-inline: auto;
+}
+
+.p-hero__media {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+}
+
+.p-hero__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.p-hero__image--placeholder {
+	background: linear-gradient(135deg, #ffd8b8, #b5e3f1 60%, #ffe9eb);
+}
+
+.p-hero__content {
+	padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.p-hero__catch {
+	margin: 0 0 var(--space-3);
+	color: var(--color-text);
+	font-size: var(--fs-md);
+}
+
+.p-hero__title {
+	margin: 0 0 var(--space-5);
+	font-family: var(--font-sans);
+	font-weight: var(--fw-semibold);
+	font-size: clamp(1.5rem, 4vw + 0.5rem, 2.5rem);
+	color: var(--color-text);
+	line-height: 1.4;
+}
+
+.p-hero__cta {
+	width: 100%;
+	max-width: 280px;
+}
+
+@media (min-width: 1024px) {
+	.p-hero__media {
+		position: absolute;
+		inset: 0 50% 0 0;
+		aspect-ratio: auto;
+	}
+
+	.p-hero__content {
+		position: relative;
+		max-width: 50%;
+		margin-left: 50%;
+		padding: 120px var(--space-8) 120px var(--space-8);
+		min-height: 696px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.p-hero__title {
+		font-size: 40px;
+	}
+
+	.p-hero__cta {
+		width: auto;
+		min-width: 245px;
+		align-self: flex-start;
+	}
+}
+
+/* ============================================================
+ * Clinics carousel
+ * ============================================================ */
+.p-clinics {
+	background-color: var(--color-primary);
+	color: var(--color-text-inverse);
+	padding-block: var(--space-8);
+}
+
+.p-clinics__inner {
+	max-width: var(--content-max);
+	margin-inline: auto;
+	padding-inline: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+	.p-clinics__inner {
+		display: grid;
+		grid-template-columns: 280px 1fr;
+		gap: var(--space-6);
+		padding-inline: var(--space-6);
+		align-items: center;
+	}
+}
+
+.p-clinics__intro {
+	text-align: center;
+	margin-bottom: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+	.p-clinics__intro {
+		margin-bottom: 0;
+	}
+}
+
+.p-clinics__intro-icon {
+	display: inline-flex;
+	color: var(--color-text-inverse);
+	opacity: 0.95;
+}
+
+.p-clinics__heading {
+	margin: var(--space-3) 0 var(--space-4);
+	color: var(--color-text-inverse);
+	font-size: var(--fs-2xl);
+	font-weight: var(--fw-medium);
+}
+
+@media (min-width: 1024px) {
+	.p-clinics__heading {
+		font-size: 22px;
+	}
+}
+
+.p-clinics__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 170px;
+	height: 170px;
+	border-radius: var(--radius-pill);
+	background-color: rgba(0, 0, 0, 0.18);
+	color: var(--color-text-inverse);
+	font-size: var(--fs-md);
+	font-weight: var(--fw-medium);
+	line-height: 1.5;
+	text-align: center;
+	text-decoration: none;
+	transition: background-color var(--transition-base), transform var(--transition-base);
+}
+
+.p-clinics__cta:hover {
+	background-color: rgba(0, 0, 0, 0.28);
+	color: var(--color-text-inverse);
+	transform: translateY(-2px);
+}
+
+.p-clinics__carousel {
+	position: relative;
+}
+
+.p-clinics__list {
+	display: flex;
+	gap: var(--space-4);
+	margin: 0;
+	padding: 0 var(--space-2);
+	list-style: none;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+}
+
+.p-clinics__list::-webkit-scrollbar {
+	display: none;
+}
+
+.p-clinics__item {
+	flex: 0 0 calc(100% - var(--space-4));
+	scroll-snap-align: start;
+}
+
+@media (min-width: 600px) {
+	.p-clinics__item { flex-basis: calc(50% - var(--space-2)); }
+}
+
+@media (min-width: 1024px) {
+	.p-clinics__item { flex-basis: calc(33.333% - var(--space-3)); }
+}
+
+.p-clinics__nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 38px;
+	color: var(--color-primary);
+	background-color: var(--color-bg);
+	border: 0;
+	border-radius: var(--radius-pill);
+	box-shadow: var(--shadow-card);
+	cursor: pointer;
+	z-index: 1;
+	transition: background-color var(--transition-base);
+}
+
+.p-clinics__nav:hover {
+	background-color: var(--color-bg-alt);
+}
+
+.p-clinics__nav--prev { left: -8px; }
+.p-clinics__nav--next { right: -8px; }
+
+@media (min-width: 1024px) {
+	.p-clinics__nav--prev { left: -20px; }
+	.p-clinics__nav--next { right: -20px; }
+}
+
+/* Clinic mini card (inside carousel) */
+.p-clinic-card-mini {
+	display: block;
+	padding: var(--space-3);
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	border-radius: var(--radius-md);
+	text-decoration: none;
+	height: 100%;
+}
+
+.p-clinic-card-mini__media {
+	position: relative;
+	aspect-ratio: 16 / 11;
+	margin-bottom: var(--space-3);
+	border-radius: var(--radius-sm);
+	overflow: hidden;
+	background-color: var(--color-bg-alt);
+}
+
+.p-clinic-card-mini__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.p-clinic-card-mini__image--placeholder {
+	background: linear-gradient(135deg, #e3f4fb, #b5e3f1);
+}
+
+.p-clinic-card-mini__area {
+	display: inline-block;
+	padding: 2px var(--space-3);
+	margin-bottom: var(--space-2);
+	font-size: var(--fs-xs);
+	color: var(--color-text-inverse);
+	background-color: var(--color-primary);
+	border-radius: var(--radius-pill);
+}
+
+.p-clinic-card-mini__title {
+	margin: 0 0 var(--space-2);
+	color: var(--color-heading);
+	font-size: var(--fs-md);
+	font-weight: var(--fw-medium);
+}
+
+.p-clinic-card-mini__excerpt {
+	margin: 0 0 var(--space-3);
+	color: var(--color-primary);
+	font-size: var(--fs-xs);
+	font-weight: var(--fw-bold);
+	line-height: 1.5;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.p-clinic-card-mini__tags {
+	margin: 0;
+}
+
+.p-clinics__empty {
+	margin: 0;
+	color: var(--color-text-inverse);
+	text-align: center;
+}
+
+/* ============================================================
+ * Feature sections (こどものはならび / Trainer / Q&A)
+ * ============================================================ */
+.p-feature {
+	padding-block: var(--space-10);
+}
+
+.p-feature__inner {
+	max-width: var(--container-max);
+	margin-inline: auto;
+	padding-inline: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+	.p-feature__inner {
+		padding-inline: var(--space-6);
+		display: grid;
+		grid-template-columns: minmax(280px, 1fr) 2fr;
+		gap: var(--space-10);
+		align-items: center;
+	}
+}
+
+.p-feature__head {
+	text-align: center;
+	margin-bottom: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+	.p-feature__head {
+		text-align: left;
+		margin-bottom: 0;
+	}
+}
+
+.p-feature__icon {
+	position: relative;
+	display: inline-flex;
+	color: var(--color-primary);
+}
+
+.p-feature__sparkle {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	color: var(--color-primary);
+}
+
+.p-feature__heading {
+	margin: var(--space-3) 0 0;
+	font-family: var(--font-logo);
+	font-size: clamp(2rem, 5vw + 0.5rem, 3.8rem);
+	color: var(--color-heading);
+	font-weight: var(--fw-medium);
+	line-height: 1.2;
+}
+
+.p-feature__body p {
+	margin: 0 0 var(--space-3);
+	font-size: var(--fs-md);
+	line-height: var(--lh-loose);
+}
+
+.p-feature__cta-wrap {
+	margin-top: var(--space-5);
+}
+
+/* Trainer split layout */
+.p-feature--trainer {
+	background-color: var(--color-bg-alt);
+}
+
+.p-feature__inner--split {
+	display: grid;
+	gap: var(--space-6);
+	grid-template-columns: 1fr;
+	align-items: center;
+	max-width: var(--container-max);
+	margin-inline: auto;
+	padding-inline: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+	.p-feature__inner--split {
+		grid-template-columns: 1fr 1.5fr;
+		gap: var(--space-10);
+		padding-inline: var(--space-6);
+	}
+}
+
+.p-feature__visual {
+	text-align: center;
+}
+
+.p-feature__image {
+	max-width: 320px;
+	width: 100%;
+	height: auto;
+	margin-inline: auto;
+}
+
+.p-feature__image--placeholder {
+	aspect-ratio: 4 / 3;
+	max-width: 320px;
+	margin-inline: auto;
+	background: linear-gradient(135deg, #e8f6fc, #c2e6f5);
+	border-radius: var(--radius-md);
+}
+
+.p-feature__display-heading {
+	margin: 0 0 var(--space-3);
+	color: var(--color-primary);
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 4vw + 0.5rem, 2.6875rem);
+	font-weight: var(--fw-bold);
+	line-height: 1.1;
+}
+
+.p-feature__display-body {
+	margin: 0 0 var(--space-5);
+	color: var(--color-text);
+	font-size: clamp(1.125rem, 1.5vw + 0.5rem, 2rem);
+	font-weight: var(--fw-medium);
+	line-height: 1.4;
+}
+
+/* Q&A — same general layout as orthodontics */
+.p-feature--qa .p-feature__icon {
+	color: var(--color-primary);
+}

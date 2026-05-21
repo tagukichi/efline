@@ -1,11 +1,12 @@
 /*
- * 集約用 CSS。コンポーネント / セクションのスタイルは
- * フェーズ進行に合わせてここ、または別ファイルに追加していく。
+ * サイト共通コンポーネント: ヘッダー / フッター / ボタン。
+ * セクション固有スタイルは top.css / clinic.css などへ分離。
  */
 
 /* ---------- Header ---------- */
 .site-header {
-	position: relative;
+	position: sticky;
+	top: 0;
 	z-index: var(--z-header);
 	background-color: var(--color-bg);
 	border-bottom: var(--border-default);
@@ -15,29 +16,274 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: var(--space-3);
 	min-height: var(--header-height-sp);
-	padding-block: var(--space-3);
+	padding: var(--space-2) var(--space-4);
+	margin-inline: auto;
+	max-width: var(--content-max);
 }
 
 @media (min-width: 1024px) {
 	.site-header__inner {
 		min-height: var(--header-height);
+		padding-inline: var(--space-6);
 	}
 }
 
 .site-header__logo {
-	font-family: var(--font-logo);
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
 	color: var(--color-heading);
-	font-size: var(--fs-xl);
+	text-decoration: none;
+}
+
+.site-header__logo-mark {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	color: var(--color-primary);
+}
+
+@media (min-width: 1024px) {
+	.site-header__logo-mark {
+		width: 90px;
+		height: 90px;
+	}
+}
+
+.site-header__logo-text {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.1;
+}
+
+.site-header__logo-sub {
+	color: var(--color-primary);
+	font-size: 10px;
+	letter-spacing: 0.04em;
+}
+
+@media (min-width: 1024px) {
+	.site-header__logo-sub {
+		font-size: var(--fs-base);
+	}
+}
+
+.site-header__logo-name {
+	font-family: var(--font-logo);
+	font-size: 18px;
+	color: var(--color-heading);
+}
+
+@media (min-width: 1024px) {
+	.site-header__logo-name {
+		font-size: 36px;
+	}
+}
+
+/* nav */
+.site-header__nav .site-header__menu,
+.site-header__nav ul {
+	display: flex;
+	gap: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-header__menu-item {
+	display: flex;
+	align-items: stretch;
+	border-left: 1px solid var(--color-border);
+}
+
+.site-header__menu-item:last-child {
+	border-right: 1px solid var(--color-border);
+}
+
+.site-header__menu-link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	min-width: 56px;
+	padding: var(--space-2) var(--space-2);
+	color: var(--color-heading);
+	text-decoration: none;
+	font-size: 8px;
+	line-height: 1.2;
+	text-align: center;
+	transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+@media (min-width: 1024px) {
+	.site-header__menu-link {
+		min-width: 110px;
+		padding: var(--space-3);
+		font-size: var(--fs-base);
+		gap: var(--space-1);
+	}
+}
+
+.site-header__menu-link:hover {
+	color: var(--color-primary);
+	background-color: var(--color-bg-alt);
+}
+
+.site-header__menu-item.is-current .site-header__menu-link {
+	color: var(--color-text-inverse);
+	background-color: var(--color-primary);
+}
+
+.site-header__menu-icon {
+	display: inline-flex;
+	color: var(--color-primary);
+	width: 20px;
+	height: 20px;
+}
+
+.site-header__menu-item.is-current .site-header__menu-icon {
+	color: var(--color-text-inverse);
+}
+
+@media (min-width: 1024px) {
+	.site-header__menu-icon {
+		width: 36px;
+		height: 36px;
+	}
+}
+
+.site-header__menu-icon svg {
+	width: 100%;
+	height: 100%;
 }
 
 /* ---------- Footer ---------- */
 .site-footer {
-	border-top: var(--border-default);
-	padding-block: var(--space-8) var(--space-6);
+	position: relative;
 	margin-top: var(--space-12);
+	padding-top: var(--space-8);
+	border-top: var(--border-default);
+	color: var(--color-text);
+}
+
+.site-footer__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-4);
+	max-width: var(--content-max);
+	margin-inline: auto;
+	padding: 0 var(--space-4) var(--space-6);
+}
+
+@media (min-width: 1024px) {
+	.site-footer__inner {
+		padding-inline: var(--space-6);
+	}
+}
+
+.site-footer__logo {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+	color: inherit;
+	text-decoration: none;
+}
+
+.site-footer__logo-mark {
+	display: inline-flex;
+	width: 40px;
+	height: 40px;
+	color: var(--color-primary);
+}
+
+@media (min-width: 1024px) {
+	.site-footer__logo-mark {
+		width: 80px;
+		height: 80px;
+	}
+}
+
+.site-footer__logo-text {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.1;
+}
+
+.site-footer__logo-sub {
+	color: var(--color-primary);
+	font-size: var(--fs-xs);
+}
+
+@media (min-width: 1024px) {
+	.site-footer__logo-sub {
+		font-size: var(--fs-base);
+	}
+}
+
+.site-footer__logo-name {
+	font-family: var(--font-logo);
+	font-size: var(--fs-xl);
+	color: var(--color-heading);
+}
+
+@media (min-width: 1024px) {
+	.site-footer__logo-name {
+		font-size: 36px;
+	}
+}
+
+.site-footer__top {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	color: var(--color-text-inverse);
+	background-color: var(--color-primary);
+	border-radius: var(--radius-pill);
+	box-shadow: var(--shadow-card);
+	transition: transform var(--transition-base), background-color var(--transition-base);
+}
+
+.site-footer__top:hover {
+	background-color: var(--color-primary-hover);
+	color: var(--color-text-inverse);
+	transform: translateY(-2px);
+}
+
+@media (min-width: 1024px) {
+	.site-footer__top {
+		width: 68px;
+		height: 68px;
+	}
+}
+
+.site-footer__bottom {
+	padding: var(--space-4) var(--space-4);
+	border-top: var(--border-default);
+	text-align: center;
+}
+
+.site-footer__copy {
+	margin: 0;
+	font-size: var(--fs-xs);
 	color: var(--color-text-muted);
-	font-size: var(--fs-sm);
+}
+
+@media (min-width: 1024px) {
+	.site-footer__copy {
+		font-size: var(--fs-base);
+		text-align: left;
+		max-width: var(--content-max);
+		margin-inline: auto;
+		padding-inline: var(--space-6);
+	}
 }
 
 /* ---------- Buttons ---------- */
@@ -45,6 +291,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	gap: var(--space-1);
 	min-width: 245px;
 	padding: var(--space-3) var(--space-5);
 	font-family: var(--font-sans);
@@ -55,6 +302,7 @@
 	border: 1px solid var(--color-primary);
 	border-radius: var(--radius-sm);
 	transition: background-color var(--transition-base), color var(--transition-base);
+	text-decoration: none;
 }
 
 .c-button:hover {
@@ -71,3 +319,25 @@
 	background-color: var(--color-primary);
 	color: var(--color-text-inverse);
 }
+
+/* ---------- Generic shared elements ---------- */
+.p-clinic-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-1);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.p-clinic-tags__item {
+	padding: 2px var(--space-2);
+	font-size: var(--fs-xs);
+	color: var(--color-heading);
+	background-color: #fff3c4;
+	border-radius: var(--radius-sm);
+	white-space: nowrap;
+}
+
+.p-clinic-tags__item:nth-child(3n+2) { background-color: #d6efff; }
+.p-clinic-tags__item:nth-child(3n+3) { background-color: #ffe1e1; }
