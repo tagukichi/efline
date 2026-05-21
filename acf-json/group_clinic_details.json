@@ -1,0 +1,208 @@
+{
+    "key": "group_clinic_details",
+    "title": "クリニック詳細",
+    "fields": [
+        {
+            "key": "field_clinic_basic",
+            "label": "基本情報",
+            "name": "basic_info",
+            "type": "group",
+            "instructions": "クリニックの連絡先と診療時間。",
+            "required": 0,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_clinic_postal_code",
+                    "label": "郵便番号",
+                    "name": "postal_code",
+                    "type": "text",
+                    "placeholder": "150-0001",
+                    "wrapper": { "width": "30" }
+                },
+                {
+                    "key": "field_clinic_address",
+                    "label": "住所",
+                    "name": "address",
+                    "type": "text",
+                    "placeholder": "東京都渋谷区〇〇1-2-3",
+                    "wrapper": { "width": "70" }
+                },
+                {
+                    "key": "field_clinic_phone",
+                    "label": "電話番号",
+                    "name": "phone",
+                    "type": "text",
+                    "placeholder": "03-1234-5678",
+                    "wrapper": { "width": "40" }
+                },
+                {
+                    "key": "field_clinic_phone_note",
+                    "label": "電話番号の補足",
+                    "name": "phone_note",
+                    "type": "text",
+                    "instructions": "「予約専用」など、必要であれば併記する文言。",
+                    "wrapper": { "width": "60" }
+                },
+                {
+                    "key": "field_clinic_hours",
+                    "label": "診療時間",
+                    "name": "hours",
+                    "type": "repeater",
+                    "instructions": "曜日／時間帯のペアを行ごとに追加。",
+                    "min": 0,
+                    "layout": "table",
+                    "button_label": "診療時間を追加",
+                    "sub_fields": [
+                        {
+                            "key": "field_clinic_hours_label",
+                            "label": "曜日",
+                            "name": "label",
+                            "type": "text",
+                            "placeholder": "月〜金"
+                        },
+                        {
+                            "key": "field_clinic_hours_time",
+                            "label": "時間",
+                            "name": "time",
+                            "type": "text",
+                            "placeholder": "9:00 - 18:00"
+                        },
+                        {
+                            "key": "field_clinic_hours_note",
+                            "label": "備考",
+                            "name": "note",
+                            "type": "text",
+                            "placeholder": "祝日休"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_clinic_closed_days",
+                    "label": "休診日",
+                    "name": "closed_days",
+                    "type": "text",
+                    "placeholder": "日曜・祝日"
+                }
+            ]
+        },
+        {
+            "key": "field_clinic_reservation",
+            "label": "WEB予約",
+            "name": "reservation",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_clinic_reservation_url",
+                    "label": "予約URL",
+                    "name": "url",
+                    "type": "url",
+                    "instructions": "外部の予約システム等のURL。空欄ならボタンは表示しません。",
+                    "wrapper": { "width": "70" }
+                },
+                {
+                    "key": "field_clinic_reservation_label",
+                    "label": "ボタンラベル",
+                    "name": "label",
+                    "type": "text",
+                    "default_value": "WEB予約はこちら",
+                    "wrapper": { "width": "30" }
+                }
+            ]
+        },
+        {
+            "key": "field_clinic_services",
+            "label": "診療内容",
+            "name": "services",
+            "type": "repeater",
+            "instructions": "提供している診療メニューを1行ずつ追加。",
+            "min": 0,
+            "layout": "table",
+            "button_label": "診療内容を追加",
+            "sub_fields": [
+                {
+                    "key": "field_clinic_service_name",
+                    "label": "名称",
+                    "name": "name",
+                    "type": "text",
+                    "placeholder": "小児矯正"
+                }
+            ]
+        },
+        {
+            "key": "field_clinic_descriptions",
+            "label": "説明文",
+            "name": "descriptions",
+            "type": "repeater",
+            "instructions": "見出し + 本文のセットを複数登録できます。",
+            "min": 0,
+            "layout": "row",
+            "button_label": "説明文を追加",
+            "sub_fields": [
+                {
+                    "key": "field_clinic_description_heading",
+                    "label": "見出し",
+                    "name": "heading",
+                    "type": "text"
+                },
+                {
+                    "key": "field_clinic_description_body",
+                    "label": "本文",
+                    "name": "body",
+                    "type": "wysiwyg",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0
+                }
+            ]
+        },
+        {
+            "key": "field_clinic_access",
+            "label": "アクセス",
+            "name": "access",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_clinic_map",
+                    "label": "Google Map",
+                    "name": "map",
+                    "type": "google_map",
+                    "instructions": "ACF 設定で Google Maps API キーが必要です。地図中央のピンで位置を指定。",
+                    "center_lat": "35.6595",
+                    "center_lng": "139.7004",
+                    "zoom": 15,
+                    "height": 400
+                },
+                {
+                    "key": "field_clinic_directions",
+                    "label": "アクセス補足",
+                    "name": "directions",
+                    "type": "textarea",
+                    "instructions": "最寄駅からの経路や駐車場情報など。",
+                    "rows": 4,
+                    "new_lines": "br"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "clinic"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "クリニック紹介の構造化フィールド。efline テーマと連動。",
+    "show_in_rest": 1,
+    "modified": 1747800000
+}

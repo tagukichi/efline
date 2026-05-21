@@ -8,7 +8,7 @@ Figma デザイン（[Z9Dx4Z90GlLVmxMnh1WBr2](https://www.figma.com/design/Z9Dx4
 | フェーズ | 内容 | 状態 |
 | --- | --- | --- |
 | 1 | テーマ骨格 + デザイントークン | ✅ 完了 |
-| 2 | ACF フィールド定義（clinic CPT） | 未着手 |
+| 2 | ACF フィールド定義（clinic CPT） | ✅ 完了 |
 | 3 | TOP ページ実装 | 未着手 |
 | 4 | クリニック紹介 一覧 / 詳細 | 未着手 |
 | 5 | こどもの歯並び / EF の使い方 / Q&A | 未着手 |

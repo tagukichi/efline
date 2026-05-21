@@ -17,3 +17,4 @@ require_once EFLINE_THEME_DIR . '/inc/setup.php';
 require_once EFLINE_THEME_DIR . '/inc/enqueue.php';
 require_once EFLINE_THEME_DIR . '/inc/cpt-clinic.php';
 require_once EFLINE_THEME_DIR . '/inc/acf.php';
+require_once EFLINE_THEME_DIR . '/inc/clinic-helpers.php';
