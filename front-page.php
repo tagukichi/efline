@@ -66,7 +66,7 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 						setup_postdata( $clinic );
 						$areas    = efline_get_clinic_areas( $clinic->ID );
 						$services = efline_get_clinic_services( $clinic->ID );
-						$basic    = efline_get_clinic_basic_info( $clinic->ID );
+						$excerpt  = get_the_excerpt( $clinic );
 					?>
 						<li class="p-clinics__item">
 							<a class="p-clinic-card-mini" href="<?php echo esc_url( get_permalink( $clinic ) ); ?>">
@@ -77,21 +77,21 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 										<div class="p-clinic-card-mini__image p-clinic-card-mini__image--placeholder" aria-hidden="true"></div>
 									<?php } ?>
 								</div>
-								<?php if ( ! empty( $areas ) ) : ?>
-									<span class="p-clinic-card-mini__area"><?php echo esc_html( $areas[0]->name ); ?></span>
-								<?php endif; ?>
-								<h3 class="p-clinic-card-mini__title"><?php echo esc_html( get_the_title( $clinic ) ); ?></h3>
-								<?php $excerpt = get_the_excerpt( $clinic );
-								if ( $excerpt !== '' ) : ?>
-									<p class="p-clinic-card-mini__excerpt"><?php echo esc_html( wp_trim_words( $excerpt, 40, '…' ) ); ?></p>
-								<?php endif; ?>
-								<?php if ( ! empty( $services ) ) : ?>
-									<ul class="p-clinic-tags p-clinic-card-mini__tags">
-										<?php foreach ( array_slice( $services, 0, 3 ) as $term ) : ?>
-											<li class="p-clinic-tags__item"><?php echo esc_html( $term->name ); ?></li>
-										<?php endforeach; ?>
-									</ul>
-								<?php endif; ?>
+								<div class="p-clinic-card-mini__inner">
+									<?php if ( ! empty( $areas ) ) : ?>
+										<span class="p-clinic-card-mini__area"><?php echo esc_html( $areas[0]->name ); ?></span>
+									<?php endif; ?>
+									<h3 class="p-clinic-card-mini__title"><?php echo esc_html( get_the_title( $clinic ) ); ?></h3>
+									<?php if ( $excerpt !== '' ) : ?>
+										<p class="p-clinic-card-mini__pr"><?php echo esc_html( wp_trim_words( $excerpt, 30, '…' ) ); ?></p>
+									<?php endif; ?>
+									<hr class="p-clinic-card-mini__sep">
+									<?php if ( ! empty( $services ) ) :
+										$service_names = array_map( static function ( $term ) { return $term->name; }, array_slice( $services, 0, 4 ) );
+									?>
+										<p class="p-clinic-card-mini__body"><?php echo esc_html( implode( ' / ', $service_names ) ); ?></p>
+									<?php endif; ?>
+								</div>
 							</a>
 						</li>
 					<?php endforeach; wp_reset_postdata(); ?>

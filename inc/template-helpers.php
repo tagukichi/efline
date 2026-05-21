@@ -190,7 +190,7 @@ function efline_logo_url() {
 	if ( file_exists( EFLINE_THEME_DIR . '/assets/images/logo.png' ) ) {
 		return EFLINE_THEME_URI . '/assets/images/logo.png';
 	}
-	return 'http://kodomo-kyousei.com/wp-content/uploads/2026/05/image-13.svg';
+	return 'https://kodomo-kyousei.com/wp-content/uploads/2026/05/image-13.svg';
 }
 
 /**
@@ -202,7 +202,7 @@ function efline_hero_image_url() {
 			return EFLINE_THEME_URI . '/assets/images/' . $name;
 		}
 	}
-	return 'http://kodomo-kyousei.com/wp-content/uploads/2025/02/image-14.png';
+	return 'https://kodomo-kyousei.com/wp-content/uploads/2025/02/image-14.png';
 }
 
 /**
