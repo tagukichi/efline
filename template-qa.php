@@ -17,10 +17,9 @@ while ( have_posts() ) :
 
 <?php
 efline_page_hero( array(
-	'icon'       => 'question',
-	'title'      => get_the_title(),
-	'subtitle'   => __( 'よくいただくご質問とその回答をまとめています。', 'efline' ),
-	'breadcrumb' => get_the_title(),
+	'icon'    => 'question',
+	'title'   => get_the_title(),
+	'variant' => 'accent',
 ) );
 ?>
 
@@ -33,7 +32,7 @@ efline_page_hero( array(
 
 	<?php if ( ! empty( $items ) ) : ?>
 		<div class="p-qa">
-			<?php foreach ( $items as $index => $item ) :
+			<?php foreach ( $items as $item ) :
 				$question = isset( $item['question'] ) ? (string) $item['question'] : '';
 				$answer   = isset( $item['answer'] ) ? (string) $item['answer'] : '';
 				$category = isset( $item['category'] ) ? (string) $item['category'] : '';
@@ -41,7 +40,7 @@ efline_page_hero( array(
 					continue;
 				}
 			?>
-				<details class="p-qa__item" <?php echo 0 === $index ? 'open' : ''; ?>>
+				<details class="p-qa__item">
 					<summary class="p-qa__summary">
 						<span class="p-qa__marker" aria-hidden="true">Q</span>
 						<span class="p-qa__question">

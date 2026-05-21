@@ -99,15 +99,23 @@ function efline_is_current_nav( $key ) {
 /**
  * ページヘッダー（ヒーロー）を出力。
  *
- * @param array{icon:string,title:string,subtitle?:string,breadcrumb?:string} $args
+ * @param array{icon:string,title:string,subtitle?:string,breadcrumb?:string,variant?:string} $args
+ *        variant: 'default' (デフォルト: 濃いアイコン丸 + ダーク見出し)
+ *                 'accent'  (淡いシアン帯 + アウトラインアイコン + シアン見出し)
  */
 function efline_page_hero( $args ) {
-	$icon      = $args['icon'] ?? 'tooth';
-	$title     = $args['title'] ?? '';
-	$subtitle  = $args['subtitle'] ?? '';
+	$icon       = $args['icon'] ?? 'tooth';
+	$title      = $args['title'] ?? '';
+	$subtitle   = $args['subtitle'] ?? '';
 	$breadcrumb = $args['breadcrumb'] ?? '';
+	$variant    = $args['variant'] ?? 'default';
+
+	$classes = array( 'p-page-hero' );
+	if ( $variant === 'accent' ) {
+		$classes[] = 'p-page-hero--accent';
+	}
 	?>
-	<header class="p-page-hero">
+	<header class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 		<div class="l-container">
 			<?php if ( $breadcrumb !== '' ) : ?>
 				<nav class="p-breadcrumb" aria-label="<?php esc_attr_e( 'パンくず', 'efline' ); ?>">
@@ -119,7 +127,7 @@ function efline_page_hero( $args ) {
 
 			<div class="p-page-hero__title-row">
 				<span class="p-page-hero__icon" aria-hidden="true">
-					<?php echo efline_icon( $icon, array( 'width' => 48, 'height' => 48 ) ); ?>
+					<?php echo efline_icon( $icon, array( 'width' => 56, 'height' => 56 ) ); ?>
 				</span>
 				<h1 class="p-page-hero__title"><?php echo esc_html( $title ); ?></h1>
 			</div>
