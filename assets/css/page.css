@@ -868,3 +868,223 @@
 		width: 110px;
 	}
 }
+
+/* ============================================================
+ * EFの使い方 専用スタイル (p-ef-*)
+ * ============================================================ */
+
+/* ---- 装着ステップ ---- */
+.p-ef-steps {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+	margin: var(--space-4) 0 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: ef-step;
+}
+
+.p-ef-steps__item {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 14px;
+	padding: var(--space-4);
+	background-color: #f5fbfd;
+	border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+	.p-ef-steps__item {
+		grid-template-columns: 100px 1fr 220px;
+		align-items: center;
+		gap: var(--space-4);
+	}
+}
+
+.p-ef-steps__num {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: max-content;
+	padding: 4px 14px;
+	background-color: var(--color-primary);
+	color: var(--color-text-inverse);
+	font-family: var(--font-display);
+	font-size: 13px;
+	font-weight: var(--fw-bold);
+	letter-spacing: 0.04em;
+	border-radius: var(--radius-pill);
+}
+
+.p-ef-steps__title {
+	margin: 0 0 6px;
+	color: #1f2937;
+	font-size: var(--fs-md);
+	font-weight: var(--fw-bold);
+}
+
+.p-ef-steps__body p {
+	margin: 0;
+	color: #4b5563;
+	font-size: var(--fs-sm);
+	line-height: 1.7;
+}
+
+.p-ef-steps__image {
+	margin: 0;
+	border-radius: 10px;
+	overflow: hidden;
+	aspect-ratio: 3 / 2;
+	background-color: var(--color-bg-alt);
+}
+
+.p-ef-steps__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* ---- 装着時間カード ---- */
+.p-ef-time {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-3);
+	margin: var(--space-3) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 768px) {
+	.p-ef-time {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.p-ef-time > li {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 4px;
+	padding: var(--space-4);
+	background-color: #f5fbfd;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.p-ef-time__label {
+	color: var(--color-primary);
+	font-size: 13px;
+	font-weight: var(--fw-bold);
+	letter-spacing: 0.06em;
+}
+
+.p-ef-time__value {
+	font-family: var(--font-display);
+	font-size: 32px;
+	font-weight: var(--fw-bold);
+	color: #1f2937;
+	line-height: 1.1;
+}
+
+.p-ef-time__value small {
+	font-size: 14px;
+	font-weight: var(--fw-medium);
+	margin-left: 4px;
+	color: #4b5563;
+}
+
+.p-ef-time__note {
+	color: #6b7280;
+	font-size: 12px;
+}
+
+/* ---- やってはいけない / 気をつけたい ---- */
+.p-ef-warn {
+	padding: var(--space-4);
+	border-radius: 12px;
+	background-color: var(--color-bg);
+}
+
+.p-ef-warn--ng {
+	background-color: #fff1f0;
+	border: 1px solid #f7c5c0;
+}
+
+.p-ef-warn--ok {
+	background-color: #f5fbfd;
+	border: 1px solid #d6efff;
+}
+
+.p-ef-warn__title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 var(--space-3);
+	font-size: var(--fs-md);
+	font-weight: var(--fw-bold);
+}
+
+.p-ef-warn--ng .p-ef-warn__title { color: #d4502c; }
+.p-ef-warn--ok .p-ef-warn__title { color: var(--color-primary); }
+
+.p-ef-warn__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border-radius: var(--radius-pill);
+	color: var(--color-text-inverse);
+	font-weight: var(--fw-bold);
+	font-size: 14px;
+}
+
+.p-ef-warn--ng .p-ef-warn__icon { background-color: #e5614b; }
+.p-ef-warn--ok .p-ef-warn__icon { background-color: var(--color-primary); }
+
+/* ---- Q&A 誘導カード ---- */
+.p-ef-qa-link {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-4);
+	align-items: center;
+	padding: var(--space-5);
+	background: linear-gradient(135deg, #d6efff 0%, #ffffff 80%);
+	border: 1px solid #d6efff;
+	border-radius: 16px;
+}
+
+@media (min-width: 768px) {
+	.p-ef-qa-link {
+		grid-template-columns: 1fr auto;
+		padding: var(--space-5) var(--space-7);
+	}
+}
+
+.p-ef-qa-link__title {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 0 0 8px;
+	color: var(--color-primary);
+	font-size: var(--fs-lg);
+	font-weight: var(--fw-bold);
+}
+
+.p-ef-qa-link__body p {
+	margin: 0;
+	color: #374151;
+	font-size: var(--fs-sm);
+	line-height: 1.7;
+}
+
+.p-ef-qa-link__button {
+	min-width: 200px;
+	justify-self: stretch;
+}
+
+@media (min-width: 768px) {
+	.p-ef-qa-link__button {
+		justify-self: end;
+	}
+}
