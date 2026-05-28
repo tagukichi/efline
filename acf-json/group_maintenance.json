@@ -1,0 +1,78 @@
+{
+    "key": "group_maintenance",
+    "title": "メンテナンス設定",
+    "fields": [
+        {
+            "key": "field_maint_enabled",
+            "label": "メンテナンスモードを有効化",
+            "name": "maintenance_enabled",
+            "type": "true_false",
+            "instructions": "ONにすると、サイト全体がBasic認証で保護されます。公開時は必ずOFFにしてください。",
+            "required": 0,
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "ON",
+            "ui_off_text": "OFF"
+        },
+        {
+            "key": "field_maint_user",
+            "label": "ユーザー名",
+            "name": "maintenance_user",
+            "type": "text",
+            "instructions": "Basic認証で入力するユーザー名。",
+            "required": 0,
+            "default_value": "preview",
+            "placeholder": "preview",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_maint_pass",
+            "label": "パスワード",
+            "name": "maintenance_pass",
+            "type": "password",
+            "instructions": "Basic認証で入力するパスワード。必ず強度の高いもの（12文字以上、英数記号混在）に変更してください。",
+            "required": 0,
+            "placeholder": "",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_maint_realm",
+            "label": "認証ダイアログのタイトル（任意）",
+            "name": "maintenance_realm",
+            "type": "text",
+            "instructions": "ブラウザの認証ダイアログ上部に表示される文字列。空欄なら「Site Preview」が使用されます。",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "Site Preview"
+        },
+        {
+            "key": "field_maint_message",
+            "label": "案内文（任意）",
+            "name": "maintenance_message",
+            "type": "textarea",
+            "instructions": "認証ダイアログをキャンセルした場合などに表示される401画面の案内文。空欄ならデフォルト文。",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "br"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "efline-maintenance"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "テーマのBasic認証メンテナンスモード設定。wp-config.php に EFLINE_MAINTENANCE 等の定数が定義されている場合はそちらが優先されます。",
+    "show_in_rest": 0,
+    "modified": 1779500000
+}
