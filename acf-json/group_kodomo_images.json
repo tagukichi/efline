@@ -1,0 +1,64 @@
+{
+    "key": "group_kodomo_images",
+    "title": "こどものはならびページ画像",
+    "fields": [
+        {
+            "key": "field_kodomo_section1_image",
+            "label": "セクション①画像",
+            "name": "kodomo_section1_image",
+            "type": "image",
+            "instructions": "「うちの子、小児矯正って必要？」セクションの右側に表示される画像。空欄ならプレースホルダ画像が表示されます。推奨サイズ 520×520px 以上の正方形。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        },
+        {
+            "key": "field_kodomo_section2_image",
+            "label": "セクション②画像",
+            "name": "kodomo_section2_image",
+            "type": "image",
+            "instructions": "「小児矯正のゴールは『きれいな歯並びの土台づくり』」セクションの右側に表示される画像。空欄ならプレースホルダ画像が表示されます。推奨サイズ 520×520px 以上の正方形。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-kodomono-hanarabi.php"
+            }
+        ],
+        [
+            {
+                "param": "page_slug",
+                "operator": "==",
+                "value": "child"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "「こどものはならび」ページ内の差し替え可能な画像。テンプレート「こどものはならび」または ページスラッグ「child」のいずれかで表示されます。",
+    "show_in_rest": 1,
+    "modified": 1779600000
+}
