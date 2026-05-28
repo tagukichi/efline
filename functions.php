@@ -20,3 +20,4 @@ require_once EFLINE_THEME_DIR . '/inc/acf.php';
 require_once EFLINE_THEME_DIR . '/inc/clinic-helpers.php';
 require_once EFLINE_THEME_DIR . '/inc/clinic-archive.php';
 require_once EFLINE_THEME_DIR . '/inc/template-helpers.php';
+require_once EFLINE_THEME_DIR . '/inc/maintenance.php';
