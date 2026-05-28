@@ -11,6 +11,23 @@ get_header();
 
 while ( have_posts() ) :
 	the_post();
+
+	// ACF で差し替え可能な画像。未設定なら EF トップのトレーナー画像にフォールバック。
+	$ef_fallback = efline_trainer_image_url();
+	$ef_images   = array(
+		'main'  => array( 'url' => $ef_fallback, 'alt' => '' ),
+		'step1' => array( 'url' => $ef_fallback, 'alt' => '' ),
+		'step2' => array( 'url' => $ef_fallback, 'alt' => '' ),
+		'step3' => array( 'url' => $ef_fallback, 'alt' => '' ),
+		'step4' => array( 'url' => $ef_fallback, 'alt' => '' ),
+	);
+	foreach ( array_keys( $ef_images ) as $slot ) {
+		$acf_img = efline_get_field( 'ef_' . $slot . '_image' );
+		if ( is_array( $acf_img ) && ! empty( $acf_img['url'] ) ) {
+			$ef_images[ $slot ]['url'] = (string) $acf_img['url'];
+			$ef_images[ $slot ]['alt'] = isset( $acf_img['alt'] ) ? (string) $acf_img['alt'] : '';
+		}
+	}
 ?>
 
 <?php
@@ -47,7 +64,7 @@ efline_page_hero( array(
 			</div>
 		</div>
 		<figure class="p-kodomo-card__media">
-			<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
+			<img src="<?php echo esc_url( $ef_images["main"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["main"]["alt"] ); ?>" loading="lazy">
 		</figure>
 	</section>
 
@@ -82,7 +99,7 @@ efline_page_hero( array(
 					<p><?php esc_html_e( '手と口を清潔にし、トレーナーを軽く水洗いします。鏡の前で前後の向きを確認しましょう。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
-					<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
+					<img src="<?php echo esc_url( $ef_images["step1"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["step1"]["alt"] ); ?>" loading="lazy">
 				</figure>
 			</li>
 			<li class="p-ef-steps__item">
@@ -92,7 +109,7 @@ efline_page_hero( array(
 					<p><?php esc_html_e( 'トレーナーを口に入れ、上下の歯がしっかり入るようゆっくり噛み込みます。無理に押し込まないでください。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
-					<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
+					<img src="<?php echo esc_url( $ef_images["step2"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["step2"]["alt"] ); ?>" loading="lazy">
 				</figure>
 			</li>
 			<li class="p-ef-steps__item">
@@ -102,7 +119,7 @@ efline_page_hero( array(
 					<p><?php esc_html_e( '舌の先がトレーナー内の突起（タングタグ）に軽く触れるよう、舌を上あごに添えます。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
-					<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
+					<img src="<?php echo esc_url( $ef_images["step3"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["step3"]["alt"] ); ?>" loading="lazy">
 				</figure>
 			</li>
 			<li class="p-ef-steps__item">
@@ -112,7 +129,7 @@ efline_page_hero( array(
 					<p><?php esc_html_e( '唇を閉じて鼻でゆっくり呼吸します。口を開けないよう意識することがポイントです。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
-					<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
+					<img src="<?php echo esc_url( $ef_images["step4"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["step4"]["alt"] ); ?>" loading="lazy">
 				</figure>
 			</li>
 		</ol>

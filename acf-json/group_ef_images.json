@@ -1,0 +1,92 @@
+{
+    "key": "group_ef_images",
+    "title": "EF の使い方ページ画像",
+    "fields": [
+        {
+            "key": "field_ef_main_image",
+            "label": "メイン画像（「EF Lineトレーナーとは？」セクション）",
+            "name": "ef_main_image",
+            "type": "image",
+            "instructions": "ページ冒頭のセクション右側に表示される製品画像。空欄なら「EFトップで使用しているトレーナー画像」がフォールバック表示されます。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        },
+        {
+            "key": "field_ef_step1_image",
+            "label": "STEP 1 画像（装着前の準備）",
+            "name": "ef_step1_image",
+            "type": "image",
+            "instructions": "推奨サイズ 300×200px の横長。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        },
+        {
+            "key": "field_ef_step2_image",
+            "label": "STEP 2 画像（上下の歯にセット）",
+            "name": "ef_step2_image",
+            "type": "image",
+            "instructions": "推奨サイズ 300×200px の横長。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        },
+        {
+            "key": "field_ef_step3_image",
+            "label": "STEP 3 画像（舌の位置を整える）",
+            "name": "ef_step3_image",
+            "type": "image",
+            "instructions": "推奨サイズ 300×200px の横長。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        },
+        {
+            "key": "field_ef_step4_image",
+            "label": "STEP 4 画像（唇を閉じて鼻呼吸）",
+            "name": "ef_step4_image",
+            "type": "image",
+            "instructions": "推奨サイズ 300×200px の横長。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-ef-tsukaikata.php"
+            }
+        ],
+        [
+            {
+                "param": "page_slug",
+                "operator": "==",
+                "value": "ef"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "「EFの使い方」ページ内の差し替え可能な画像（メイン1枚 + 装着STEP 4枚）。",
+    "show_in_rest": 1,
+    "modified": 1779700000
+}
