@@ -12,6 +12,19 @@ get_header();
 
 while ( have_posts() ) :
 	the_post();
+
+	// ACF で差し替え可能な画像。空ならプレースホルダ。
+	$section1_img = efline_get_field( 'kodomo_section1_image' );
+	$section1_url = ( is_array( $section1_img ) && ! empty( $section1_img['url'] ) )
+		? $section1_img['url']
+		: 'https://loremflickr.com/520/520/japan,asian,child,dental?lock=11';
+	$section1_alt = ( is_array( $section1_img ) && ! empty( $section1_img['alt'] ) ) ? $section1_img['alt'] : '';
+
+	$section2_img = efline_get_field( 'kodomo_section2_image' );
+	$section2_url = ( is_array( $section2_img ) && ! empty( $section2_img['url'] ) )
+		? $section2_img['url']
+		: 'https://loremflickr.com/520/520/japan,asian,kid,smile?lock=22';
+	$section2_alt = ( is_array( $section2_img ) && ! empty( $section2_img['alt'] ) ) ? $section2_img['alt'] : '';
 ?>
 
 <?php
@@ -63,7 +76,7 @@ efline_page_hero( array(
 			</div>
 		</div>
 		<figure class="p-kodomo-card__media">
-			<img src="https://loremflickr.com/520/520/japan,asian,child,dental?lock=11" alt="" loading="lazy">
+			<img src="<?php echo esc_url( $section1_url ); ?>" alt="<?php echo esc_attr( $section1_alt ); ?>" loading="lazy">
 		</figure>
 	</section>
 
@@ -107,7 +120,7 @@ efline_page_hero( array(
 			</p>
 		</div>
 		<figure class="p-kodomo-card__media">
-			<img src="https://loremflickr.com/520/520/japan,asian,kid,smile?lock=22" alt="" loading="lazy">
+			<img src="<?php echo esc_url( $section2_url ); ?>" alt="<?php echo esc_attr( $section2_alt ); ?>" loading="lazy">
 		</figure>
 	</section>
 
