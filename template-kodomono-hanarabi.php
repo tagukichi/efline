@@ -3,7 +3,7 @@
  * Template Name: こどものはならび
  *
  * Figma node 0:245 (PC v2) を反映した固定ページ。コンテンツは
- * テンプレート直書き。画像は loremflickr (dental タグ) のサンプルを使用するので、
+ * テンプレート直書き。画像は loremflickr (japan,asian,child タグ) のサンプルを使用するので、
  * 実画像が用意でき次第 `assets/images/` 内のファイルに差し替える。
  *
  * @package efline
@@ -63,7 +63,7 @@ efline_page_hero( array(
 			</div>
 		</div>
 		<figure class="p-kodomo-card__media">
-			<img src="https://loremflickr.com/520/520/dentist,child,clinic?lock=11" alt="" loading="lazy">
+			<img src="https://loremflickr.com/520/520/japan,asian,child,dental?lock=11" alt="" loading="lazy">
 		</figure>
 	</section>
 
@@ -107,7 +107,7 @@ efline_page_hero( array(
 			</p>
 		</div>
 		<figure class="p-kodomo-card__media">
-			<img src="https://loremflickr.com/520/520/child,smile,teeth?lock=22" alt="" loading="lazy">
+			<img src="https://loremflickr.com/520/520/japan,asian,kid,smile?lock=22" alt="" loading="lazy">
 		</figure>
 	</section>
 

@@ -3,7 +3,7 @@
  * Template Name: EFの使い方
  *
  * EF Line トレーナーの装着方法・お手入れ等を解説する固定ページ。
- * テンプレ直書き、画像は loremflickr (dental タグ) プレースホルダ。
+ * テンプレ直書き、画像はトップで使用しているトレーナー画像 (efline_trainer_image_url) を使用。
  *
  * @package efline
  */
@@ -82,7 +82,7 @@ efline_page_hero( array(
 					<p><?php esc_html_e( '手と口を清潔にし、トレーナーを軽く水洗いします。鏡の前で前後の向きを確認しましょう。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
-					<img src="https://loremflickr.com/300/200/dental,mouthguard?lock=31" alt="" loading="lazy">
+					<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
 				</figure>
 			</li>
 			<li class="p-ef-steps__item">
@@ -92,7 +92,7 @@ efline_page_hero( array(
 					<p><?php esc_html_e( 'トレーナーを口に入れ、上下の歯がしっかり入るようゆっくり噛み込みます。無理に押し込まないでください。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
-					<img src="https://loremflickr.com/300/200/teeth,dentist?lock=32" alt="" loading="lazy">
+					<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
 				</figure>
 			</li>
 			<li class="p-ef-steps__item">
@@ -102,7 +102,7 @@ efline_page_hero( array(
 					<p><?php esc_html_e( '舌の先がトレーナー内の突起（タングタグ）に軽く触れるよう、舌を上あごに添えます。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
-					<img src="https://loremflickr.com/300/200/orthodontic,mouth?lock=33" alt="" loading="lazy">
+					<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
 				</figure>
 			</li>
 			<li class="p-ef-steps__item">
@@ -112,7 +112,7 @@ efline_page_hero( array(
 					<p><?php esc_html_e( '唇を閉じて鼻でゆっくり呼吸します。口を開けないよう意識することがポイントです。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
-					<img src="https://loremflickr.com/300/200/child,smile,clinic?lock=34" alt="" loading="lazy">
+					<img src="<?php echo esc_url( efline_trainer_image_url() ); ?>" alt="" loading="lazy">
 				</figure>
 			</li>
 		</ol>
