@@ -957,7 +957,26 @@
 
 @media (min-width: 768px) {
 	.p-ef-time {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+	}
+}
+
+.p-ef-time__plus {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-display);
+	font-size: 32px;
+	font-weight: var(--fw-bold);
+	color: var(--color-primary);
+	line-height: 1;
+	padding: 0;
+}
+
+@media (max-width: 767px) {
+	.p-ef-time__plus {
+		padding: 4px 0;
 	}
 }
 

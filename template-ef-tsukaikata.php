@@ -116,7 +116,7 @@ efline_page_hero( array(
 				<span class="p-ef-steps__num" aria-hidden="true">STEP 3</span>
 				<div class="p-ef-steps__body">
 					<h3 class="p-ef-steps__title"><?php esc_html_e( '舌の位置を整える', 'efline' ); ?></h3>
-					<p><?php esc_html_e( '舌の先がトレーナー内の突起（タングタグ）に軽く触れるよう、舌を上あごに添えます。', 'efline' ); ?></p>
+					<p><?php esc_html_e( 'トレーナーを口に入れたまま、唾液を飲み込む運動が正しく繰り返されることで、舌が上に持ち上がるようになります。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
 					<img src="<?php echo esc_url( $ef_images["step3"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["step3"]["alt"] ); ?>" loading="lazy">
@@ -147,12 +147,13 @@ efline_page_hero( array(
 			<ul class="p-ef-time">
 				<li>
 					<span class="p-ef-time__label"><?php esc_html_e( '日中', 'efline' ); ?></span>
-					<span class="p-ef-time__value">1〜2<small><?php esc_html_e( '時間', 'efline' ); ?></small></span>
+					<span class="p-ef-time__value">1〜3<small><?php esc_html_e( '時間', 'efline' ); ?></small></span>
 					<span class="p-ef-time__note"><?php esc_html_e( 'テレビを見ながら、宿題中などに装着', 'efline' ); ?></span>
 				</li>
+				<li class="p-ef-time__plus" aria-hidden="true">+</li>
 				<li>
 					<span class="p-ef-time__label"><?php esc_html_e( '就寝時', 'efline' ); ?></span>
-					<span class="p-ef-time__value">7〜8<small><?php esc_html_e( '時間', 'efline' ); ?></small></span>
+					<span class="p-ef-time__value">7〜9<small><?php esc_html_e( '時間', 'efline' ); ?></small></span>
 					<span class="p-ef-time__note"><?php esc_html_e( '寝ている間は必ず装着しましょう', 'efline' ); ?></span>
 				</li>
 			</ul>
