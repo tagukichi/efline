@@ -55,9 +55,9 @@ efline_page_hero( array(
 			<div class="p-kodomo-subcard">
 				<h3 class="p-kodomo-subcard__title"><?php esc_html_e( 'EF Lineトレーナーの特徴', 'efline' ); ?></h3>
 				<ul class="p-kodomo-checklist p-kodomo-checklist--compact">
-					<li><span class="p-kodomo-checklist__main"><?php esc_html_e( '柔らかいシリコン素材で、お子さまでも痛みを感じにくい', 'efline' ); ?></span></li>
+					<li><span class="p-kodomo-checklist__main"><?php esc_html_e( '柔らかい素材で、お子さまでも痛みを感じにくい', 'efline' ); ?></span></li>
 					<li><span class="p-kodomo-checklist__main"><?php esc_html_e( '取り外し式なので、食事や歯磨きの際は外せる', 'efline' ); ?></span></li>
-					<li><span class="p-kodomo-checklist__main"><?php esc_html_e( '日中1〜2時間と就寝時の装着で効果が期待できる', 'efline' ); ?></span></li>
+					<li><span class="p-kodomo-checklist__main"><?php esc_html_e( '日中1〜3時間と就寝時の装着で効果が期待できる', 'efline' ); ?></span></li>
 					<li><span class="p-kodomo-checklist__main"><?php esc_html_e( '歯を直接動かす矯正装置と比べて違和感が少ない', 'efline' ); ?></span></li>
 					<li><span class="p-kodomo-checklist__main"><?php esc_html_e( '成長期のお子さまの口腔機能を整えるのに最適', 'efline' ); ?></span></li>
 				</ul>
