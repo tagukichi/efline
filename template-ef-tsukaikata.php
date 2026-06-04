@@ -63,7 +63,7 @@ efline_page_hero( array(
 				</ul>
 			</div>
 		</div>
-		<figure class="p-kodomo-card__media">
+		<figure class="p-kodomo-card__media p-kodomo-card__media--contain">
 			<img src="<?php echo esc_url( $ef_images["main"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["main"]["alt"] ); ?>" loading="lazy">
 		</figure>
 	</section>

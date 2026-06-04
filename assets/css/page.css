@@ -462,6 +462,13 @@
 	display: block;
 }
 
+/* 製品写真など全体を見せたい画像はこちら（contain で見切れ防止） */
+.p-kodomo-card__media--contain img {
+	object-fit: contain;
+	padding: 12px;
+	box-sizing: border-box;
+}
+
 .p-kodomo-card__head {
 	display: flex;
 	align-items: center;
