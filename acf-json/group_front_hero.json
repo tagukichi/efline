@@ -1,0 +1,81 @@
+{
+    "key": "group_front_hero",
+    "title": "TOPページ メインビジュアル",
+    "fields": [
+        {
+            "key": "field_fv_image",
+            "label": "メインビジュアル画像",
+            "name": "fv_image",
+            "type": "image",
+            "instructions": "TOPページの左側に大きく表示される画像（PCでは左半分、SPでは上半分）。空欄ならテーマ既定の画像が表示されます。推奨サイズ 1200×900px 以上。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        },
+        {
+            "key": "field_fv_catch",
+            "label": "キャッチコピー（小）",
+            "name": "fv_catch",
+            "type": "text",
+            "instructions": "タイトルの上に小さく表示される一行コピー。",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "キャッチコピーを入れることも可能です"
+        },
+        {
+            "key": "field_fv_title",
+            "label": "タイトル（大）",
+            "name": "fv_title",
+            "type": "textarea",
+            "instructions": "メインタイトル。改行で行を分けられます。",
+            "required": 0,
+            "default_value": "タイトルをいれたり\nこの部分をスライダーにしたり\n自由に設定することが可能です",
+            "placeholder": "",
+            "rows": 4,
+            "new_lines": ""
+        },
+        {
+            "key": "field_fv_cta_label",
+            "label": "ボタンラベル",
+            "name": "fv_cta_label",
+            "type": "text",
+            "instructions": "FVボタンに表示される文字。空欄ならボタンは表示されません。",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "詳しく見る",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_fv_cta_url",
+            "label": "ボタンリンク先",
+            "name": "fv_cta_url",
+            "type": "url",
+            "instructions": "ボタンを押したときに開くURL。同サイト内のページなら相対パス（/qa/ など）も可。",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "https://example.com/ or /qa/",
+            "wrapper": { "width": "50" }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "TOPページ（フロントページに設定された固定ページ）のメインビジュアル設定。WP管理画面「設定 > 表示設定 > ホームページの表示」でTOPに設定したページの編集画面に表示されます。",
+    "show_in_rest": 1,
+    "modified": 1779800000
+}

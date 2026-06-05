@@ -2,10 +2,33 @@
 /**
  * フロントページ (TOP)。
  * Figma node 0:4 (PC) / 0:299 (SP) ベース。
+ * メインビジュアル (画像 / キャッチ / タイトル / CTA) は ACF で
+ * 差替可能。フロントページに設定された固定ページの編集画面で設定する。
  *
  * @package efline
  */
 get_header();
+
+// ----- ACF からメインビジュアル設定を取得 (フロントページ ID で明示) -----
+$front_id = (int) get_option( 'page_on_front' );
+$fv_image_acf = $front_id ? efline_get_field( 'fv_image', $front_id ) : null;
+$fv_image_url = ( is_array( $fv_image_acf ) && ! empty( $fv_image_acf['url'] ) )
+	? $fv_image_acf['url']
+	: efline_hero_image_url();
+$fv_image_alt = ( is_array( $fv_image_acf ) && ! empty( $fv_image_acf['alt'] ) ) ? $fv_image_acf['alt'] : '';
+
+$fv_catch = $front_id ? (string) efline_get_field( 'fv_catch', $front_id ) : '';
+if ( trim( $fv_catch ) === '' ) {
+	$fv_catch = __( 'キャッチコピーを入れることも可能です', 'efline' );
+}
+
+$fv_title = $front_id ? (string) efline_get_field( 'fv_title', $front_id ) : '';
+if ( trim( $fv_title ) === '' ) {
+	$fv_title = __( "タイトルをいれたり\nこの部分をスライダーにしたり\n自由に設定することが可能です", 'efline' );
+}
+
+$fv_cta_label = $front_id ? trim( (string) efline_get_field( 'fv_cta_label', $front_id ) ) : '';
+$fv_cta_url   = $front_id ? trim( (string) efline_get_field( 'fv_cta_url', $front_id ) ) : '';
 
 // 取扱いクリニックカルーセル用に最新の clinic 投稿を最大 6 件取得。
 $clinics = get_posts( array(
@@ -21,18 +44,18 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 <section class="p-hero" aria-labelledby="hero-title">
 	<div class="p-hero__inner">
 		<div class="p-hero__media">
-			<img src="<?php echo esc_url( efline_hero_image_url() ); ?>" alt="" class="p-hero__image" loading="eager" fetchpriority="high">
+			<img src="<?php echo esc_url( $fv_image_url ); ?>" alt="<?php echo esc_attr( $fv_image_alt ); ?>" class="p-hero__image" loading="eager" fetchpriority="high">
 		</div>
 		<div class="p-hero__content">
-			<p class="p-hero__catch"><?php esc_html_e( 'キャッチコピーを入れることも可能です', 'efline' ); ?></p>
-			<h1 id="hero-title" class="p-hero__title">
-				<?php esc_html_e( 'タイトルをいれたり', 'efline' ); ?><br>
-				<?php esc_html_e( 'この部分をスライダーにしたり', 'efline' ); ?><br>
-				<?php esc_html_e( '自由に設定することが可能です', 'efline' ); ?>
-			</h1>
-			<a href="#trainer" class="c-button p-hero__cta">
-				<?php esc_html_e( 'ボタンを付けたりもできます', 'efline' ); ?>
-			</a>
+			<p class="p-hero__catch"><?php echo esc_html( $fv_catch ); ?></p>
+			<h1 id="hero-title" class="p-hero__title"><?php echo nl2br( esc_html( $fv_title ) ); ?></h1>
+			<?php if ( $fv_cta_label !== '' ) :
+				$cta_href = $fv_cta_url !== '' ? $fv_cta_url : '#trainer';
+			?>
+				<a href="<?php echo esc_url( $cta_href ); ?>" class="c-button p-hero__cta">
+					<?php echo esc_html( $fv_cta_label ); ?>
+				</a>
+			<?php endif; ?>
 		</div>
 		<img src="<?php echo esc_url( efline_logo_url() ); ?>" alt="" class="p-hero__mascot" aria-hidden="true" loading="eager">
 	</div>
