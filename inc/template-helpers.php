@@ -261,7 +261,7 @@ function efline_render_logo( $args = array() ) {
 	<a href="<?php echo esc_url( $home_url ); ?>" class="<?php echo esc_attr( $class ); ?>" aria-label="<?php echo esc_attr( $site ); ?>">
 		<img src="<?php echo esc_url( $image ); ?>" alt="" class="site-logo__mark" aria-hidden="true">
 		<span class="site-logo__text">
-			<small class="site-logo__sub"><?php esc_html_e( '口腔機能訓練装置', 'efline' ); ?></small>
+			<small class="site-logo__sub"><?php esc_html_e( '小児矯正治療（矯正1期治療）', 'efline' ); ?></small>
 			<span class="site-logo__name"><?php esc_html_e( 'こどもの矯正', 'efline' ); ?></span>
 		</span>
 	</a>

@@ -79,9 +79,38 @@
 	line-height: 1.4;
 }
 
+.p-hero__ctas {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+@media (min-width: 640px) {
+	.p-hero__ctas {
+		flex-direction: row;
+		align-items: center;
+	}
+}
+
 .p-hero__cta {
 	width: 100%;
 	max-width: 280px;
+	gap: 8px;
+}
+
+.p-hero__cta-icon {
+	display: inline-flex;
+	align-items: center;
+	font-size: 14px;
+	line-height: 1;
+}
+
+.p-hero__cta-text small {
+	font-size: 11px;
+	font-weight: var(--fw-medium);
+	opacity: 0.9;
+	margin-left: 2px;
 }
 
 @media (min-width: 1024px) {

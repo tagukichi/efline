@@ -24,11 +24,13 @@ if ( trim( $fv_catch ) === '' ) {
 
 $fv_title = $front_id ? (string) efline_get_field( 'fv_title', $front_id ) : '';
 if ( trim( $fv_title ) === '' ) {
-	$fv_title = __( "タイトルをいれたり\nこの部分をスライダーにしたり\n自由に設定することが可能です", 'efline' );
+	$fv_title = __( "こどものうちにできる治療\n～将来にむけて～", 'efline' );
 }
 
-$fv_cta_label = $front_id ? trim( (string) efline_get_field( 'fv_cta_label', $front_id ) ) : '';
-$fv_cta_url   = $front_id ? trim( (string) efline_get_field( 'fv_cta_url', $front_id ) ) : '';
+$fv_videos = $front_id ? efline_get_field( 'fv_videos', $front_id ) : null;
+if ( ! is_array( $fv_videos ) ) {
+	$fv_videos = array();
+}
 
 // 取扱いクリニックカルーセル用に最新の clinic 投稿を最大 6 件取得。
 $clinics = get_posts( array(
@@ -49,12 +51,19 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 		<div class="p-hero__content">
 			<p class="p-hero__catch"><?php echo esc_html( $fv_catch ); ?></p>
 			<h1 id="hero-title" class="p-hero__title"><?php echo nl2br( esc_html( $fv_title ) ); ?></h1>
-			<?php if ( $fv_cta_label !== '' ) :
-				$cta_href = $fv_cta_url !== '' ? $fv_cta_url : '#trainer';
-			?>
-				<a href="<?php echo esc_url( $cta_href ); ?>" class="c-button p-hero__cta">
-					<?php echo esc_html( $fv_cta_label ); ?>
-				</a>
+			<?php if ( ! empty( $fv_videos ) ) : ?>
+				<div class="p-hero__ctas">
+					<?php foreach ( $fv_videos as $video ) :
+						$v_url   = isset( $video['url'] ) ? trim( (string) $video['url'] ) : '';
+						$v_label = isset( $video['title'] ) ? trim( (string) $video['title'] ) : '';
+						if ( $v_url === '' ) { continue; }
+					?>
+						<a href="<?php echo esc_url( $v_url ); ?>" class="c-button p-hero__cta" target="_blank" rel="noopener">
+							<span aria-hidden="true" class="p-hero__cta-icon">▶</span>
+							<span class="p-hero__cta-text"><?php esc_html_e( '動画', 'efline' ); ?><?php if ( $v_label !== '' ) : ?><small> / <?php echo esc_html( $v_label ); ?></small><?php endif; ?></span>
+						</a>
+					<?php endforeach; ?>
+				</div>
 			<?php endif; ?>
 		</div>
 		<img src="<?php echo esc_url( efline_logo_url() ); ?>" alt="" class="p-hero__mascot" aria-hidden="true" loading="eager">
@@ -177,7 +186,7 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 		</div>
 		<div class="p-feature__body">
 			<p>
-				<?php esc_html_e( 'お子さまの将来の歯並びは、乳歯のうちからのケアと生活習慣に大きく左右されます。日常の口腔機能をサポートする EF Line トレーナーで、お子さま本来の健やかな成長を後押しします。', 'efline' ); ?>
+				<?php esc_html_e( 'お子さまの将来の歯並びは、毎日のケアと生活習慣に大きく左右されます。日常の口腔機能をサポートする EF Line トレーナーで、お子さま本来の健やかな成長を後押しします。', 'efline' ); ?>
 			</p>
 			<p>
 				<?php esc_html_e( '本セクションのテキストは管理画面の固定ページ「こどものはならび」から差し替えられるよう、次フェーズで連携予定です。', 'efline' ); ?>

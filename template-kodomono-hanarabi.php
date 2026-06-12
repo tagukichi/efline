@@ -88,7 +88,10 @@ efline_page_hero( array(
 		<div class="p-kodomo-callout__body">
 			<h3 class="p-kodomo-callout__title"><?php esc_html_e( '治療を始めるかどうかの判断は？', 'efline' ); ?></h3>
 			<p>
-				<?php esc_html_e( '「今すぐ始めるべきか」よりも、「このままだと将来どうなるか？」を見て判断します。実際には、約3割のお子さんが1期治療だけで終わりますが、残りの7割は2期治療（本格的な矯正）が必要になることもあります。', 'efline' ); ?>
+				<?php esc_html_e( 'まずは矯正歯科の先生に、気になるところを相談してください。より正確な情報（症状の把握）が必要な場合は検査と診断をすることとなります。「今すぐ始めるべき？」よりも「このままだとお子さんの将来のお口はどうなる？」を考えるのが判断の決め手です。', 'efline' ); ?>
+			</p>
+			<p>
+				<?php esc_html_e( '子どもの矯正（1期治療）が終わったとき、実はほとんどのケース（10人中7〜9人の割合）で、矯正歯科の先生の目からは「1期治療でせっかく良い土台ができたのだから、2期治療（大人の矯正）も行ったほうがいい」というのが本音です。けれど、実際のところは、1期治療だけでキレイに改善したのを見て、「ここで一度終わりにします」と終了されるご家庭もたくさんいらっしゃいます。', 'efline' ); ?>
 			</p>
 		</div>
 	</aside>
@@ -146,24 +149,17 @@ efline_page_hero( array(
 				<tbody>
 					<tr>
 						<td>
-							<span class="p-kodomo-device-table__icon" aria-hidden="true"><?php echo efline_icon( 'tooth', array( 'width' => 32, 'height' => 32 ) ); ?></span>
-							<?php esc_html_e( '固定式', 'efline' ); ?>
-						</td>
-						<td><?php esc_html_e( '歯に直接つけるタイプ。取り外し不可。例：急速拡大装置など', 'efline' ); ?></td>
-					</tr>
-					<tr>
-						<td>
 							<span class="p-kodomo-device-table__icon" aria-hidden="true"><?php echo efline_icon( 'tooth-outline', array( 'width' => 32, 'height' => 32 ) ); ?></span>
 							<?php esc_html_e( '取り外し式', 'efline' ); ?>
 						</td>
-						<td><?php esc_html_e( 'EFプレート型やマウスピース型。自分で外せる。例：拡大床、ラインなど', 'efline' ); ?></td>
+						<td><?php esc_html_e( 'プレート型やマウスピース型。自分で外せる。例：拡大床、EFラインなど', 'efline' ); ?></td>
 					</tr>
 					<tr>
 						<td>
 							<span class="p-kodomo-device-table__icon" aria-hidden="true"><?php echo efline_icon( 'sparkle-tooth', array( 'width' => 32, 'height' => 32 ) ); ?></span>
 							<?php esc_html_e( '顎外装置', 'efline' ); ?>
 						</td>
-						<td><?php esc_html_e( '顎の成長をコントロールするために口の外につける。例：ヘッドギアなど', 'efline' ); ?></td>
+						<td><?php esc_html_e( '顎の成長をコントロールするため、口の中と外につける装置。例：ヘッドギアなど', 'efline' ); ?></td>
 					</tr>
 				</tbody>
 			</table>
@@ -193,7 +189,7 @@ efline_page_hero( array(
 			</div>
 
 			<p class="p-kodomo-card__note">
-				<?php esc_html_e( '※早すぎても遅すぎても効果が出にくいことがあるので、6歳前後で一度、矯正専門医に相談するのが安心です。', 'efline' ); ?>
+				<?php esc_html_e( '※本来は乳歯列期から観察や管理を行っていくことが理想ですが、トレーナー装置の使用には患者様本人の理解と協力が必要となります。こうした事から、6歳前後で一度、矯正の先生に相談するのが安心です。', 'efline' ); ?>
 			</p>
 		</section>
 	</div>
@@ -209,7 +205,7 @@ efline_page_hero( array(
 			<ul class="p-kodomo-dot-list">
 				<li>
 					<strong><?php esc_html_e( '治療期間の目安：', 'efline' ); ?></strong>
-					<?php esc_html_e( '平均 1〜2年（症状によって半年〜3年ほどかかることも）', 'efline' ); ?>
+					<?php esc_html_e( '平均 1〜2年（症状による）※早い時期に開始して治療が一旦終了しても、12歳くらい（永久歯が生え揃う）までは時おり経過観察の通院が必要', 'efline' ); ?>
 				</li>
 				<li>
 					<strong><?php esc_html_e( '通院ペース：', 'efline' ); ?></strong>
@@ -341,7 +337,7 @@ efline_page_hero( array(
 		<div class="p-kodomo-closing__body">
 			<header class="p-kodomo-closing__head">
 				<span class="p-kodomo-card__num" aria-hidden="true">6</span>
-				<h2 class="p-kodomo-closing__title"><?php esc_html_e( '気になることがあれば、まずは専門の先生に相談してみてください😊', 'efline' ); ?></h2>
+				<h2 class="p-kodomo-closing__title"><?php esc_html_e( '気になることがあれば、まずは歯医者さんに相談してみてください😊', 'efline' ); ?></h2>
 			</header>
 			<p>
 				<?php esc_html_e( 'お子さんの未来の笑顔のために、歯医者さんと一緒に今できることを考えてみませんか？', 'efline' ); ?>

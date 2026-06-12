@@ -49,7 +49,7 @@ efline_page_hero( array(
 				<h2 class="p-kodomo-card__title"><?php esc_html_e( 'EF Lineトレーナーとは？', 'efline' ); ?></h2>
 			</header>
 			<p class="p-kodomo-card__lead">
-				<?php esc_html_e( 'EF Lineトレーナーは、お子さまの口腔機能をサポートする取り外し式のマウスピース型装置です。歯を直接動かすのではなく、口呼吸や舌のクセを整え、本格的な矯正治療の前にあごの正しい成長を促します。', 'efline' ); ?>
+				<?php esc_html_e( 'EF Lineトレーナーは、お子さまの口腔機能をサポートする取り外し式のマウスピース型装置です。歯を直接動かすのではなく、口腔機能を整えることで、本格矯正治療のための土台づくりを目的としています。', 'efline' ); ?>
 			</p>
 
 			<div class="p-kodomo-subcard">
@@ -76,7 +76,7 @@ efline_page_hero( array(
 		<div class="p-kodomo-callout__body">
 			<h3 class="p-kodomo-callout__title"><?php esc_html_e( '期待できる効果', 'efline' ); ?></h3>
 			<p>
-				<?php esc_html_e( '口呼吸から鼻呼吸への切り替え、舌の正しい位置の習慣化、口周りの筋肉のバランス調整、歯並びの土台づくりなど、お子さまの将来の健やかな成長をサポートします。', 'efline' ); ?>
+				<?php esc_html_e( '口呼吸から鼻呼吸への切り替え、舌の正しい位置の習慣化、口周りの筋肉のバランス調整、唇や舌のクセ防止、嚥下運動の促進、正しい歯の生え変わりの誘導、あごの正しい成長を促すなど、お子さまの将来の健やかな成長をサポートします。', 'efline' ); ?>
 			</p>
 		</div>
 	</aside>
@@ -96,7 +96,7 @@ efline_page_hero( array(
 				<span class="p-ef-steps__num" aria-hidden="true">STEP 1</span>
 				<div class="p-ef-steps__body">
 					<h3 class="p-ef-steps__title"><?php esc_html_e( '装着前の準備', 'efline' ); ?></h3>
-					<p><?php esc_html_e( '手と口を清潔にし、トレーナーを軽く水洗いします。鏡の前で前後の向きを確認しましょう。', 'efline' ); ?></p>
+					<p><?php esc_html_e( '手と口を清潔にし、トレーナーを軽く水洗いします。装着まえに上下の向きを確認しましょう。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
 					<img src="<?php echo esc_url( $ef_images["step1"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["step1"]["alt"] ); ?>" loading="lazy">
@@ -106,7 +106,7 @@ efline_page_hero( array(
 				<span class="p-ef-steps__num" aria-hidden="true">STEP 2</span>
 				<div class="p-ef-steps__body">
 					<h3 class="p-ef-steps__title"><?php esc_html_e( '上下の歯にセット', 'efline' ); ?></h3>
-					<p><?php esc_html_e( 'トレーナーを口に入れ、上下の歯がしっかり入るようゆっくり噛み込みます。無理に押し込まないでください。', 'efline' ); ?></p>
+					<p><?php esc_html_e( 'トレーナーを口に入れる時は、まず上の歯にしっかりとはめてから下の歯を合わせます。無理に押し込まないでください。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
 					<img src="<?php echo esc_url( $ef_images["step2"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["step2"]["alt"] ); ?>" loading="lazy">
@@ -116,7 +116,7 @@ efline_page_hero( array(
 				<span class="p-ef-steps__num" aria-hidden="true">STEP 3</span>
 				<div class="p-ef-steps__body">
 					<h3 class="p-ef-steps__title"><?php esc_html_e( '舌の位置を整える', 'efline' ); ?></h3>
-					<p><?php esc_html_e( 'トレーナーを口に入れたまま、唾液を飲み込む運動が正しく繰り返されることで、舌が上に持ち上がるようになります。', 'efline' ); ?></p>
+					<p><?php esc_html_e( '正しい嚥下運動を日常的に行うことで、舌は上に持ち上がってきます。トレーナー内の前方・裏側にある壁となる部分（タングランプ）が、正しい嚥下運動をサポートします。', 'efline' ); ?></p>
 				</div>
 				<figure class="p-ef-steps__image">
 					<img src="<?php echo esc_url( $ef_images["step3"]["url"] ); ?>" alt="<?php echo esc_attr( $ef_images["step3"]["alt"] ); ?>" loading="lazy">
@@ -220,6 +220,7 @@ efline_page_hero( array(
 					<li><?php esc_html_e( 'ガムを噛む・ペットや兄弟が触れる場所に置く', 'efline' ); ?></li>
 					<li><?php esc_html_e( '熱湯・電子レンジでの消毒（変形します）', 'efline' ); ?></li>
 					<li><?php esc_html_e( '無理に噛みしめる・歯ぎしりをする', 'efline' ); ?></li>
+					<li><?php esc_html_e( '誤った状態の装着や、咬み込んで遊んでしまうこと', 'efline' ); ?></li>
 				</ul>
 			</div>
 
@@ -232,7 +233,8 @@ efline_page_hero( array(
 					<li><?php esc_html_e( '装着中に痛みや違和感が続く場合は使用を中止し、歯科医師に相談', 'efline' ); ?></li>
 					<li><?php esc_html_e( '装置に変形・破損があれば、自己判断せず交換相談を', 'efline' ); ?></li>
 					<li><?php esc_html_e( '定期検診で歯科医師に経過をチェックしてもらう', 'efline' ); ?></li>
-					<li><?php esc_html_e( 'お子さまが嫌がるときは無理せず、家族で励まし合いながら継続', 'efline' ); ?></li>
+					<li><?php esc_html_e( 'トレーナーを装着する本人が、どうしても装置を使用できない場合は、歯科医師にほかの方法を相談', 'efline' ); ?></li>
+					<li><?php esc_html_e( '家族全体で「続けることが大事」と共有することが成功の鍵', 'efline' ); ?></li>
 				</ul>
 			</div>
 		</div>
