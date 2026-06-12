@@ -17,10 +17,7 @@ $fv_image_url = ( is_array( $fv_image_acf ) && ! empty( $fv_image_acf['url'] ) )
 	: efline_hero_image_url();
 $fv_image_alt = ( is_array( $fv_image_acf ) && ! empty( $fv_image_acf['alt'] ) ) ? $fv_image_acf['alt'] : '';
 
-$fv_catch = $front_id ? (string) efline_get_field( 'fv_catch', $front_id ) : '';
-if ( trim( $fv_catch ) === '' ) {
-	$fv_catch = __( 'キャッチコピーを入れることも可能です', 'efline' );
-}
+$fv_catch = $front_id ? trim( (string) efline_get_field( 'fv_catch', $front_id ) ) : '';
 
 $fv_title = $front_id ? (string) efline_get_field( 'fv_title', $front_id ) : '';
 if ( trim( $fv_title ) === '' ) {
@@ -49,7 +46,9 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 			<img src="<?php echo esc_url( $fv_image_url ); ?>" alt="<?php echo esc_attr( $fv_image_alt ); ?>" class="p-hero__image" loading="eager" fetchpriority="high">
 		</div>
 		<div class="p-hero__content">
-			<p class="p-hero__catch"><?php echo esc_html( $fv_catch ); ?></p>
+			<?php if ( $fv_catch !== '' ) : ?>
+				<p class="p-hero__catch"><?php echo esc_html( $fv_catch ); ?></p>
+			<?php endif; ?>
 			<h1 id="hero-title" class="p-hero__title"><?php echo nl2br( esc_html( $fv_title ) ); ?></h1>
 			<?php if ( ! empty( $fv_videos ) ) : ?>
 				<div class="p-hero__ctas">
@@ -181,15 +180,12 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 				<img src="<?php echo esc_url( efline_orthodontics_icon_url() ); ?>" alt="" class="p-feature__icon-image" loading="lazy">
 			</div>
 			<h2 id="orthodontics-title" class="p-feature__heading">
-				<?php esc_html_e( 'こどものはならび', 'efline' ); ?>
+				<?php echo wp_kses( __( 'こどもの<br>歯並び', 'efline' ), array( 'br' => array() ) ); ?>
 			</h2>
 		</div>
 		<div class="p-feature__body">
 			<p>
 				<?php esc_html_e( 'お子さまの将来の歯並びは、毎日のケアと生活習慣に大きく左右されます。日常の口腔機能をサポートする EF Line トレーナーで、お子さま本来の健やかな成長を後押しします。', 'efline' ); ?>
-			</p>
-			<p>
-				<?php esc_html_e( '本セクションのテキストは管理画面の固定ページ「こどものはならび」から差し替えられるよう、次フェーズで連携予定です。', 'efline' ); ?>
 			</p>
 		</div>
 	</div>

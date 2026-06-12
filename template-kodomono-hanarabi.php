@@ -205,7 +205,8 @@ efline_page_hero( array(
 			<ul class="p-kodomo-dot-list">
 				<li>
 					<strong><?php esc_html_e( '治療期間の目安：', 'efline' ); ?></strong>
-					<?php esc_html_e( '平均 1〜2年（症状による）※早い時期に開始して治療が一旦終了しても、12歳くらい（永久歯が生え揃う）までは時おり経過観察の通院が必要', 'efline' ); ?>
+					<?php esc_html_e( '平均 1〜2年（症状による）', 'efline' ); ?><br>
+				<?php esc_html_e( '※早い時期に開始して治療が一旦終了しても、12歳くらい（永久歯が生え揃う）までは時おり経過観察の通院が必要', 'efline' ); ?>
 				</li>
 				<li>
 					<strong><?php esc_html_e( '通院ペース：', 'efline' ); ?></strong>
@@ -337,7 +338,7 @@ efline_page_hero( array(
 		<div class="p-kodomo-closing__body">
 			<header class="p-kodomo-closing__head">
 				<span class="p-kodomo-card__num" aria-hidden="true">6</span>
-				<h2 class="p-kodomo-closing__title"><?php esc_html_e( '気になることがあれば、まずは歯医者さんに相談してみてください😊', 'efline' ); ?></h2>
+				<h2 class="p-kodomo-closing__title"><?php esc_html_e( '気になることがあれば、まずは歯医者さんに相談してみてください', 'efline' ); ?></h2>
 			</header>
 			<p>
 				<?php esc_html_e( 'お子さんの未来の笑顔のために、歯医者さんと一緒に今できることを考えてみませんか？', 'efline' ); ?>
