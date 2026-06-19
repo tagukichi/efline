@@ -187,6 +187,12 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 			<p>
 				<?php esc_html_e( 'お子さまの将来の歯並びは、毎日のケアと生活習慣に大きく左右されます。日常の口腔機能をサポートする EF Line トレーナーで、お子さま本来の健やかな成長を後押しします。', 'efline' ); ?>
 			</p>
+			<p class="p-feature__cta-wrap">
+				<a class="c-button c-button--outline" href="<?php echo esc_url( home_url( '/child/' ) ); ?>">
+					<?php esc_html_e( 'くわしく見る', 'efline' ); ?>
+					<span aria-hidden="true">&nbsp;＞</span>
+				</a>
+			</p>
 		</div>
 	</div>
 </section>
