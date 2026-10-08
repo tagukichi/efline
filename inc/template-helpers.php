@@ -168,12 +168,7 @@ function efline_render_main_nav() {
 					     class="icon active-icon"
 					     loading="lazy"
 					     decoding="async">
-					<span>
-						<?php echo esc_html( $item['label'] ); ?>
-						<?php if ( $item['sub_label'] !== '' ) : ?>
-							<br><?php echo esc_html( $item['sub_label'] ); ?>
-						<?php endif; ?>
-					</span>
+					<span><?php echo esc_html( $item['label'] ); ?><?php if ( $item['sub_label'] !== '' ) : ?><br><?php echo esc_html( $item['sub_label'] ); ?><?php endif; ?></span>
 				</a>
 			</li>
 		<?php endforeach; ?>

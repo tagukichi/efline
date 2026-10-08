@@ -11,6 +11,31 @@
 		});
 	});
 
+	// ハンバーガーメニュー（1023px 以下）
+	var header = document.querySelector('.site-header');
+	var toggle = document.querySelector('[data-efline-nav-toggle]');
+	if (header && toggle) {
+		var setOpen = function (open) {
+			header.classList.toggle('is-nav-open', open);
+			toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+		};
+		toggle.addEventListener('click', function () {
+			setOpen(!header.classList.contains('is-nav-open'));
+		});
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && header.classList.contains('is-nav-open')) {
+				setOpen(false);
+				toggle.focus();
+			}
+		});
+		header.querySelectorAll('.site-header__nav a').forEach(function (a) {
+			a.addEventListener('click', function () { setOpen(false); });
+		});
+		window.matchMedia('(min-width: 1024px)').addEventListener('change', function (mq) {
+			if (mq.matches) setOpen(false);
+		});
+	}
+
 	// ページトップへ戻る
 	document.querySelectorAll('[data-efline-totop]').forEach(function (el) {
 		el.addEventListener('click', function (e) {

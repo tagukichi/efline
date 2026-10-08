@@ -188,6 +188,99 @@
 .custom-menu .menu-item.active .normal-icon { display: none; }
 .custom-menu .menu-item.active .active-icon { display: block; }
 
+/* ---------- ハンバーガー（1023px 以下） ---------- */
+.site-header__toggle {
+	display: none;
+}
+
+@media (max-width: 1023px) {
+	.site-header__toggle {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		flex: 0 0 auto;
+		width: 48px;
+		height: 48px;
+		padding: 0;
+		background: transparent;
+		border: 0;
+		border-radius: var(--radius-sm);
+		cursor: pointer;
+	}
+
+	.site-header__toggle:focus-visible {
+		outline: 2px solid var(--color-primary);
+		outline-offset: 2px;
+	}
+
+	.site-header__toggle-bar {
+		display: block;
+		width: 26px;
+		height: 3px;
+		background-color: var(--color-primary);
+		border-radius: 2px;
+		transition: transform var(--transition-base), opacity var(--transition-base);
+	}
+
+	.site-header.is-nav-open .site-header__toggle-bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+	.site-header.is-nav-open .site-header__toggle-bar:nth-child(2) { opacity: 0; }
+	.site-header.is-nav-open .site-header__toggle-bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+	.site-header__nav {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		display: none;
+		max-height: calc(100vh - var(--header-height-sp));
+		overflow-y: auto;
+		background-color: var(--color-bg);
+		border-bottom: var(--border-default);
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+	}
+
+	.site-header.is-nav-open .site-header__nav {
+		display: block;
+	}
+
+	.site-header .custom-menu {
+		flex-direction: column;
+		min-height: 0;
+		height: auto;
+	}
+
+	.site-header .custom-menu .menu-item {
+		border-left: 0;
+		border-right: 0;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.site-header .custom-menu .menu-item:last-child {
+		border-right: 0;
+	}
+
+	.site-header .custom-menu .menu-item > a {
+		flex: 1 1 auto;
+		flex-direction: row;
+		justify-content: flex-start;
+		gap: var(--space-3);
+		padding: var(--space-3) var(--space-5);
+		font-size: var(--fs-md);
+		text-align: left;
+	}
+
+	.site-header .custom-menu .icon {
+		width: 32px;
+		height: 32px;
+	}
+
+	.site-header .custom-menu .menu-item span br {
+		display: none;
+	}
+}
+
 .custom-menu .menu-item span {
 	display: block;
 }
