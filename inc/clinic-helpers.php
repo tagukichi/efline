@@ -273,3 +273,22 @@ function efline_get_clinic_access( $post_id = null ) {
 		'directions' => isset( $access['directions'] ) ? (string) $access['directions'] : '',
 	);
 }
+
+/**
+ * クリニック画像が未登録のときに表示する仮画像 URL（歯科医院の写真）。
+ * 投稿 ID ごとに固定の画像が返るので、リロードしても変わらない。
+ * 正式な画像はアイキャッチ or ACF「ギャラリー画像」に登録すれば差し替わる。
+ *
+ * @param int $post_id
+ * @param int $w
+ * @param int $h
+ * @return string
+ */
+function efline_clinic_placeholder_url( $post_id, $w = 800, $h = 600 ) {
+	return sprintf(
+		'https://loremflickr.com/%d/%d/dental,clinic?lock=%d',
+		(int) $w,
+		(int) $h,
+		(int) $post_id
+	);
+}

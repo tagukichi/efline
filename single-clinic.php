@@ -29,6 +29,15 @@ get_header(); ?>
 				),
 			);
 		}
+		// どちらも無ければ仮画像。
+		if ( empty( $gallery ) ) {
+			$gallery = array(
+				array(
+					'url' => efline_clinic_placeholder_url( get_the_ID(), 1000, 750 ),
+					'alt' => '',
+				),
+			);
+		}
 		$main_image  = ! empty( $gallery ) ? $gallery[0] : null;
 		$thumbs      = count( $gallery ) > 1 ? array_slice( $gallery, 1, 4 ) : array();
 		$archive_url = get_post_type_archive_link( 'clinic' );
@@ -191,7 +200,7 @@ get_header(); ?>
 						<?php if ( ! empty( $basic['address'] ) ) : ?>
 							<p class="p-clinic-single__access-address">
 								<?php if ( ! empty( $basic['postal_code'] ) ) : ?>
-									〒<?php echo esc_html( $basic['postal_code'] ); ?>
+									〒<?php echo esc_html( $basic['postal_code'] ); ?><br>
 								<?php endif; ?>
 								<?php echo esc_html( $basic['address'] ); ?>
 							</p>

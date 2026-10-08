@@ -101,7 +101,7 @@ $services = get_terms( array( 'taxonomy' => 'clinic_service', 'hide_empty' => fa
 							<?php if ( has_post_thumbnail() ) {
 								the_post_thumbnail( 'efline-clinic-card', array( 'class' => 'p-clinic-card__image', 'loading' => 'lazy' ) );
 							} else { ?>
-								<div class="p-clinic-card__image p-clinic-card__image--placeholder" aria-hidden="true"></div>
+								<img src="<?php echo esc_url( efline_clinic_placeholder_url( get_the_ID(), 498, 360 ) ); ?>" alt="" class="p-clinic-card__image" loading="lazy">
 							<?php } ?>
 
 							<?php if ( ! empty( $areas_for_post ) ) : ?>

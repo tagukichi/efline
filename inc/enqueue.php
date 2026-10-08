@@ -22,21 +22,21 @@ function efline_enqueue_assets() {
 		'efline-tokens',
 		EFLINE_THEME_URI . '/assets/css/tokens.css',
 		array(),
-		EFLINE_THEME_VERSION
+		efline_asset_ver( '/assets/css/tokens.css' )
 	);
 
 	wp_enqueue_style(
 		'efline-base',
 		EFLINE_THEME_URI . '/assets/css/base.css',
 		array( 'efline-tokens' ),
-		EFLINE_THEME_VERSION
+		efline_asset_ver( '/assets/css/base.css' )
 	);
 
 	wp_enqueue_style(
 		'efline-main',
 		EFLINE_THEME_URI . '/assets/css/main.css',
 		array( 'efline-base' ),
-		EFLINE_THEME_VERSION
+		efline_asset_ver( '/assets/css/main.css' )
 	);
 
 	if ( is_post_type_archive( 'clinic' ) || is_singular( 'clinic' ) || is_tax( array( 'clinic_area', 'clinic_service' ) ) ) {
@@ -44,7 +44,7 @@ function efline_enqueue_assets() {
 			'efline-clinic',
 			EFLINE_THEME_URI . '/assets/css/clinic.css',
 			array( 'efline-main' ),
-			EFLINE_THEME_VERSION
+			efline_asset_ver( '/assets/css/clinic.css' )
 		);
 	}
 
@@ -53,7 +53,7 @@ function efline_enqueue_assets() {
 			'efline-top',
 			EFLINE_THEME_URI . '/assets/css/top.css',
 			array( 'efline-main' ),
-			EFLINE_THEME_VERSION
+			efline_asset_ver( '/assets/css/top.css' )
 		);
 	}
 
@@ -62,7 +62,7 @@ function efline_enqueue_assets() {
 			'efline-page',
 			EFLINE_THEME_URI . '/assets/css/page.css',
 			array( 'efline-main' ),
-			EFLINE_THEME_VERSION
+			efline_asset_ver( '/assets/css/page.css' )
 		);
 	}
 
@@ -70,7 +70,7 @@ function efline_enqueue_assets() {
 		'efline-main',
 		EFLINE_THEME_URI . '/assets/js/main.js',
 		array(),
-		EFLINE_THEME_VERSION,
+		efline_asset_ver( '/assets/js/main.js' ),
 		true
 	);
 }
@@ -83,4 +83,13 @@ function efline_preconnect_google_fonts( $html, $handle ) {
 		return $preconnect . $html;
 	}
 	return $html;
+}
+
+/**
+ * アセットのバージョン文字列。ファイル更新日時を使い、テーマ更新時に
+ * ブラウザの古い CSS / JS キャッシュが残らないようにする。
+ */
+function efline_asset_ver( $path ) {
+	$file = EFLINE_THEME_DIR . $path;
+	return file_exists( $file ) ? (string) filemtime( $file ) : EFLINE_THEME_VERSION;
 }

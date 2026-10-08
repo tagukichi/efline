@@ -108,7 +108,7 @@ $archive_url = get_post_type_archive_link( 'clinic' );
 									<?php if ( has_post_thumbnail( $clinic ) ) {
 										echo get_the_post_thumbnail( $clinic, 'efline-clinic-card', array( 'class' => 'p-clinic-card-mini__image', 'loading' => 'lazy' ) );
 									} else { ?>
-										<div class="p-clinic-card-mini__image p-clinic-card-mini__image--placeholder" aria-hidden="true"></div>
+										<img src="<?php echo esc_url( efline_clinic_placeholder_url( $clinic->ID, 498, 360 ) ); ?>" alt="" class="p-clinic-card-mini__image" loading="lazy">
 									<?php } ?>
 									<?php if ( ! empty( $areas ) ) : ?>
 										<span class="p-clinic-card-mini__area"><?php echo esc_html( $areas[0]->name ); ?></span>
