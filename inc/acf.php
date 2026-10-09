@@ -76,3 +76,22 @@ function efline_acf_location_rule_match_page_slug( $match, $rule, $options ) {
 	}
 	return $match;
 }
+
+/**
+ * 「テーマ設定」Options Page（画像未登録時の画像など、サイト共通設定）。
+ */
+add_action( 'acf/init', 'efline_register_theme_settings_page' );
+function efline_register_theme_settings_page() {
+	if ( ! function_exists( 'acf_add_options_page' ) ) {
+		return;
+	}
+	acf_add_options_page( array(
+		'page_title' => __( 'テーマ設定', 'efline' ),
+		'menu_title' => __( 'テーマ設定', 'efline' ),
+		'menu_slug'  => 'efline-theme-settings',
+		'capability' => 'manage_options',
+		'icon_url'   => 'dashicons-admin-appearance',
+		'position'   => 79,
+		'redirect'   => false,
+	) );
+}

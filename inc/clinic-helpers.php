@@ -275,20 +275,21 @@ function efline_get_clinic_access( $post_id = null ) {
 }
 
 /**
- * クリニック画像が未登録のときに表示する仮画像 URL（歯科医院の写真）。
- * 投稿 ID ごとに固定の画像が返るので、リロードしても変わらない。
+ * 画像が未登録のときに表示する「準備中」画像の URL。
+ * 管理画面「テーマ設定 > 画像未登録時の画像」に登録があればそれを、
+ * なければテーマ同梱の assets/images/clinic-noimage.jpg を返す。
  * 正式な画像はアイキャッチ or ACF「ギャラリー画像」に登録すれば差し替わる。
  *
- * @param int $post_id
- * @param int $w
- * @param int $h
+ * 引数は旧仕様（投稿ごとの仮画像）との互換のために残している。
+ *
  * @return string
  */
-function efline_clinic_placeholder_url( $post_id, $w = 800, $h = 600 ) {
-	return sprintf(
-		'https://loremflickr.com/%d/%d/dental,clinic?lock=%d',
-		(int) $w,
-		(int) $h,
-		(int) $post_id
-	);
+function efline_clinic_placeholder_url( $post_id = 0, $w = 0, $h = 0 ) {
+	if ( function_exists( 'get_field' ) ) {
+		$img = get_field( 'noimage_image', 'option' );
+		if ( is_array( $img ) && ! empty( $img['url'] ) ) {
+			return (string) $img['url'];
+		}
+	}
+	return EFLINE_THEME_URI . '/assets/images/clinic-noimage.jpg';
 }

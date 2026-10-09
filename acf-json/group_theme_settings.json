@@ -1,0 +1,37 @@
+{
+    "key": "group_theme_settings",
+    "title": "テーマ設定",
+    "fields": [
+        {
+            "key": "field_noimage_image",
+            "label": "画像未登録時の画像",
+            "name": "noimage_image",
+            "type": "image",
+            "instructions": "クリニックの写真（アイキャッチ・ギャラリー）や各ページの画像が未登録のときに代わりに表示する画像。空欄ならテーマ同梱の「画像準備中」イラストが表示されます。推奨 800×600px（4:3）。",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "efline-theme-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "サイト共通のテーマ設定。",
+    "show_in_rest": 0,
+    "modified": 1791500000
+}

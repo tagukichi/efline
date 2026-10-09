@@ -3,7 +3,7 @@
  * Template Name: こどものはならび
  *
  * Figma node 0:245 (PC v2) を反映した固定ページ。コンテンツは
- * テンプレート直書き。画像は loremflickr (japan,asian,child タグ) のサンプルを使用するので、
+ * テンプレート直書き。画像は ACF で差し替え。未登録時は「テーマ設定」の準備中画像を表示するので、
  * 実画像が用意でき次第 `assets/images/` 内のファイルに差し替える。
  *
  * @package efline
@@ -17,13 +17,13 @@ while ( have_posts() ) :
 	$section1_img = efline_get_field( 'kodomo_section1_image' );
 	$section1_url = ( is_array( $section1_img ) && ! empty( $section1_img['url'] ) )
 		? $section1_img['url']
-		: 'https://loremflickr.com/520/520/japan,asian,child,dental?lock=11';
+		: efline_clinic_placeholder_url();
 	$section1_alt = ( is_array( $section1_img ) && ! empty( $section1_img['alt'] ) ) ? $section1_img['alt'] : '';
 
 	$section2_img = efline_get_field( 'kodomo_section2_image' );
 	$section2_url = ( is_array( $section2_img ) && ! empty( $section2_img['url'] ) )
 		? $section2_img['url']
-		: 'https://loremflickr.com/520/520/japan,asian,kid,smile?lock=22';
+		: efline_clinic_placeholder_url();
 	$section2_alt = ( is_array( $section2_img ) && ! empty( $section2_img['alt'] ) ) ? $section2_img['alt'] : '';
 ?>
 
