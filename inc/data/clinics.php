@@ -2,7 +2,8 @@
 /**
  * 取扱いクリニック初期データ（クライアント提供 Excel 2026-10-07 版より生成）。
  * inc/clinic-seed.php から読み込まれ、clinic CPT として一括登録される。
- * official_url は医院名とドメインの一致が確認できたもののみ設定。
+ * Excel の URL 列は医院名と行が一致していなかったため、official_url は
+ * ドメインから医院を特定して対応付けたもの（ortho-tokyo.com は該当医院不明のため未設定）。
  *
  * @package efline
  */
@@ -29,7 +30,7 @@ return array (
     'postal_code' => '062-0921',
     'address' => '北海道札幌市豊平区中の島一条3-7-11',
     'phone' => '011-833-4188',
-    'official_url' => '',
+    'official_url' => 'https://www.hanarabi418.com/',
     'area' => '北海道札幌市',
   ),
   2 => 
@@ -49,7 +50,7 @@ return array (
     'postal_code' => '155-0032',
     'address' => '東京都世田谷区代沢1-3-5',
     'phone' => '03-5431-3182',
-    'official_url' => '',
+    'official_url' => 'https://www.daizawa-dc.com/',
     'area' => '東京都世田谷区',
   ),
   4 => 
@@ -59,7 +60,7 @@ return array (
     'postal_code' => '160-0022',
     'address' => '東京都 新宿区 新宿 ３－１７－２　４Ｆ',
     'phone' => '03-3352-3357',
-    'official_url' => '',
+    'official_url' => 'https://www.seibikai.or.jp/',
     'area' => '東京都新宿区',
   ),
   5 => 
@@ -69,7 +70,7 @@ return array (
     'postal_code' => '162-0045',
     'address' => '東京都新宿区馬場下町63 西堀ビル1階',
     'phone' => '03-3232-6482',
-    'official_url' => '',
+    'official_url' => 'https://www.waseda-ekimae.com/',
     'area' => '東京都新宿区',
   ),
   6 => 
@@ -79,7 +80,7 @@ return array (
     'postal_code' => '162-0825',
     'address' => '東京都 新宿区 神楽坂 5-30-2',
     'phone' => '03-5228-0122',
-    'official_url' => '',
+    'official_url' => 'https://k-o-c.com/',
     'area' => '東京都新宿区',
   ),
   7 => 
@@ -99,7 +100,7 @@ return array (
     'postal_code' => '189-0013',
     'address' => '東京都 東村山市 栄町 1-3-66 第三ｼｰﾏﾋﾞﾙ 2階',
     'phone' => '080-6609-6205',
-    'official_url' => '',
+    'official_url' => 'https://www.kumegawa-cosmos.com/',
     'area' => '東京都東村山市',
   ),
   9 => 
@@ -119,7 +120,7 @@ return array (
     'postal_code' => '270-1350',
     'address' => '千葉県印西市中央北1-469 アルカサール２階',
     'phone' => '0476-40-0046',
-    'official_url' => '',
+    'official_url' => 'https://www.cn-kawai-dental.com/',
     'area' => '千葉県印西市',
   ),
   11 => 
@@ -139,7 +140,7 @@ return array (
     'postal_code' => '335-0021',
     'address' => '埼玉県戸田市新曽109番地1F',
     'phone' => '048-242-3447',
-    'official_url' => '',
+    'official_url' => 'https://chitose-ortho.com/',
     'area' => '埼玉県戸田市',
   ),
   13 => 
@@ -159,7 +160,7 @@ return array (
     'postal_code' => '346-0003',
     'address' => '埼玉県 久喜市 中央 1-4-32',
     'phone' => '0480-26-1187',
-    'official_url' => '',
+    'official_url' => 'https://www.tsunoda-ortho.com/',
     'area' => '埼玉県久喜市',
   ),
   15 => 
@@ -169,7 +170,7 @@ return array (
     'postal_code' => '350-0066',
     'address' => '埼玉県 川越市 連雀町 １９－３',
     'phone' => '049-222-8236',
-    'official_url' => '',
+    'official_url' => 'https://mitsui-ortho.com/',
     'area' => '埼玉県川越市',
   ),
   16 => 
@@ -189,7 +190,7 @@ return array (
     'postal_code' => '420-0031',
     'address' => '静岡県 静岡市 葵区呉服町 2-6-10 ﾚｲｱｯﾌﾟ呉服町ﾋﾞﾙ 4Ｆ',
     'phone' => '054-251-5878',
-    'official_url' => '',
+    'official_url' => 'https://kondo-ortho.com/',
     'area' => '静岡県静岡市',
   ),
   18 => 
@@ -219,7 +220,7 @@ return array (
     'postal_code' => '730-0013',
     'address' => '広島県広島市中区八丁堀4-4 ｴｲﾄﾊﾞﾚｰ八丁堀2F',
     'phone' => '082-223-1177',
-    'official_url' => '',
+    'official_url' => 'https://www.ishida-dental.jp/',
     'area' => '広島県広島市',
   ),
 );

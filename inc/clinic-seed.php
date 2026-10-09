@@ -18,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const EFLINE_CLINIC_SEED_OPTION = 'efline_clinic_seed_20261007';
+// データ更新時はこのキーを変えると、管理画面を開いた時に 1 回だけ再実行される。
+const EFLINE_CLINIC_SEED_OPTION = 'efline_clinic_seed_20261009';
 const EFLINE_CLINIC_SEED_PREFIX = 'xlsx-20261007-';
 
 /**
@@ -33,10 +34,12 @@ function efline_clinic_seed_ready() {
 /**
  * 初期データを登録する。
  *
- * @return array{created:int,skipped:int,errors:string[]}
+ * 既存のクリニックは上書きしないが、公式サイト URL が空のものだけ補完する。
+ *
+ * @return array{created:int,skipped:int,updated:int,errors:string[]}
  */
 function efline_clinic_seed_run() {
-	$result = array( 'created' => 0, 'skipped' => 0, 'errors' => array() );
+	$result = array( 'created' => 0, 'skipped' => 0, 'updated' => 0, 'errors' => array() );
 	$rows   = require EFLINE_THEME_DIR . '/inc/data/clinics.php';
 
 	foreach ( $rows as $row ) {
@@ -62,7 +65,11 @@ function efline_clinic_seed_run() {
 			) );
 		}
 		if ( ! empty( $exists ) ) {
-			$result['skipped']++;
+			if ( efline_clinic_seed_fill_url( (int) $exists[0], $row['official_url'] ) ) {
+				$result['updated']++;
+			} else {
+				$result['skipped']++;
+			}
 			continue;
 		}
 
@@ -85,11 +92,7 @@ function efline_clinic_seed_run() {
 			'phone'       => $row['phone'],
 		), $post_id );
 
-		if ( $row['official_url'] !== '' ) {
-			update_field( 'field_clinic_reservation', array(
-				'official_url' => $row['official_url'],
-			), $post_id );
-		}
+		efline_clinic_seed_fill_url( $post_id, $row['official_url'] );
 
 		if ( $row['area'] !== '' ) {
 			$term = term_exists( $row['area'], 'clinic_area' );
@@ -105,6 +108,29 @@ function efline_clinic_seed_run() {
 	}
 
 	return $result;
+}
+
+/**
+ * 公式サイト URL が未入力なら設定する（手動で入力済みの URL は上書きしない）。
+ *
+ * @return bool 設定した場合 true
+ */
+function efline_clinic_seed_fill_url( $post_id, $url ) {
+	if ( $url === '' ) {
+		return false;
+	}
+	$reservation = get_field( 'reservation', $post_id, false );
+	$reservation = is_array( $reservation ) ? $reservation : array();
+	$current     = isset( $reservation['field_clinic_official_url'] ) ? $reservation['field_clinic_official_url'] : ( $reservation['official_url'] ?? '' );
+	if ( (string) $current !== '' ) {
+		return false;
+	}
+	update_field( 'field_clinic_reservation', array(
+		'url'          => (string) ( $reservation['field_clinic_reservation_url'] ?? $reservation['url'] ?? '' ),
+		'label'        => (string) ( $reservation['field_clinic_reservation_label'] ?? $reservation['label'] ?? '' ),
+		'official_url' => $url,
+	), $post_id );
+	return true;
 }
 
 /**
@@ -144,8 +170,9 @@ function efline_clinic_seed_print_result( $result ) {
 	$class = empty( $result['errors'] ) ? 'notice-success' : 'notice-warning';
 	echo '<div class="notice ' . esc_attr( $class ) . ' is-dismissible"><p><strong>efline:</strong> ';
 	printf(
-		esc_html__( '取扱いクリニックを一括登録しました（新規 %1$d 件 / 既存のためスキップ %2$d 件）。', 'efline' ),
+		esc_html__( '取扱いクリニックを一括登録しました（新規 %1$d 件 / 公式サイトURLを追加 %2$d 件 / 変更なし %3$d 件）。', 'efline' ),
 		(int) $result['created'],
+		(int) ( $result['updated'] ?? 0 ),
 		(int) $result['skipped']
 	);
 	echo '</p>';
@@ -187,22 +214,23 @@ function efline_clinic_seed_page() {
 		}
 	}
 
-	echo '<p>' . sprintf( esc_html__( 'テーマ同梱の初期データ（%d 件）をクリニック紹介に登録します。登録済み・同名のクリニックはスキップされ、既存の内容は上書きされません。', 'efline' ), count( $rows ) ) . '</p>';
+	echo '<p>' . sprintf( esc_html__( 'テーマ同梱の初期データ（%d 件）をクリニック紹介に登録します。登録済み・同名のクリニックは新規作成せず、公式サイトURLが空の場合のみ補完します（入力済みの内容は上書きしません）。', 'efline' ), count( $rows ) ) . '</p>';
 	echo '<form method="post">';
 	wp_nonce_field( 'efline_clinic_seed' );
 	echo '<p><button type="submit" name="efline_clinic_seed" value="1" class="button button-primary">' . esc_html__( '未登録のクリニックを登録する', 'efline' ) . '</button></p>';
 	echo '</form>';
 
-	echo '<table class="widefat striped" style="max-width:960px"><thead><tr><th>#</th><th>医院名</th><th>エリア</th><th>住所</th><th>電話</th></tr></thead><tbody>';
+	echo '<table class="widefat striped" style="max-width:960px"><thead><tr><th>#</th><th>医院名</th><th>エリア</th><th>住所</th><th>電話</th><th>公式サイト</th></tr></thead><tbody>';
 	foreach ( $rows as $row ) {
 		printf(
-			'<tr><td>%d</td><td>%s</td><td>%s</td><td>〒%s %s</td><td>%s</td></tr>',
+			'<tr><td>%d</td><td>%s</td><td>%s</td><td>〒%s %s</td><td>%s</td><td>%s</td></tr>',
 			(int) $row['seed'],
 			esc_html( $row['name'] ),
 			esc_html( $row['area'] ),
 			esc_html( $row['postal_code'] ),
 			esc_html( $row['address'] ),
-			esc_html( $row['phone'] )
+			esc_html( $row['phone'] ),
+			$row['official_url'] !== '' ? esc_html( $row['official_url'] ) : '—'
 		);
 	}
 	echo '</tbody></table></div>';
