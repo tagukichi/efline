@@ -2,8 +2,12 @@
 /**
  * 取扱いクリニック初期データ（クライアント提供 Excel 2026-10-07 版より生成）。
  * inc/clinic-seed.php から読み込まれ、clinic CPT として一括登録される。
- * Excel の URL 列は医院名と行が一致していなかったため、official_url は
- * ドメインから医院を特定して対応付けたもの（ortho-tokyo.com は該当医院不明のため未設定）。
+ *
+ * - Excel の URL 列は医院名と行が一致していなかったため、official_url は各 URL を
+ *   公的記録（厚労省 医療情報ネット）や公式サイトの住所・電話と突き合わせて医院を特定したもの。
+ *   15 件すべて確認済み（2026-10-09）。URL の無い 6 件は Excel の「許可未入手」「なし」に相当。
+ * - 凌雲堂矯正歯科医院の電話は Excel の「0534-56-7123」を「053-456-7123」に訂正
+ *   （浜松の市外局番は 053。数字は同一）。
  *
  * @package efline
  */
@@ -40,7 +44,7 @@ return array (
     'postal_code' => '155-0032',
     'address' => '東京都 世田谷区 代沢 5-19-13',
     'phone' => '03-6453-2919',
-    'official_url' => '',
+    'official_url' => 'https://ortho-tokyo.com/',
     'area' => '東京都世田谷区',
   ),
   3 => 
@@ -80,7 +84,7 @@ return array (
     'postal_code' => '162-0825',
     'address' => '東京都 新宿区 神楽坂 5-30-2',
     'phone' => '03-5228-0122',
-    'official_url' => 'https://k-o-c.com/',
+    'official_url' => '',
     'area' => '東京都新宿区',
   ),
   7 => 
@@ -150,7 +154,7 @@ return array (
     'postal_code' => '340-0206',
     'address' => '埼玉県久喜市西大輪4-3-14',
     'phone' => '0480-59-4184',
-    'official_url' => '',
+    'official_url' => 'https://k-o-c.com/',
     'area' => '埼玉県久喜市',
   ),
   14 => 
@@ -199,7 +203,7 @@ return array (
     'name' => '凌雲堂矯正歯科医院',
     'postal_code' => '430-0944',
     'address' => '静岡県浜松市中央区田町 ２２４－８ 三晃田町ビル ２Ｆ',
-    'phone' => '0534-56-7123',
+    'phone' => '053-456-7123',
     'official_url' => '',
     'area' => '静岡県浜松市',
   ),

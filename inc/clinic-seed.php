@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // データ更新時はこのキーを変えると、管理画面を開いた時に 1 回だけ再実行される。
-const EFLINE_CLINIC_SEED_OPTION = 'efline_clinic_seed_20261009';
+const EFLINE_CLINIC_SEED_OPTION = 'efline_clinic_seed_20261009b';
 const EFLINE_CLINIC_SEED_PREFIX = 'xlsx-20261007-';
 
 /**
@@ -65,7 +65,11 @@ function efline_clinic_seed_run() {
 			) );
 		}
 		if ( ! empty( $exists ) ) {
+			$changed = efline_clinic_seed_apply_corrections( (int) $exists[0], $row );
 			if ( efline_clinic_seed_fill_url( (int) $exists[0], $row['official_url'] ) ) {
+				$changed = true;
+			}
+			if ( $changed ) {
 				$result['updated']++;
 			} else {
 				$result['skipped']++;
@@ -108,6 +112,50 @@ function efline_clinic_seed_run() {
 	}
 
 	return $result;
+}
+
+/**
+ * 以前のテーマ版が登録した誤った値の訂正（該当する値のときだけ置き換える）。
+ *
+ * - 2026-10-09 版: 神楽坂矯正歯科クリニックに誤って k-o-c.com
+ *   （実際は こいずみ矯正歯科クリニック の公式サイト）を設定していたため削除
+ * - 凌雲堂矯正歯科医院の電話のハイフン位置を 053-456-7123 に訂正
+ *
+ * @return bool 変更した場合 true
+ */
+function efline_clinic_seed_apply_corrections( $post_id, $row ) {
+	$changed = false;
+
+	$wrong_urls = array(
+		7 => 'https://k-o-c.com/',
+	);
+	if ( isset( $wrong_urls[ $row['seed'] ] ) ) {
+		$reservation = get_field( 'reservation', $post_id, false );
+		$reservation = is_array( $reservation ) ? $reservation : array();
+		$current     = (string) ( $reservation['field_clinic_official_url'] ?? $reservation['official_url'] ?? '' );
+		if ( untrailingslashit( $current ) === untrailingslashit( $wrong_urls[ $row['seed'] ] ) ) {
+			update_field( 'field_clinic_reservation', array(
+				'url'          => (string) ( $reservation['field_clinic_reservation_url'] ?? $reservation['url'] ?? '' ),
+				'label'        => (string) ( $reservation['field_clinic_reservation_label'] ?? $reservation['label'] ?? '' ),
+				'official_url' => '',
+			), $post_id );
+			$changed = true;
+		}
+	}
+
+	$wrong_phones = array(
+		19 => '0534-56-7123',
+	);
+	if ( isset( $wrong_phones[ $row['seed'] ] ) ) {
+		// group サブフィールドは {group}_{sub} のメタキーに保存される
+		$phone = (string) get_post_meta( $post_id, 'basic_info_phone', true );
+		if ( $phone === $wrong_phones[ $row['seed'] ] ) {
+			update_post_meta( $post_id, 'basic_info_phone', $row['phone'] );
+			$changed = true;
+		}
+	}
+
+	return $changed;
 }
 
 /**
@@ -170,7 +218,7 @@ function efline_clinic_seed_print_result( $result ) {
 	$class = empty( $result['errors'] ) ? 'notice-success' : 'notice-warning';
 	echo '<div class="notice ' . esc_attr( $class ) . ' is-dismissible"><p><strong>efline:</strong> ';
 	printf(
-		esc_html__( '取扱いクリニックを一括登録しました（新規 %1$d 件 / 公式サイトURLを追加 %2$d 件 / 変更なし %3$d 件）。', 'efline' ),
+		esc_html__( '取扱いクリニックを一括登録しました（新規 %1$d 件 / URL・電話を補完/訂正 %2$d 件 / 変更なし %3$d 件）。', 'efline' ),
 		(int) $result['created'],
 		(int) ( $result['updated'] ?? 0 ),
 		(int) $result['skipped']
